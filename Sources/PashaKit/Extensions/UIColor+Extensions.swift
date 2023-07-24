@@ -36,8 +36,20 @@ extension UIColor {
         static let PBGreenSecondary = UIColor(red: 0.011, green: 0.68, blue: 0.491, alpha: 0.08)
         static let PBGray = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
         
-        // PBBusiness
-        static let PBBGreen = UIColor(named: "PBBGreen")
+        // PB Business
+
+        static var PBBGreen: UIColor {
+              if #available(iOS 13.0, *) {
+                  return UIColor { (traits) -> UIColor in
+                      // Return one of two colors depending on light or dark mode
+                      return traits.userInterfaceStyle == .dark ?
+                          UIColor(red: 0.298, green: 0.745, blue: 0.620, alpha: 1) :
+                          UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
+                  }
+              } else {
+                  return UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
+              }
+          }
 
         // MARK: NEUTRALS
         static let PBGray40 = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
