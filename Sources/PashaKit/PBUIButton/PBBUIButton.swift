@@ -115,7 +115,7 @@ public class PBBUIButton: UIButton {
     ///
     /// By default it will set 16.0 to corner radius property of button.
     ///
-    public var cornerRadius: CGFloat = 16.0 {
+    public var cornerRadius: CGFloat = 12.0 {
         didSet {
             self.layer.cornerRadius = self.cornerRadius
         }
@@ -300,5 +300,8 @@ public class PBBUIButton: UIButton {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+        if #available(iOS 13.0, *) {
+            self.overrideUserInterfaceStyle = .unspecified
+        }
     }
 }
