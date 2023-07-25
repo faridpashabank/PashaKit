@@ -48,6 +48,7 @@ public class PBBUIButton: UIButton {
     public enum PBUIButtonType {
         case custom
         case share
+        case edit
         case close
     }
 
@@ -84,12 +85,6 @@ public class PBBUIButton: UIButton {
     }
 
     private var seconds: Int = 0
-    
-    public var buttonHeight: CGFloat = 56 {
-        didSet {
-            self.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
-        }
-    }
 
     /// Sets the title to use for normal state.
     ///
@@ -272,6 +267,8 @@ public class PBBUIButton: UIButton {
             self.makeShareButton()
         case .close:
             self.makeCloseButton()
+        case .edit:
+            self.makeEditButton()
         }
     }
 
@@ -283,6 +280,13 @@ public class PBBUIButton: UIButton {
 
     private func makeCloseButton() {
         self.styleOfButton = .plain
+    }
+    
+    private func makeEditButton() {
+        self.styleOfButton = .tinted
+        self.setImage(UIImage.Images.icEdit, for: .normal)
+        self.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
     }
 
     private func makeButton(disabled: Bool) {
