@@ -84,6 +84,12 @@ public class PBBUIButton: UIButton {
     }
 
     private var seconds: Int = 0
+    
+    public var buttonHeight: CGFloat = 56 {
+        didSet {
+            self.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
+        }
+    }
 
     /// Sets the title to use for normal state.
     ///
@@ -235,7 +241,7 @@ public class PBBUIButton: UIButton {
     private func prepareButtonByStyle() {
         switch self.styleOfButton {
         case .plain:
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             self.baseBackgroundColor = .clear
             self.buttonTintColor = self.theme.getPrimaryColor()
             self.borderColor = UIColor.clear
