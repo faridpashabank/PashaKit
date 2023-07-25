@@ -42,11 +42,13 @@ extension UIColor {
               if #available(iOS 13.0, *) {
                   return UIColor { (traits) -> UIColor in
                       // Return one of two colors depending on light or dark mode
+                      print("Hello World")
                       return traits.userInterfaceStyle == .dark ?
                           UIColor(red: 0.298, green: 0.745, blue: 0.620, alpha: 1) :
                           UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
                   }
               } else {
+                  print("Hello World else")
                   return UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
               }
           }
