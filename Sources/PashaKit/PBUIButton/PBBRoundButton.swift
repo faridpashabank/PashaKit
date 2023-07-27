@@ -69,7 +69,7 @@ public class PBBRoundButton: UIView {
         case disabled
     }
     
-    public enum IconViewSize {
+    public enum IconSize {
         case small
         case medium
         case large
@@ -185,6 +185,25 @@ public class PBBRoundButton: UIView {
     public var isDisabled: Bool = false {
         didSet {
             self.makeButton(disabled: self.isDisabled)
+        }
+    }
+    
+    public var iconSize: IconSize = .small {
+        didSet {
+            switch self.iconSize {
+            case .small:
+                NSLayoutConstraint.activate(self.smallSizeConstraints)
+                NSLayoutConstraint.deactivate(self.mediumSizeConstraints)
+                NSLayoutConstraint.deactivate(self.largeSizeConstraints)
+            case .medium:
+                NSLayoutConstraint.deactivate(self.smallSizeConstraints)
+                NSLayoutConstraint.activate(self.mediumSizeConstraints)
+                NSLayoutConstraint.deactivate(self.largeSizeConstraints)
+            case .large:
+                NSLayoutConstraint.deactivate(self.smallSizeConstraints)
+                NSLayoutConstraint.deactivate(self.mediumSizeConstraints)
+                NSLayoutConstraint.activate(self.largeSizeConstraints)
+            }
         }
     }
     
@@ -306,17 +325,23 @@ public class PBBRoundButton: UIView {
         case .disabled:
             self.iconWrapperView.layer.cornerRadius = 8.0
         case .text:
+            
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+            
             NSLayoutConstraint.activate([
-                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
-                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+//                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
+//                self.contentStackView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: -16.0),
+                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                self.contentStackView.heightAnchor.constraint(equalToConstant: 128.0),
+                self.contentStackView.widthAnchor.constraint(equalToConstant: 128.0)
             ])
             
             self.smallSizeConstraints = [
                 self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
                 self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
-                self.contentStackView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.contentStackView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor)
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.contentStackView.centerXAnchor),
+                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
             ]
             
             print("TEXT")
@@ -337,8 +362,6 @@ public class PBBRoundButton: UIView {
             self.borderColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
         }
     }
-    
-
 
     private func prepareButtonByType() {
         switch self.typeOfButton {
