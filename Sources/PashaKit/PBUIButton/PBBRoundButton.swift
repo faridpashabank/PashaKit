@@ -329,6 +329,17 @@ public class PBBRoundButton: UIView {
             self.iconWrapperView.layer.cornerRadius = 8.0
         case .text:
             
+            self.smallSizeConstraints = [
+                self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
+                self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
+                self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
+                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
+                
+//                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
+            ]
+            
+            NSLayoutConstraint.activate(self.smallSizeConstraints)
+            
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
             
             NSLayoutConstraint.activate([
@@ -353,14 +364,7 @@ public class PBBRoundButton: UIView {
             
             ])
             
-            self.smallSizeConstraints = [
-                self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
-                self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
-                self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
-                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
-                
-//                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
-            ]
+
             
             print("TEXT")
         }
