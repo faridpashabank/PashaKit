@@ -347,7 +347,7 @@ public class PBBRoundButton: UIView {
                 self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
                 self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
                 self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
-                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
+                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
                 self.iconWrapperView.centerXAnchor.constraint(equalTo: self.contentStackView.centerXAnchor)
 //                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
             ]
