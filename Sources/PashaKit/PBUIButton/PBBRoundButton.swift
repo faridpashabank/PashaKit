@@ -316,7 +316,7 @@ public class PBBRoundButton: UIView {
             self.iconWrapperView.layer.cornerRadius = 8.0
         case .text:
             print("Text:::")
-            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+//            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
             self.contentStackView.addArrangedSubview(self.titleLabel)
         }
     }
@@ -347,8 +347,8 @@ public class PBBRoundButton: UIView {
                 self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
                 self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
                 self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
-                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
-//                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.contentStackView.centerXAnchor),
+                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.contentStackView.centerXAnchor)
 //                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
             ]
             
