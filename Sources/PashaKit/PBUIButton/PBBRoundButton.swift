@@ -195,6 +195,7 @@ public class PBBRoundButton: UIView {
                 NSLayoutConstraint.activate(self.smallSizeConstraints)
                 NSLayoutConstraint.deactivate(self.mediumSizeConstraints)
                 NSLayoutConstraint.deactivate(self.largeSizeConstraints)
+                self.iconWrapperView.layer.cornerRadius = 24
             case .medium:
                 NSLayoutConstraint.deactivate(self.smallSizeConstraints)
                 NSLayoutConstraint.activate(self.mediumSizeConstraints)
@@ -333,15 +334,11 @@ public class PBBRoundButton: UIView {
                 self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
                 self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
                 self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
-                
-//                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
             ]
             
 //            NSLayoutConstraint.activate(self.smallSizeConstraints)
             
 //            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
-            
-            self.iconWrapperView.layer.cornerRadius = 24
             
             NSLayoutConstraint.activate([
 //                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
