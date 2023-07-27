@@ -213,7 +213,7 @@ public class PBBRoundButton: UIView {
         self.addSubview(view)
 
         view.axis = .vertical
-        view.distribution = .equalSpacing
+        view.distribution = .fillProportionally
         view.spacing = 0
 
         view.translatesAutoresizingMaskIntoConstraints = false
