@@ -306,9 +306,6 @@ public class PBBRoundButton: UIView {
         
         self.addSubview(self.iconWrapperView)
 
-        
-        self.setupConstraints(for: type)
-
         switch type {
         case .plain:
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
@@ -319,6 +316,8 @@ public class PBBRoundButton: UIView {
 //            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
             self.addSubview(self.titleLabel)
         }
+        
+        self.setupConstraints(for: type)
     }
     
     private func setupConstraints(for type: PBBRoundButtonType) {
@@ -354,12 +353,12 @@ public class PBBRoundButton: UIView {
                 self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
                 self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 
-                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
+//                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
                 
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
                 self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
                 
-                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 
                 self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
