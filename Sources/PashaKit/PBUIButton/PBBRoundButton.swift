@@ -242,49 +242,6 @@ public class PBBRoundButton: UIView {
 
         return view
     }()
-    
-    private func setupViews(for type: PBBRoundButtonType) {
-        
-        self.iconWrapperView.addSubview(self.iconView)
-        
-        self.contentStackView.addArrangedSubview(self.iconWrapperView)
-        
-        self.setupConstraints(for: type)
-
-        switch type {
-        case .plain:
-            self.iconWrapperView.layer.cornerRadius = 24.0
-        case .disabled:
-            self.iconWrapperView.layer.cornerRadius = 8.0
-        case .text:
-            print("")
-            self.contentStackView.addArrangedSubview(self.titleLabel)
-        }
-    }
-    
-    private func setupConstraints(for type: PBBRoundButtonType) {
-        switch type {
-        case .plain:
-            self.iconWrapperView.layer.cornerRadius = 24.0
-        case .disabled:
-            self.iconWrapperView.layer.cornerRadius = 8.0
-        case .text:
-            
-            NSLayoutConstraint.activate([
-                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
-                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            ])
-            
-            self.smallSizeConstraints = [
-                self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
-                self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
-                self.contentStackView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.contentStackView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor)
-            ]
-            
-            print("TEXT")
-        }
-    }
 
     override private init(frame: CGRect) {
         super.init(frame: frame)
@@ -312,7 +269,7 @@ public class PBBRoundButton: UIView {
 
     public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
         self.init()
-        self.setupDefaults()
+//        self.setupDefaults()
         self.typeOfButton = typeOfButton
         self.prepareButtonByType()
         self.setupViews(for: typeOfButton)
@@ -321,6 +278,50 @@ public class PBBRoundButton: UIView {
 //    public convenience init() {
 //        self.init(localizableTitle: "")
 //    }
+    
+    private func setupViews(for type: PBBRoundButtonType) {
+        
+        self.iconWrapperView.addSubview(self.iconView)
+        
+        self.contentStackView.addArrangedSubview(self.iconWrapperView)
+        
+        self.setupConstraints(for: type)
+
+        switch type {
+        case .plain:
+            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+        case .disabled:
+            self.iconWrapperView.layer.cornerRadius = 8.0
+        case .text:
+            print("Text:::")
+            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+            self.contentStackView.addArrangedSubview(self.titleLabel)
+        }
+    }
+    
+    private func setupConstraints(for type: PBBRoundButtonType) {
+        switch type {
+        case .plain:
+            self.iconWrapperView.layer.cornerRadius = 24.0
+        case .disabled:
+            self.iconWrapperView.layer.cornerRadius = 8.0
+        case .text:
+            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+            NSLayoutConstraint.activate([
+                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
+                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            ])
+            
+            self.smallSizeConstraints = [
+                self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
+                self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
+                self.contentStackView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
+                self.contentStackView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor)
+            ]
+            
+            print("TEXT")
+        }
+    }
 
     private func prepareButtonByStyle() {
         switch self.styleOfButton {
@@ -345,9 +346,9 @@ public class PBBRoundButton: UIView {
             self.styleOfButton = .plain
         case .text(let value):
             self.title = value
-            self.makeTextButton()
-        case .disabled:
-            self.makeDisabledButton()
+//            self.makeTextButton()
+        case .disabled: break
+//            self.makeDisabledButton()
         }
     }
 
