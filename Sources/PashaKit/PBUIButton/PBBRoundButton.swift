@@ -207,19 +207,19 @@ public class PBBRoundButton: UIView {
         }
     }
     
-    private lazy var contentStackView: UIStackView = {
-        let view = UIStackView()
+//    private lazy var contentStackView: UIView = {
+//        let view = UIView()
 
-        self.addSubview(view)
+//        self.addSubview(view)
 
-        view.axis = .vertical
-        view.distribution = .fillEqually
-        view.spacing = 0
+//        view.axis = .vertical
+//        view.distribution = .equalSpacing
+//        view.spacing = 0
 
-        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.translatesAutoresizingMaskIntoConstraints = false
 
-        return view
-    }()
+//        return view
+//    }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -301,10 +301,10 @@ public class PBBRoundButton: UIView {
     private func setupViews(for type: PBBRoundButtonType) {
         
         self.iconWrapperView.addSubview(self.iconView)
-        self.contentStackView.backgroundColor = .blue
+        self.backgroundColor = .blue
         self.iconWrapperView.backgroundColor = .red
         
-        self.contentStackView.addArrangedSubview(self.iconWrapperView)
+        self.addSubview(self.iconWrapperView)
 
         
         self.setupConstraints(for: type)
@@ -317,7 +317,7 @@ public class PBBRoundButton: UIView {
         case .text:
             print("Text:::")
 //            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
-            self.contentStackView.addArrangedSubview(self.titleLabel)
+            self.addSubview(self.titleLabel)
         }
     }
     
@@ -334,10 +334,10 @@ public class PBBRoundButton: UIView {
             NSLayoutConstraint.activate([
 //                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
 //                self.contentStackView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: -16.0),
-                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                self.contentStackView.heightAnchor.constraint(equalToConstant: 128.0),
-                self.contentStackView.widthAnchor.constraint(equalToConstant: 128.0),
+//                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//                self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                self.heightAnchor.constraint(equalToConstant: 128.0),
+                self.widthAnchor.constraint(equalToConstant: 128.0),
                 
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
                 self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor)
@@ -348,7 +348,7 @@ public class PBBRoundButton: UIView {
                 self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
                 self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
                 self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
-                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.contentStackView.centerXAnchor)
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
 //                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
             ]
             
