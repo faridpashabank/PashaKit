@@ -340,15 +340,21 @@ public class PBBRoundButton: UIView {
                 self.widthAnchor.constraint(equalToConstant: 128.0),
                 
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor)
+                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
+                self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
+                self.titleLabel.leftAnchor.constraint(equalTo: self.iconWrapperView.leftAnchor, constant: 12.0),
+                self.titleLabel.rightAnchor.constraint(equalTo: self.iconWrapperView.rightAnchor, constant: -12.0),
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
             ])
             
             self.smallSizeConstraints = [
                 self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
                 self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
                 self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
-                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
-                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
+                
 //                self.iconWrapperView.centerYAnchor.constraint(equalTo: self.contentStackView.centerYAnchor)
             ]
             
