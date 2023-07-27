@@ -244,8 +244,8 @@ public class PBBRoundButton: UIView {
 //        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 //        view.layer.cornerRadius = self.cornerRadius
 
-        view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+//        view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
+//        view.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
 
         return view
     }()
@@ -336,17 +336,21 @@ public class PBBRoundButton: UIView {
 //                self.contentStackView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: -16.0),
 //                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 //                self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            
                 self.heightAnchor.constraint(equalToConstant: 128.0),
                 self.widthAnchor.constraint(equalToConstant: 128.0),
                 
+                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
                 self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                
                 self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
-                self.titleLabel.leftAnchor.constraint(equalTo: self.iconWrapperView.leftAnchor, constant: 12.0),
-                self.titleLabel.rightAnchor.constraint(equalTo: self.iconWrapperView.rightAnchor, constant: -12.0),
-                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
+                self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
+            
             ])
             
             self.smallSizeConstraints = [
