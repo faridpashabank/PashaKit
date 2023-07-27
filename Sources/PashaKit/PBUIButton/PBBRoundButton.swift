@@ -339,7 +339,9 @@ public class PBBRoundButton: UIView {
             
 //            NSLayoutConstraint.activate(self.smallSizeConstraints)
             
-            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+//            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+            
+            self.iconWrapperView.layer.cornerRadius = 24
             
             NSLayoutConstraint.activate([
 //                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
