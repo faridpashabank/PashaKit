@@ -241,7 +241,7 @@ public class PBBRoundButton: UIView {
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+//        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 //        view.layer.cornerRadius = self.cornerRadius
 
         view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
@@ -301,8 +301,11 @@ public class PBBRoundButton: UIView {
     private func setupViews(for type: PBBRoundButtonType) {
         
         self.iconWrapperView.addSubview(self.iconView)
+        self.contentStackView.backgroundColor = .blue
+        self.iconWrapperView.backgroundColor = .red
         
         self.contentStackView.addArrangedSubview(self.iconWrapperView)
+
         
         self.setupConstraints(for: type)
 
@@ -381,9 +384,9 @@ public class PBBRoundButton: UIView {
 //        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
 //    }
 
-    private func makeTextButton() {
-        self.styleOfButton = .plain
-    }
+//    private func makeTextButton() {
+//        self.styleOfButton = .plain
+//    }
     
     private func makeDisabledButton() {
         self.styleOfButton = .plain
@@ -408,9 +411,9 @@ public class PBBRoundButton: UIView {
 
     private func setupDefaults() {
 //        self.layer.cornerRadius = self.cornerRadius
-        self.layer.masksToBounds = true
-        self.layer.borderWidth = 1.0
-        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.layer.masksToBounds = true
+//        self.layer.borderWidth = 1.0
+//        self.translatesAutoresizingMaskIntoConstraints = false
 //        self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
 //        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
     }
