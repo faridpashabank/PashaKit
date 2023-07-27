@@ -241,8 +241,8 @@ public class PBBRoundButton: UIView {
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        view.backgroundColor = UIColor(red: 0.604, green: 0.608, blue: 0.612, alpha: 0.08)
-        view.layer.cornerRadius = self.cornerRadius
+        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+//        view.layer.cornerRadius = self.cornerRadius
 
         view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
         view.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
