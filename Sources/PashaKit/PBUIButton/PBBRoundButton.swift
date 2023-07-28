@@ -136,6 +136,12 @@ public class PBBRoundButton: UIView {
             self.tintColor = self.buttonTintColor
         }
     }
+    
+    public var iconBackgroundColor: UIColor = .clear {
+        didSet {
+            self.iconWrapperView.backgroundColor = self.iconBackgroundColor
+        }
+    }
 
     /// The color of button's border.
     ///
@@ -208,20 +214,6 @@ public class PBBRoundButton: UIView {
         }
     }
     
-//    private lazy var contentStackView: UIView = {
-//        let view = UIView()
-
-//        self.addSubview(view)
-
-//        view.axis = .vertical
-//        view.distribution = .equalSpacing
-//        view.spacing = 0
-
-//        view.translatesAutoresizingMaskIntoConstraints = false
-
-//        return view
-//    }()
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
 
@@ -239,14 +231,6 @@ public class PBBRoundButton: UIView {
         let view = UIView()
 
         self.addSubview(view)
-
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-//        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-//        view.layer.cornerRadius = self.cornerRadius
-
-//        view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
-//        view.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
 
         return view
     }()
@@ -302,8 +286,6 @@ public class PBBRoundButton: UIView {
     private func setupViews(for type: PBBRoundButtonType) {
         
         self.iconWrapperView.addSubview(self.iconView)
-        self.backgroundColor = .blue
-        self.iconWrapperView.backgroundColor = .red
         
         self.addSubview(self.iconWrapperView)
 
@@ -335,30 +317,18 @@ public class PBBRoundButton: UIView {
                 self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
                 self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
             ]
-            
-//            NSLayoutConstraint.activate(self.smallSizeConstraints)
-            
-//            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
-            
+
             NSLayoutConstraint.activate([
-//                self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
-//                self.contentStackView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: -16.0),
-//                self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//                self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            
+
                 self.heightAnchor.constraint(equalToConstant: 128.0),
                 self.widthAnchor.constraint(equalToConstant: 128.0),
                 
                 self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
                 self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                
-//                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0),
-                
+              
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
                 self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
-                
-//                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                
+       
                 self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
@@ -396,16 +366,6 @@ public class PBBRoundButton: UIView {
 //            self.makeDisabledButton()
         }
     }
-
-//    private func makeShareButton() {
-//        self.styleOfButton = .plain
-//        self.setImage(UIImage.Images.icShare, for: .normal)
-//        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-//    }
-
-//    private func makeTextButton() {
-//        self.styleOfButton = .plain
-//    }
     
     private func makeDisabledButton() {
         self.styleOfButton = .plain
