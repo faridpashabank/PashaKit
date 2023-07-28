@@ -237,8 +237,8 @@ public class PBBRoundButton: UIView {
 //        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 //        view.layer.cornerRadius = self.cornerRadius
 
-        view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+//        view.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
+//        view.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
 
         return view
     }()
