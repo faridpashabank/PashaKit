@@ -310,7 +310,24 @@ public class PBBRoundButton: UIView {
     private func setupConstraints(for type: PBBRoundButtonType) {
         switch type {
         case .plain:
-            self.iconWrapperView.layer.cornerRadius = 24.0
+            
+            NSLayoutConstraint.activate([
+
+//                self.heightAnchor.constraint(equalToConstant: 128.0),
+//                self.widthAnchor.constraint(equalToConstant: 128.0),
+                
+//                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+//                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//
+                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
+                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                
+                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8.0),
+                self.iconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8.0),
+                self.iconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8.0),
+                self.iconWrapperView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0)
+            
+            ])
         case .disabled:
             self.iconWrapperView.layer.cornerRadius = 8.0
         case .text:
@@ -337,8 +354,8 @@ public class PBBRoundButton: UIView {
         }
         
         self.smallSizeConstraints = [
-            self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
-            self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
+            self.iconView.widthAnchor.constraint(equalToConstant: 18.0),
+            self.iconView.heightAnchor.constraint(equalToConstant: 18.0),
             self.iconWrapperView.widthAnchor.constraint(equalToConstant: 24.0),
             self.iconWrapperView.heightAnchor.constraint(equalToConstant: 24.0)
         ]
