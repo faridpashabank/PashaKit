@@ -96,11 +96,17 @@ public class PBBRoundButton: UIView {
             self.titleLabel.text = self.title
         }
     }
+    
+    public var disableTitle: String = "" {
+        didSet {
+            self.disableTitleLabel.text = self.disableTitle
+        }
+    }
 
     /// Sets the image for displaying on the left side of button.
     ///
     /// By default button will be created with only its title. If you are willing to add
-    /// leftImage in future, just set the desired image to this property.
+    /// image in future, just set the desired image to this property.
     ///
     public var image: UIImage? {
         didSet {
@@ -132,9 +138,9 @@ public class PBBRoundButton: UIView {
     ///
     /// By default button will be created with the tint color for selected button style.
     ///
-    public var buttonTintColor: UIColor = UIColor.white {
+    public var buttonTintColor: UIColor = UIColor.black {
         didSet {
-            self.tintColor = self.buttonTintColor
+            self.titleLabel.textColor = self.buttonTintColor
         }
     }
     
@@ -176,19 +182,13 @@ public class PBBRoundButton: UIView {
 
     /// Specifies style of the button.
     ///
-    /// If not specified by outside, PBUIButton will be created with filled style.
+    /// If not specified by outside, PBBRoundButton will be created with filled style.
     ///
     public var styleOfButton: PBBRoundButtonStyle = .plain {
         didSet {
             self.prepareButtonByStyle()
         }
     }
-
-//    public var isDisabled: Bool = false {
-//        didSet {
-//            self.makeButton(disabled: self.isDisabled)
-//        }
-//    }
     
     public var iconSize: IconSize = .small {
         didSet {
@@ -247,6 +247,32 @@ public class PBBRoundButton: UIView {
 
         return view
     }()
+    
+    private lazy var disableTitleLabel: UILabel = {
+        let label = UILabel()
+
+        label.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = self.disableTitle
+//        label.numberOfLines = 0
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+    
+    private lazy var disableView: UIView = {
+        let view = UIView()
+
+        view.backgroundColor = .red
+        
+        self.addSubview(view)
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
 
     override private init(frame: CGRect) {
         super.init(frame: frame)
@@ -281,7 +307,10 @@ public class PBBRoundButton: UIView {
         case .plain:
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
         case .disabled:
-            self.iconWrapperView.layer.cornerRadius = 8.0
+//            self.iconWrapperView.layer.cornerRadius = 8.0
+            self.disableView.addSubview(self.disableTitleLabel)
+            self.addSubview(self.disableView)
+            self.addSubview(self.titleLabel)
         case .withBoldTitle, .withRegularTitle:
             self.addSubview(self.titleLabel)
         }
@@ -302,10 +331,31 @@ public class PBBRoundButton: UIView {
                 self.iconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8.0),
                 self.iconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8.0),
                 self.iconWrapperView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0)
+            ])
+            
+        case .disabled:
+
+            NSLayoutConstraint.activate([
+
+                self.heightAnchor.constraint(equalToConstant: 128.0),
+                self.widthAnchor.constraint(equalToConstant: 128.0),
+                
+                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                
+                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
+                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                
+                self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
+                
+                self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
+                self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
+                self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
             
             ])
-        case .disabled:
-            self.iconWrapperView.layer.cornerRadius = 8.0
+            
         case .withBoldTitle, .withRegularTitle:
             
             NSLayoutConstraint.activate([
@@ -378,34 +428,5 @@ public class PBBRoundButton: UIView {
         case .disabled: break
         }
     }
-    
-//    private func makeDisabledButton() {
-//        self.styleOfButton = .plain
-////        self.setImage(UIImage.Images.icEdit, for: .normal)
-//        self.heightAnchor.constraint(equalToConstant: 40).isActive = true
-////        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-//    }
 
-//    private func makeButton(disabled: Bool) {
-//        let currentButtonStyle = self.styleOfButton
-//
-//        if disabled {
-//            self.isUserInteractionEnabled = false
-//            self.borderColor = UIColor.Colors.PBGray90
-//            self.baseBackgroundColor = UIColor.Colors.PBGray90
-//            self.buttonTintColor = UIColor.Colors.PBGray70
-//        } else {
-//            self.isUserInteractionEnabled = true
-//            self.styleOfButton = currentButtonStyle
-//        }
-//    }
-
-    private func setupDefaults() {
-//        self.layer.cornerRadius = self.cornerRadius
-//        self.layer.masksToBounds = true
-//        self.layer.borderWidth = 1.0
-//        self.translatesAutoresizingMaskIntoConstraints = false
-//        self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-//        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-    }
 }
