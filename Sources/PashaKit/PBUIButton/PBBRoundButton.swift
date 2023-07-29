@@ -184,11 +184,11 @@ public class PBBRoundButton: UIView {
         }
     }
 
-    public var isDisabled: Bool = false {
-        didSet {
-            self.makeButton(disabled: self.isDisabled)
-        }
-    }
+//    public var isDisabled: Bool = false {
+//        didSet {
+//            self.makeButton(disabled: self.isDisabled)
+//        }
+//    }
     
     public var iconSize: IconSize = .small {
         didSet {
@@ -261,7 +261,7 @@ public class PBBRoundButton: UIView {
     ///
     /// - Parameters:
     ///    - localizableTitle: Sets the title text for button.
-    ///    - styleOfButton: Sets the style of button.
+    ///    - typeOfButton: Sets the type of button.
     ///
 
     public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
@@ -284,8 +284,6 @@ public class PBBRoundButton: UIView {
         case .disabled:
             self.iconWrapperView.layer.cornerRadius = 8.0
         case .withBoldTitle, .withRegularTitle:
-            print("Text:::")
-//            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
             self.addSubview(self.titleLabel)
         }
         
@@ -329,7 +327,6 @@ public class PBBRoundButton: UIView {
             
             ])
             
-            print("TEXT")
         }
         
         self.smallSizeConstraints = [
@@ -354,20 +351,20 @@ public class PBBRoundButton: UIView {
         ]
     }
 
-//    private func prepareButtonByStyle() {
-//        switch self.styleOfButton {
-//        case .plain:
-////            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-//            self.baseBackgroundColor = .clear
-//            self.buttonTintColor = self.theme.getPrimaryColor()
-//            self.borderColor = UIColor.clear
-//        case .disabled:
-////            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-//            self.baseBackgroundColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
-//            self.buttonTintColor = self.theme.getPrimaryColor()
-//            self.borderColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
-//        }
-//    }
+    private func prepareButtonByStyle() {
+        switch self.styleOfButton {
+        case .plain:
+//            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            self.baseBackgroundColor = .clear
+            self.buttonTintColor = self.theme.getPrimaryColor()
+            self.borderColor = UIColor.clear
+        case .disabled:
+//            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            self.baseBackgroundColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
+            self.buttonTintColor = self.theme.getPrimaryColor()
+            self.borderColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
+        }
+    }
 
     private func prepareButtonByType() {
         switch self.typeOfButton {
@@ -388,8 +385,8 @@ public class PBBRoundButton: UIView {
 ////        self.setImage(UIImage.Images.icEdit, for: .normal)
 //        self.heightAnchor.constraint(equalToConstant: 40).isActive = true
 ////        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-//    }
-//
+    }
+
 //    private func makeButton(disabled: Bool) {
 //        let currentButtonStyle = self.styleOfButton
 //
@@ -403,13 +400,13 @@ public class PBBRoundButton: UIView {
 //            self.styleOfButton = currentButtonStyle
 //        }
 //    }
-//
-//    private func setupDefaults() {
-////        self.layer.cornerRadius = self.cornerRadius
-////        self.layer.masksToBounds = true
-////        self.layer.borderWidth = 1.0
-////        self.translatesAutoresizingMaskIntoConstraints = false
-////        self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-////        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-//    }
+
+    private func setupDefaults() {
+//        self.layer.cornerRadius = self.cornerRadius
+//        self.layer.masksToBounds = true
+//        self.layer.borderWidth = 1.0
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+//        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+    }
 }
