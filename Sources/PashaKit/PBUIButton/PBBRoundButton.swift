@@ -150,12 +150,7 @@ public class PBBRoundButton: UIView {
     ///
     public var borderColor: UIColor = UIColor.Colors.PBGreen {
         didSet {
-            switch self.styleOfButton {
-            case .plain:
-                self.layer.borderColor = UIColor.clear.cgColor
-            case .disabled:
-                self.layer.borderColor = UIColor.clear.cgColor
-            }
+            self.layer.borderColor = self.borderColor
         }
     }
 
