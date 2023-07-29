@@ -150,7 +150,7 @@ public class PBBRoundButton: UIView {
     ///
     public var borderColor: UIColor = UIColor.Colors.PBGreen {
         didSet {
-            self.layer.borderColor = self.borderColor
+            self.layer.borderColor = self.borderColor.cgColor
         }
     }
 
