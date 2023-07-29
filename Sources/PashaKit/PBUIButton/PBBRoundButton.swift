@@ -333,15 +333,15 @@ public class PBBRoundButton: UIView {
         }
         
         self.smallSizeConstraints = [
-            self.iconView.widthAnchor.constraint(equalToConstant: 18.0),
-            self.iconView.heightAnchor.constraint(equalToConstant: 18.0),
+            self.iconView.widthAnchor.constraint(equalToConstant: 12.0),
+            self.iconView.heightAnchor.constraint(equalToConstant: 12.0),
             self.iconWrapperView.widthAnchor.constraint(equalToConstant: 24.0),
             self.iconWrapperView.heightAnchor.constraint(equalToConstant: 24.0)
         ]
         
         self.mediumSizeConstraints = [
-            self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
-            self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
+            self.iconView.widthAnchor.constraint(equalToConstant: 16.0),
+            self.iconView.heightAnchor.constraint(equalToConstant: 16.0),
             self.iconWrapperView.widthAnchor.constraint(equalToConstant: 32.0),
             self.iconWrapperView.heightAnchor.constraint(equalToConstant: 32.0)
         ]
