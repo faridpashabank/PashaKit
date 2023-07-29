@@ -224,6 +224,7 @@ public class PBBRoundButton: UIView {
         label.textColor = .darkText
         label.textAlignment = .center
         label.text = self.title
+        label.numberOfLines = 0
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
