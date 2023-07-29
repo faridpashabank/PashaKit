@@ -47,7 +47,8 @@ public class PBBRoundButton: UIView {
 
     public enum PBBRoundButtonType {
         case plain
-        case text(String)
+        case withBoldTitle(localizableTitle: String)
+        case withRegularTitle(localizableTitle: String)
         case disabled
     }
 
@@ -109,7 +110,7 @@ public class PBBRoundButton: UIView {
 
     /// The radius to use when drawing rounded corners for the layer’s background.
     ///
-    /// By default it will set 16.0 to corner radius property of button.
+    /// By default it will set 12.0 to corner radius property of button.
     ///
     public var cornerRadius: CGFloat = 12.0 {
         didSet {
@@ -267,14 +268,6 @@ public class PBBRoundButton: UIView {
     ///    - styleOfButton: Sets the style of button.
     ///
 
-//    public convenience init(localizableTitle: String, styleOfButton: PBBRoundButtonStyle = .plain) {
-////        self.init(type: .plain)
-//        self.setupDefaults()
-////        self.setTitle(localizableTitle, for: .normal)
-//        self.styleOfButton = styleOfButton
-//        self.prepareButtonByStyle()
-//    }
-
     public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
         self.init()
 //        self.setupDefaults()
@@ -282,10 +275,6 @@ public class PBBRoundButton: UIView {
         self.prepareButtonByType()
         self.setupViews(for: typeOfButton)
     }
-
-//    public convenience init() {
-//        self.init(localizableTitle: "")
-//    }
     
     private func setupViews(for type: PBBRoundButtonType) {
         
@@ -298,7 +287,7 @@ public class PBBRoundButton: UIView {
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
         case .disabled:
             self.iconWrapperView.layer.cornerRadius = 8.0
-        case .text:
+        case .withBoldTitle, .withRegularTitle:
             print("Text:::")
 //            self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
             self.addSubview(self.titleLabel)
@@ -313,12 +302,6 @@ public class PBBRoundButton: UIView {
             
             NSLayoutConstraint.activate([
 
-//                self.heightAnchor.constraint(equalToConstant: 128.0),
-//                self.widthAnchor.constraint(equalToConstant: 128.0),
-                
-//                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-//                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
                 self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
                 
@@ -330,7 +313,7 @@ public class PBBRoundButton: UIView {
             ])
         case .disabled:
             self.iconWrapperView.layer.cornerRadius = 8.0
-        case .text:
+        case .withBoldTitle, .withRegularTitle:
             
             NSLayoutConstraint.activate([
 
@@ -394,11 +377,13 @@ public class PBBRoundButton: UIView {
         switch self.typeOfButton {
         case .plain:
             self.styleOfButton = .plain
-        case .text(let value):
-            self.title = value
-//            self.makeTextButton()
+        case .withBoldTitle(let boldTitle):
+            self.title = boldTitle
+            self.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        case .withRegularTitle(let regularTitle):
+            self.title = regularTitle
+            self.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         case .disabled: break
-//            self.makeDisabledButton()
         }
     }
     
