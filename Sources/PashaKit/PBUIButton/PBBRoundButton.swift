@@ -266,7 +266,6 @@ public class PBBRoundButton: UIView {
 
     public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
         self.init()
-//        self.setupDefaults()
         self.typeOfButton = typeOfButton
         self.prepareButtonByType()
         self.setupViews(for: typeOfButton)
@@ -385,7 +384,7 @@ public class PBBRoundButton: UIView {
 ////        self.setImage(UIImage.Images.icEdit, for: .normal)
 //        self.heightAnchor.constraint(equalToConstant: 40).isActive = true
 ////        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-    }
+//    }
 
 //    private func makeButton(disabled: Bool) {
 //        let currentButtonStyle = self.styleOfButton
