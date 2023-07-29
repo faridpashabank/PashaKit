@@ -346,6 +346,9 @@ public class PBBRoundButton: UIView {
                 self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
                 self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
                 
+                self.disableTitleLabel.centerXAnchor.constraint(equalTo: self.disableView.centerXAnchor),
+                self.disableTitleLabel.centerYAnchor.constraint(equalTo: self.disableView.centerYAnchor),
+                
                 self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
                 
