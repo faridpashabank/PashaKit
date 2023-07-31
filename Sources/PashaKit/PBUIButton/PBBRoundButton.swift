@@ -294,6 +294,7 @@ public class PBBRoundButton: UIView {
     public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
         self.init()
         self.typeOfButton = typeOfButton
+        self.prepareButtonByType()
         self.setupViews(for: typeOfButton)
     }
     
