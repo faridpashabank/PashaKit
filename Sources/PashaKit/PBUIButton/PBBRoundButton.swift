@@ -266,6 +266,7 @@ public class PBBRoundButton: UIView {
         let view = UIView()
 
         view.backgroundColor = .red
+//        view.round
         
         self.addSubview(view)
 
@@ -308,6 +309,7 @@ public class PBBRoundButton: UIView {
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
         case .disabled:
 //            self.iconWrapperView.layer.cornerRadius = 8.0
+            self.disableView.layer.cornerRadius = 8
             self.disableView.addSubview(self.disableTitleLabel)
             self.addSubview(self.disableView)
             self.addSubview(self.titleLabel)
@@ -351,7 +353,8 @@ public class PBBRoundButton: UIView {
                 
                 self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.disableView.heightAnchor.constraint(equalToConstant: 16),
-                self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
+                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.frame.width + 12),
+                self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: 4.0),
                 self.disableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
                 self.disableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
                 
