@@ -437,7 +437,7 @@ public class PBBRoundButton: UIView {
         case .disabled(let title, let disableTitle):
             self.title = title
             self.disableTitle = disableTitle
-            self.titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            self.titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         }
     }
 
