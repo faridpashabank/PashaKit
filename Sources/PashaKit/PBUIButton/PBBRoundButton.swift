@@ -251,7 +251,7 @@ public class PBBRoundButton: UIView {
     private lazy var disableTitleLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+//        label.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
         label.textColor = .white
         label.textAlignment = .center
         label.text = self.disableTitle
@@ -336,7 +336,7 @@ public class PBBRoundButton: UIView {
             ])
             
         case .disabled:
-
+print("self.disableTitleLabel: \(self.disableTitleLabel)")
             NSLayoutConstraint.activate([
 
                 self.heightAnchor.constraint(equalToConstant: 128.0),
@@ -383,7 +383,6 @@ public class PBBRoundButton: UIView {
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
             
             ])
-            
         }
         
         self.smallSizeConstraints = [
