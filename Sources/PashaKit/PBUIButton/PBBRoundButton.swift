@@ -428,7 +428,7 @@ public class PBBRoundButton: UIView {
             self.styleOfButton = .plain
         case .withBoldTitle(let boldTitle):
             self.title = boldTitle
-            self.titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+            self.titleLabel.font = UIFont.sfProDisplay(ofSize: 13, weight: .semibold)
         case .withRegularTitle(let regularTitle):
             self.title = regularTitle
             self.titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
