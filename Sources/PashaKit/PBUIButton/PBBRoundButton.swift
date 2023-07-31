@@ -49,7 +49,7 @@ public class PBBRoundButton: UIView {
         case plain
         case withBoldTitle(localizableTitle: String)
         case withRegularTitle(localizableTitle: String)
-        case disabled
+        case disabled(localizableTitle: String, localizableDisableTitle: String)
     }
 
     /// Specifies the style of button
@@ -430,7 +430,10 @@ public class PBBRoundButton: UIView {
         case .withRegularTitle(let regularTitle):
             self.title = regularTitle
             self.titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        case .disabled: break
+        case .disabled(let title, let disableTitle):
+            self.title = title
+            self.disableTitle = disableTitle
+            self.titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         }
     }
 
