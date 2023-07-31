@@ -350,6 +350,7 @@ public class PBBRoundButton: UIView {
                 self.disableTitleLabel.centerYAnchor.constraint(equalTo: self.disableView.centerYAnchor),
                 
                 self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.disableView.heightAnchor.constraint(equalToConstant: 16),
                 self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
                 self.disableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
                 self.disableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
