@@ -336,7 +336,7 @@ public class PBBRoundButton: UIView {
             ])
             
         case .disabled:
-print("self.disableTitleLabel: \(self.disableTitleLabel)")
+//print("self.disableTitleLabel: \(self.disableTitleLabel)")
             NSLayoutConstraint.activate([
 
                 self.heightAnchor.constraint(equalToConstant: 128.0),
@@ -353,7 +353,7 @@ print("self.disableTitleLabel: \(self.disableTitleLabel)")
                 
                 self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.disableView.heightAnchor.constraint(equalToConstant: 16),
-                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.frame.width + 12),
+                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.intrinsicContentSize.width + 12),
 //                self.disableView.widthAnchor.constraint(equalToConstant: 54),
                 self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
                 
