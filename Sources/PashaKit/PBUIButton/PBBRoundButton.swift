@@ -294,7 +294,6 @@ public class PBBRoundButton: UIView {
     public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
         self.init()
         self.typeOfButton = typeOfButton
-        self.prepareButtonByType()
         self.setupViews(for: typeOfButton)
     }
     
@@ -353,7 +352,8 @@ public class PBBRoundButton: UIView {
                 
                 self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.disableView.heightAnchor.constraint(equalToConstant: 16),
-                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.frame.width + 12),
+//                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.frame.width + 12),
+                self.disableView.widthAnchor.constraint(equalToConstant: 42),
                 self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
                 
                 self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
