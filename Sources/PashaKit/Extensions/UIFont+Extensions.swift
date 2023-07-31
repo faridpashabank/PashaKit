@@ -27,7 +27,9 @@ public enum SFProTextWeight: String, CaseIterable {
 public extension UIFont {
 
     static func sfProDisplay(ofSize: CGFloat, weight: SFProDisplayWeight) -> UIFont {
+        print("weight::: \(weight.rawValue)")
         guard let customFont = UIFont(name: weight.rawValue, size: ofSize) else {
+            print("else weight::: \(weight.rawValue)")
         return UIFont.systemFont(ofSize: ofSize)
       }
       return customFont
