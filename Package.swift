@@ -24,6 +24,11 @@ public let package = Package(
                 .process("Fonts/SFProDisplayRegular.otf"),
                 .process("Fonts/SFProDisplayMedium.otf"),
                 .process("Fonts/SFProDisplaySemibold.otf"),
+                .process("Fonts/SFProTextBold.otf"),
+                .process("Fonts/SFProTextLight.otf"),
+                .process("Fonts/SFProTextRegular.otf"),
+                .process("Fonts/SFProTextMedium.otf"),
+                .process("Fonts/SFProTextSemibold.otf"),
 //                .copy("settings.plist")
             ]
         ),
