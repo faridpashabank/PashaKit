@@ -11,13 +11,13 @@ import UIKit
 public struct PashaKitFonts {
      public static func registerSFProDisplayFonts() {
          SFProDisplayWeight.allCases.forEach {
-            registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
+            registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "otf")
         }
      }
     
     public static func registerSFProTextFonts() {
         SFProTextWeight.allCases.forEach {
-           registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
+           registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "otf")
        }
     }
 
