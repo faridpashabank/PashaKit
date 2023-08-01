@@ -19,12 +19,12 @@ public let package = Package(
             .product(name: "InputMask", package: "input-mask-ios")
         ], path: "Sources",
             resources: [
-                .process("SFProDisplayBold."),
-                .process("SFProDisplayLight"),
-                .process("SFProDisplayRegular"),
-                .process("SFProDisplayMedium"),
-                .process("SFProDisplaySemibold"),
-                .copy("settings.plist")
+                .process("SFProDisplayBold.otf"),
+                .process("SFProDisplayLight.otf"),
+                .process("SFProDisplayRegular.otf"),
+                .process("SFProDisplayMedium.otf"),
+                .process("SFProDisplaySemibold.otf"),
+//                .copy("settings.plist")
             ]
         ),
 //        .target(name: "PashaKitFonts", dependencies: [], resources: [.process("Fonts")]),
