@@ -15,8 +15,10 @@ public let package = Package(
         .package(url: "https://github.com/RedMadRobot/input-mask-ios.git", exact: "6.1.0")
     ],
     targets: [
-        .target(name: "PashaKit", dependencies: [.product(name: "InputMask", package: "input-mask-ios")], path: "Sources"),
-        .target(name: "PashaKit", dependencies: [], resources: [.process("Fonts")]),
+        .target(name: "PashaKit", dependencies: [
+            .product(name: "InputMask", package: "input-mask-ios")
+        ], path: "Sources", resources: [.process("Fonts")]),
+//        .target(name: "PashaKitFonts", dependencies: [], resources: [.process("Fonts")]),
         .testTarget(name: "PashaKitTests", dependencies: ["PashaKit"]),
     ],
     swiftLanguageVersions: [
