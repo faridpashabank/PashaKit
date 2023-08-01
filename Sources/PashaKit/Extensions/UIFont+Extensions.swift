@@ -65,6 +65,10 @@ public extension UIFont {
                   fatalError("Couldn't create font from data")
         }
 
+        print("fontURL: \(fontURL)")
+        print("fontDataProvider: \(fontDataProvider)")
+        print("font: \(font)")
+        
         var error: Unmanaged<CFError>?
 
         CTFontManagerRegisterGraphicsFont(font, &error)
