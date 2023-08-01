@@ -58,8 +58,9 @@ public extension UIFont {
 
         print("bundle: \(bundle)")
         print("font: \(fontName)")
+        let bundlex = Bundle.module
         
-        guard let fontURL = bundle.url(forResource: fontName, withExtension: fontExtension),
+        guard let fontURL = bundlex.url(forResource: fontName, withExtension: fontExtension),
               let fontDataProvider = CGDataProvider(url: fontURL as CFURL),
               let font = CGFont(fontDataProvider) else {
                   fatalError("Couldn't create font from data")
