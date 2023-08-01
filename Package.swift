@@ -17,7 +17,7 @@ public let package = Package(
     targets: [
         .target(name: "PashaKit", dependencies: [
             .product(name: "InputMask", package: "input-mask-ios")
-        ], path: "Sources",
+        ], // path: "Sources",
             resources: [
                 .process("SFProDisplayBold.otf"),
                 .process("SFProDisplayLight.otf"),
