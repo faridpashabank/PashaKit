@@ -24,7 +24,7 @@ public struct PashaKitFonts {
     fileprivate static func registerFont(bundle: Bundle, fontName: String, fontExtension: String) {
 
         print("bundle: \(bundle)")
-        print("font: \(fontName +"."+ fontExtension)")
+        print("font: \(fontName)")
         
         guard let fontURL = bundle.url(forResource: fontName, withExtension: fontExtension),
               let fontDataProvider = CGDataProvider(url: fontURL as CFURL),
