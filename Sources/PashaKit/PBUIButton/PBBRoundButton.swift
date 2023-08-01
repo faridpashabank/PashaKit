@@ -266,7 +266,6 @@ public class PBBRoundButton: UIView {
         let view = UIView()
 
         view.backgroundColor = .red
-//        view.round
         
         self.addSubview(view)
 
