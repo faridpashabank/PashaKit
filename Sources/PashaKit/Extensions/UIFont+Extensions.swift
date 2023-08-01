@@ -9,19 +9,19 @@ import Foundation
 import UIKit
 
 public enum SFProDisplayWeight: String, CaseIterable {
-    case light = "SFProDisplayLight"
-    case regular = "SFProDisplayRegular"
-    case medium = "SFProDisplayMedium"
-    case semibold = "SFProDisplaySemibold"
-    case bold = "SFProDisplayBold"
+    case light = "SFProDisplay-Light"
+    case regular = "SFProDisplay-Regular"
+    case medium = "SFProDisplay-Medium"
+    case semibold = "SFProDisplay-Semibold"
+    case bold = "SFProDisplay-Bold"
 }
 
 public enum SFProTextWeight: String, CaseIterable {
-    case light = "SFProTextLight"
-    case regular = "SFProTextRegular"
-    case medium = "SFProTextMedium"
-    case semibold = "SFProTextSemibold"
-    case bold = "SFProTextBold"
+    case light = "SFProText-Light"
+    case regular = "SFProText-Regular"
+    case medium = "SFProText-Medium"
+    case semibold = "SFProText-Semibold"
+    case bold = "SFProText-Bold"
 }
 
 public extension UIFont {
