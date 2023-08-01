@@ -19,11 +19,11 @@ public let package = Package(
             .product(name: "InputMask", package: "input-mask-ios")
         ], // path: "Sources",
             resources: [
-                .process("SFProDisplayBold.otf"),
-                .process("SFProDisplayLight.otf"),
-                .process("SFProDisplayRegular.otf"),
-                .process("SFProDisplayMedium.otf"),
-                .process("SFProDisplaySemibold.otf"),
+                .process("Fonts/SFProDisplayBold.otf"),
+                .process("Fonts/SFProDisplayLight.otf"),
+                .process("Fonts/SFProDisplayRegular.otf"),
+                .process("Fonts/SFProDisplayMedium.otf"),
+                .process("Fonts/SFProDisplaySemibold.otf"),
 //                .copy("settings.plist")
             ]
         ),
