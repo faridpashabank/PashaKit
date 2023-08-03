@@ -293,8 +293,7 @@ public class PBBRoundButton: UIView {
 
     public convenience init(typeOfButton: PBBRoundButtonType = .withoutTitle) {
         self.init()
-//        PashaKitFonts.registerSFProDisplayFonts()
-        UIFont.registerSFProDisplayFonts()
+        
         UIFont.registerSFProTextFonts()
         
         self.typeOfButton = typeOfButton
