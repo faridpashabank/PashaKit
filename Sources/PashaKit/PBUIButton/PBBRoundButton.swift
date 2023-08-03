@@ -46,8 +46,9 @@ import UIKit
 public class PBBRoundButton: UIView {
 
     public enum PBBRoundButtonType {
-        case plain
+        case withoutTitle
         case withBoldTitle(localizableTitle: String)
+        case withSemiboldTitle(localizableTitle: String)
         case withRegularTitle(localizableTitle: String)
         case disabled(localizableTitle: String, localizableDisableTitle: String)
     }
@@ -174,7 +175,7 @@ public class PBBRoundButton: UIView {
         }
     }
 
-    private var typeOfButton: PBBRoundButtonType = .plain {
+    private var typeOfButton: PBBRoundButtonType = .withoutTitle {
         didSet {
             self.prepareButtonByType()
         }
@@ -290,7 +291,7 @@ public class PBBRoundButton: UIView {
     ///    - typeOfButton: Sets the type of button.
     ///
 
-    public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
+    public convenience init(typeOfButton: PBBRoundButtonType = .withoutTitle) {
         self.init()
 //        PashaKitFonts.registerSFProDisplayFonts()
         UIFont.registerSFProDisplayFonts()
@@ -308,15 +309,14 @@ public class PBBRoundButton: UIView {
         self.addSubview(self.iconWrapperView)
 
         switch type {
-        case .plain:
+        case .withoutTitle:
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
         case .disabled:
-//            self.iconWrapperView.layer.cornerRadius = 8.0
             self.disableView.layer.cornerRadius = 8
             self.disableView.addSubview(self.disableTitleLabel)
             self.addSubview(self.disableView)
             self.addSubview(self.titleLabel)
-        case .withBoldTitle, .withRegularTitle:
+        case .withBoldTitle, .withRegularTitle, .withSemiboldTitle:
             self.addSubview(self.titleLabel)
         }
         
@@ -325,7 +325,7 @@ public class PBBRoundButton: UIView {
     
     private func setupConstraints(for type: PBBRoundButtonType) {
         switch type {
-        case .plain:
+        case .withoutTitle:
             
             NSLayoutConstraint.activate([
 
@@ -339,7 +339,6 @@ public class PBBRoundButton: UIView {
             ])
             
         case .disabled:
-//print("self.disableTitleLabel: \(self.disableTitleLabel)")
             NSLayoutConstraint.activate([
 
                 self.heightAnchor.constraint(equalToConstant: 128.0),
@@ -367,7 +366,7 @@ public class PBBRoundButton: UIView {
             
             ])
             
-        case .withBoldTitle, .withRegularTitle:
+        case .withBoldTitle, .withSemiboldTitle, .withRegularTitle:
             
             NSLayoutConstraint.activate([
 
@@ -427,10 +426,13 @@ public class PBBRoundButton: UIView {
 
     private func prepareButtonByType() {
         switch self.typeOfButton {
-        case .plain:
+        case .withoutTitle:
             self.styleOfButton = .plain
         case .withBoldTitle(let boldTitle):
             self.title = boldTitle
+            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .bold)
+        case .withSemiboldTitle(let semiboldTitle):
+            self.title = semiboldTitle
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
         case .withRegularTitle(let regularTitle):
             self.title = regularTitle
