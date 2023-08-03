@@ -28,7 +28,9 @@ public extension UIFont {
 
     static func sfProDisplay(ofSize: CGFloat, weight: SFProDisplayWeight) -> UIFont {
         print("weight::: \(weight.rawValue)")
-        guard let customFont = UIFont(name: weight.rawValue, size: ofSize) else {
+        var fontName = weight.rawValue
+        let font = fontName.insert("-", at: fontName.index(fontName.startIndex, offsetBy: 5))
+        guard let customFont = UIFont(name: "\(font)", size: ofSize) else {
             print("else weight::: \(weight.rawValue)")
         return UIFont.systemFont(ofSize: ofSize)
       }
