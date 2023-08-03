@@ -9,28 +9,27 @@ import Foundation
 import UIKit
 
 public enum SFProDisplayWeight: String, CaseIterable {
-    case light = "SFProDisplayLight"
-    case regular = "SFProDisplayRegular"
-    case medium = "SFProDisplayMedium"
-    case semibold = "SFProDisplaySemibold"
-    case bold = "SFProDisplayBold"
+    case light = "Light"
+    case regular = "Regular"
+    case medium = "Medium"
+    case semibold = "Semibold"
+    case bold = "Bold"
 }
 
 public enum SFProTextWeight: String, CaseIterable {
-    case light = "SFProTextLight"
-    case regular = "SFProTextRegular"
-    case medium = "SFProTextMedium"
-    case semibold = "SFProTextSemibold"
-    case bold = "SFProTextBold"
+    case light = "Light"
+    case regular = "Regular"
+    case medium = "Medium"
+    case semibold = "Semibold"
+    case bold = "Bold"
 }
 
 public extension UIFont {
 
     static func sfProDisplay(ofSize: CGFloat, weight: SFProDisplayWeight) -> UIFont {
         print("weight::: \(weight.rawValue)")
-        var fontName = weight.rawValue
-        let font = fontName.insert("-", at: fontName.index(fontName.startIndex, offsetBy: 5))
-        guard let customFont = UIFont(name: "\(font)", size: ofSize) else {
+
+        guard let customFont = UIFont(name: "SFProDisplay-\(weight.rawValue)", size: ofSize) else {
             print("else weight::: \(weight.rawValue)")
         return UIFont.systemFont(ofSize: ofSize)
       }
@@ -38,7 +37,7 @@ public extension UIFont {
     }
     
     static func sfProText(ofSize: CGFloat, weight: SFProTextWeight) -> UIFont {
-        guard let customFont = UIFont(name: weight.rawValue, size: ofSize) else {
+        guard let customFont = UIFont(name: "SFProText-\(weight.rawValue)", size: ofSize) else {
         return UIFont.systemFont(ofSize: ofSize)
       }
       return customFont
@@ -46,13 +45,13 @@ public extension UIFont {
     
     static func registerSFProDisplayFonts() {
         SFProDisplayWeight.allCases.forEach {
-           registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "otf")
+           registerFont(bundle: .module, fontName: "SFProDisplay" + $0.rawValue, fontExtension: "otf")
        }
     }
    
     static func registerSFProTextFonts() {
        SFProTextWeight.allCases.forEach {
-          registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "otf")
+          registerFont(bundle: .module, fontName: "SFProText" + $0.rawValue, fontExtension: "otf")
        }
     }
     
