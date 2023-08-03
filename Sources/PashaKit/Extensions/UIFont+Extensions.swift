@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 public enum SFProDisplayWeight: String, CaseIterable {
-    case light = "SFProDisplayLight"
-    case regular = "SFProDisplayRegular"
-    case medium = "SFProDisplayMedium"
-    case semibold = "SFProDisplaySemibold"
-    case bold = "SFProDisplayBold"
+    case light = "SFProDisplay-Light"
+    case regular = "SFProDisplay-Regular"
+    case medium = "SFProDisplay-Medium"
+    case semibold = "SFProDisplay-Semibold"
+    case bold = "SFProDisplay-Bold"
 }
 
 public enum SFProTextWeight: String, CaseIterable {
@@ -28,7 +28,7 @@ public extension UIFont {
 
     static func sfProDisplay(ofSize: CGFloat, weight: SFProDisplayWeight) -> UIFont {
         print("weight::: \(weight.rawValue)")
-        guard let customFont = UIFont(name: "SFProDisplay-Medium", size: ofSize) else {
+        guard let customFont = UIFont(name: weight.rawValue, size: ofSize) else {
             print("else weight::: \(weight.rawValue)")
         return UIFont.systemFont(ofSize: ofSize)
       }
