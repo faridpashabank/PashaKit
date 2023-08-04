@@ -214,6 +214,7 @@ public class PBBUIButton: UIButton {
     ///
     public convenience init(localizableTitle: String, styleOfButton: PBUIButtonStyle = .filled) {
         self.init(type: .system)
+        UIFont.registerCustomFonts()
         self.setupDefaults()
         self.setTitle(localizableTitle, for: .normal)
         self.styleOfButton = styleOfButton
@@ -222,6 +223,7 @@ public class PBBUIButton: UIButton {
 
     public convenience init(localizableTitle: String, typeOfButton: PBUIButtonType) {
         self.init(type: .system)
+        UIFont.registerCustomFonts()
         self.setupDefaults()
         self.setTitle(localizableTitle, for: .normal)
         self.buttonTitle = localizableTitle
