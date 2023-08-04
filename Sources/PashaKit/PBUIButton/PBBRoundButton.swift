@@ -256,7 +256,6 @@ public class PBBRoundButton: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.text = self.disableTitle
-//        label.numberOfLines = 0
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -294,7 +293,7 @@ public class PBBRoundButton: UIView {
     public convenience init(typeOfButton: PBBRoundButtonType = .withoutTitle) {
         self.init()
         
-        UIFont.registerSFProTextFonts()
+        UIFont.registerCustomFonts()
         
         self.typeOfButton = typeOfButton
         self.prepareButtonByType()
@@ -411,12 +410,10 @@ public class PBBRoundButton: UIView {
     private func prepareButtonByStyle() {
         switch self.styleOfButton {
         case .plain:
-//            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             self.baseBackgroundColor = .clear
             self.buttonTintColor = self.theme.getPrimaryColor()
             self.borderColor = UIColor.clear
         case .disabled:
-//            self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             self.baseBackgroundColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
             self.buttonTintColor = self.theme.getPrimaryColor()
             self.borderColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
