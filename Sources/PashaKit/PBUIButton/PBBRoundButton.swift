@@ -424,6 +424,7 @@ public class PBBRoundButton: UIView {
         case .normal:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: self.buttonTitleWeight)
             self.iconBackgroundColor = self.theme.getPrimaryColor()
+            self.iconWrapperView.backgroundColor = self.theme.getPrimaryColor()
         case .disabled:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
             self.titleLabel.textColor = UIColor.Colors.PBBGray
