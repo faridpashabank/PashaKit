@@ -86,5 +86,18 @@ extension UIColor {
                 return UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.3)
             }
         }
+        
+        static var PBBBackgroundGray: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.463, green: 0.463, blue: 0.502, alpha: 0.24) :
+                    UIColor(red: 0.463, green: 0.463, blue: 0.502, alpha: 0.12)
+                }
+            } else {
+                return UIColor(red: 0.463, green: 0.463, blue: 0.502, alpha: 0.12)
+            }
+        }
     }
 }
