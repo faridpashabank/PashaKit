@@ -46,10 +46,10 @@ import UIKit
 public class PBBRoundButton: UIView {
 
     public enum PBBRoundButtonType {
-        case withoutTitle
-        case withBoldTitle(localizableTitle: String)
-        case withSemiboldTitle(localizableTitle: String)
-        case withRegularTitle(localizableTitle: String)
+        case plain
+        case withTitle(localizableTitle: String)
+//        case withSemiboldTitle(localizableTitle: String)
+//        case withRegularTitle(localizableTitle: String)
         case disabled(localizableTitle: String, localizableDisableTitle: String)
     }
 
@@ -69,6 +69,10 @@ public class PBBRoundButton: UIView {
         /// its background color may be PBFauxChestnut depending on returned user type.
         ///
         case disabled
+        
+        case withBoldTitle
+        case withSemiboldTitle
+        case withRegularTitle
     }
     
     public enum IconSize {
@@ -175,7 +179,7 @@ public class PBBRoundButton: UIView {
         }
     }
 
-    private var typeOfButton: PBBRoundButtonType = .withoutTitle {
+    private var typeOfButton: PBBRoundButtonType = .plain {
         didSet {
             self.prepareButtonByType()
         }
@@ -221,7 +225,7 @@ public class PBBRoundButton: UIView {
         label.textAlignment = .center
         label.text = self.title
         label.numberOfLines = 0
-
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -290,12 +294,13 @@ public class PBBRoundButton: UIView {
     ///    - typeOfButton: Sets the type of button.
     ///
 
-    public convenience init(typeOfButton: PBBRoundButtonType = .withoutTitle) {
+    public convenience init(typeOfButton: PBBRoundButtonType = .plain, styleOfButton: PBBRoundButtonStyle) {
         self.init()
         
         UIFont.registerCustomFonts()
-        
+        self.styleOfButton = styleOfButton
         self.typeOfButton = typeOfButton
+        self.prepareButtonByStyle()
         self.prepareButtonByType()
         self.setupViews(for: typeOfButton)
     }
@@ -307,14 +312,14 @@ public class PBBRoundButton: UIView {
         self.addSubview(self.iconWrapperView)
 
         switch type {
-        case .withoutTitle:
+        case .plain:
             self.iconWrapperView.layer.cornerRadius = self.iconWrapperView.layer.frame.height / 2
+        case .withTitle:
+            self.addSubview(self.titleLabel)
         case .disabled:
             self.disableView.layer.cornerRadius = 8
             self.disableView.addSubview(self.disableTitleLabel)
             self.addSubview(self.disableView)
-            self.addSubview(self.titleLabel)
-        case .withBoldTitle, .withRegularTitle, .withSemiboldTitle:
             self.addSubview(self.titleLabel)
         }
         
@@ -323,7 +328,7 @@ public class PBBRoundButton: UIView {
     
     private func setupConstraints(for type: PBBRoundButtonType) {
         switch type {
-        case .withoutTitle:
+        case .plain:
             
             NSLayoutConstraint.activate([
 
@@ -334,6 +339,26 @@ public class PBBRoundButton: UIView {
                 self.iconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8.0),
                 self.iconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8.0),
                 self.iconWrapperView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0)
+            ])
+            
+        case .withTitle:
+            
+            NSLayoutConstraint.activate([
+
+                self.heightAnchor.constraint(equalToConstant: 128.0),
+                self.widthAnchor.constraint(equalToConstant: 118.0),
+                
+                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                
+                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
+                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                
+                self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
+                self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
+                self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
+            
             ])
             
         case .disabled:
@@ -354,28 +379,7 @@ public class PBBRoundButton: UIView {
                 self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.disableView.heightAnchor.constraint(equalToConstant: 16),
                 self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.intrinsicContentSize.width + 12),
-//                self.disableView.widthAnchor.constraint(equalToConstant: 54),
                 self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
-                
-                self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
-                self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
-                self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
-            
-            ])
-            
-        case .withBoldTitle, .withSemiboldTitle, .withRegularTitle:
-            
-            NSLayoutConstraint.activate([
-
-                self.heightAnchor.constraint(equalToConstant: 128.0),
-                self.widthAnchor.constraint(equalToConstant: 118.0),
-                
-                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                
-                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
                 
                 self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
@@ -414,31 +418,27 @@ public class PBBRoundButton: UIView {
             self.buttonTintColor = self.theme.getPrimaryColor()
             self.borderColor = UIColor.clear
         case .disabled:
-            self.baseBackgroundColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
-            self.buttonTintColor = self.theme.getPrimaryColor()
-            self.borderColor = self.theme.getPrimaryColor().withAlphaComponent(0.1)
+            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
+            self.titleLabel.textColor =  UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.3) //TODO: COLORS dark mode
+            self.iconBackgroundColor = UIColor(red: 0.463, green: 0.463, blue: 0.502, alpha: 0.12) //TODO: COLORS dark mode
+        case .withBoldTitle:
+            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .bold)
+        case .withSemiboldTitle:
+            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
+        case .withRegularTitle:
+            self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
         }
     }
 
     private func prepareButtonByType() {
         switch self.typeOfButton {
-        case .withoutTitle:
+        case .plain:
             self.styleOfButton = .plain
-        case .withBoldTitle(let boldTitle):
-            self.title = boldTitle
-            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .bold)
-        case .withSemiboldTitle(let semiboldTitle):
-            self.title = semiboldTitle
-            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
-        case .withRegularTitle(let regularTitle):
-            self.title = regularTitle
-            self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+        case .withTitle(let title):
+            self.title = title
         case .disabled(let title, let disableTitle):
             self.title = title
             self.disableTitle = disableTitle
-            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
-            self.titleLabel.textColor =  UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.3)
-            self.iconBackgroundColor = UIColor(red: 0.463, green: 0.463, blue: 0.502, alpha: 0.12)
         }
     }
 
