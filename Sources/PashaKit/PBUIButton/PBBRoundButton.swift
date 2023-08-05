@@ -220,8 +220,6 @@ public class PBBRoundButton: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textColor = .darkText
         label.textAlignment = .center
         label.text = self.title
         label.numberOfLines = 0
@@ -256,8 +254,6 @@ public class PBBRoundButton: UIView {
     private lazy var disableTitleLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
-        label.textColor = .white
         label.textAlignment = .center
         label.text = self.disableTitle
 
@@ -420,6 +416,8 @@ public class PBBRoundButton: UIView {
         case .disabled:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
             self.titleLabel.textColor = UIColor.Colors.PBBGray
+            self.disableTitleLabel.font = UIFont.sfProText(ofSize: 11, weight: .medium)
+            self.disableTitleLabel.textColor = .white
             self.iconBackgroundColor = self.theme.getPrimaryColor()
         case .withBoldTitle:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .bold)
