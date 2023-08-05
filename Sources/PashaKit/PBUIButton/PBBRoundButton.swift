@@ -293,9 +293,9 @@ public class PBBRoundButton: UIView {
         self.init()
         
         UIFont.registerCustomFonts()
-        self.styleOfButton = styleOfButton
         self.typeOfButton = typeOfButton
         self.prepareButtonByType()
+        self.styleOfButton = styleOfButton
         self.prepareButtonByStyle()
         self.setupViews(for: typeOfButton)
     }
