@@ -131,7 +131,7 @@ public class PBBRoundButton: UIView {
     ///
     /// By default button will be created with the background color for selected button style.
     ///
-    public var baseBackgroundColor: UIColor = UIColor.Colors.PBGreen {
+    public var baseBackgroundColor: UIColor = .clear {
         didSet {
             self.backgroundColor = self.baseBackgroundColor
         }
