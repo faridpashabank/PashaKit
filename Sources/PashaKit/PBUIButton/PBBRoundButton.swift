@@ -69,10 +69,8 @@ public class PBBRoundButton: UIView {
         /// its background color may be PBFauxChestnut depending on returned user type.
         ///
         case disabled
+        case customTitleWeight(CustomFontWeight)
         
-        case withBoldTitle
-        case withSemiboldTitle
-        case withRegularTitle
     }
     
     public enum IconSize {
@@ -143,9 +141,10 @@ public class PBBRoundButton: UIView {
     ///
     /// By default button will be created with the tint color for selected button style.
     ///
-    public var buttonTintColor: UIColor = UIColor.black {
+    public var buttonTitleWeight: CustomFontWeight = .semibold {
         didSet {
-            self.titleLabel.textColor = self.buttonTintColor
+//            self.titleLabel.textColor = self.buttonTintColor
+            self.prepareButtonByStyle()
         }
     }
     
@@ -301,6 +300,16 @@ public class PBBRoundButton: UIView {
         self.setupViews(for: typeOfButton)
     }
     
+    public convenience init(typeOfButton: PBBRoundButtonType = .plain) {
+        self.init()
+        
+        UIFont.registerCustomFonts()
+        self.typeOfButton = typeOfButton
+        self.prepareButtonByType()
+        self.prepareButtonByStyle()
+        self.setupViews(for: typeOfButton)
+    }
+    
     private func setupViews(for type: PBBRoundButtonType) {
         
         self.iconWrapperView.addSubview(self.iconView)
@@ -413,21 +422,16 @@ public class PBBRoundButton: UIView {
         
         switch self.styleOfButton {
         case .plain:
-            self.baseBackgroundColor = .clear
-            self.buttonTintColor = self.theme.getPrimaryColor()
-            self.borderColor = UIColor.clear
+            self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+            self.iconBackgroundColor = .clear
         case .disabled:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
             self.titleLabel.textColor = UIColor.Colors.PBBGray
             self.disableTitleLabel.font = UIFont.sfProText(ofSize: 11, weight: .medium)
             self.disableTitleLabel.textColor = .white
             self.iconBackgroundColor = UIColor.Colors.PBBBackgroundGray
-        case .withBoldTitle:
-            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .bold)
-        case .withSemiboldTitle:
-            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .semibold)
-        case .withRegularTitle:
-            self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+        case .customTitleWeight(let weight):
+            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: weight)
         }
     }
 
@@ -437,9 +441,11 @@ public class PBBRoundButton: UIView {
             self.styleOfButton = .plain
         case .withTitle(let title):
             self.title = title
+            self.styleOfButton = .customTitleWeight(.semibold)
         case .disabled(let title, let disableTitle):
             self.title = title
             self.disableTitle = disableTitle
+            self.styleOfButton = .disabled
         }
     }
 
