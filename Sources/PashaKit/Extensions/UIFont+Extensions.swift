@@ -22,19 +22,19 @@ public enum CustomFonts: String, CaseIterable {
 }
 
 public extension UIFont {
-
+    
     static func sfProDisplay(ofSize: CGFloat, weight: CustomFontWeight) -> UIFont {
         guard let customFont = UIFont(name: "\(CustomFonts.sfProDisplay.rawValue)-\(weight.rawValue)", size: ofSize) else {
-        return UIFont.systemFont(ofSize: ofSize)
-      }
-      return customFont
+            return UIFont.systemFont(ofSize: ofSize)
+        }
+        return customFont
     }
     
     static func sfProText(ofSize: CGFloat, weight: CustomFontWeight) -> UIFont {
         guard let customFont = UIFont(name: "\(CustomFonts.sfProText.rawValue)-\(weight.rawValue)", size: ofSize) else {
-        return UIFont.systemFont(ofSize: ofSize)
-      }
-      return customFont
+            return UIFont.systemFont(ofSize: ofSize)
+        }
+        return customFont
     }
     
     static func registerCustomFonts() {
@@ -46,22 +46,15 @@ public extension UIFont {
     }
     
     static func registerFont(bundle: Bundle, fontName: String, fontExtension: String) {
-
-        print("bundle: \(bundle)")
-        print("font: \(fontName)")
         
         guard let fontURL = bundle.url(forResource: fontName, withExtension: fontExtension),
               let fontDataProvider = CGDataProvider(url: fontURL as CFURL),
               let font = CGFont(fontDataProvider) else {
-                  fatalError("Couldn't create font from data")
+            fatalError("Couldn't create font from data")
         }
-
-        print("fontURL: \(fontURL)")
-        print("fontDataProvider: \(fontDataProvider)")
-        print("font: \(font)")
         
         var error: Unmanaged<CFError>?
-
+        
         CTFontManagerRegisterGraphicsFont(font, &error)
     }
     

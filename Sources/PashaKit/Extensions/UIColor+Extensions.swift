@@ -36,21 +36,6 @@ extension UIColor {
         static let PBGreenSecondary = UIColor(red: 0.011, green: 0.68, blue: 0.491, alpha: 0.08)
         static let PBGray = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
         
-        // PB Business
-
-        static var PBBGreen: UIColor {
-              if #available(iOS 13.0, *) {
-                  return UIColor { (traits) -> UIColor in
-                      // Return one of two colors depending on light or dark mode
-                      return traits.userInterfaceStyle == .dark ?
-                          UIColor(red: 0.298, green: 0.745, blue: 0.620, alpha: 1) :
-                          UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
-                  }
-              } else {
-                  return UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
-              }
-          }
-
         // MARK: NEUTRALS
         static let PBGray40 = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
         static let PBGray60 = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
@@ -59,7 +44,7 @@ extension UIColor {
         static let PBGray90 = UIColor(red: 0.902, green: 0.902, blue: 0.902, alpha: 1)
         static let PBGray94 = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
         static let PBGray97 = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
-
+        
         static let PBBlackMedium = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
         static let PBGraySecondary = UIColor(red: 0.883, green: 0.883, blue: 0.883, alpha: 1)
         static let PBGrayTransparent = UIColor(red: 0.604, green: 0.608, blue: 0.612, alpha: 0.08)
@@ -73,5 +58,33 @@ extension UIColor {
         static let PBStatusRedBG = UIColor(red: 0.925, green: 0.18, blue: 0.141, alpha: 0.08)
         static let PBInfoYellowFG = UIColor(red: 0.643, green: 0.443, blue: 0, alpha: 1)
         static let PBInfoYellowBG = UIColor(red: 0.842, green: 0.607, blue: 0.077, alpha: 0.12)
+        
+        // MARK: Pasha Business
+        
+        static var PBBGreen: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.298, green: 0.745, blue: 0.620, alpha: 1) :
+                    UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
+                }
+            } else {
+                return UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 1)
+            }
+        }
+        
+        static var PBBGray: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.922, green: 0.922, blue: 0.961, alpha: 0.3) :
+                    UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.3)
+                }
+            } else {
+                return UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.3)
+            }
+        }
     }
 }
