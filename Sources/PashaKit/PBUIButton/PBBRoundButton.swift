@@ -417,9 +417,6 @@ public class PBBRoundButton: UIView {
     }
 
     private func prepareButtonByState() {
-        
-        self.iconBackgroundColor = self.theme.getPrimaryColor()
-        
         switch self.stateOfButton {
         case .normal:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: self.buttonTitleWeight)
