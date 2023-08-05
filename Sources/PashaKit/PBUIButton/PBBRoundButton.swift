@@ -180,6 +180,7 @@ public class PBBRoundButton: UIView {
 
     private var typeOfButton: PBBRoundButtonType = .plain {
         didSet {
+            print("typeOfButton SETTED")
             self.prepareButtonByType()
         }
     }
@@ -190,6 +191,7 @@ public class PBBRoundButton: UIView {
     ///
     public var stateOfButton: PBBRoundButtonState = .normal {
         didSet {
+            print("stateOfButton SETTED")
             self.prepareButtonByState()
         }
     }
