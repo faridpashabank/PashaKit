@@ -299,8 +299,8 @@ public class PBBRoundButton: UIView {
         self.typeOfButton = typeOfButton
         self.stateOfButton = .normal
         
-//        self.prepareButtonByType()
-//        self.prepareButtonByState()
+        self.prepareButtonByType()
+        self.prepareButtonByState()
         self.setupViews(for: typeOfButton)
     }
 
@@ -311,9 +311,9 @@ public class PBBRoundButton: UIView {
         self.iconSize = .large
         
         self.typeOfButton = typeOfButton
-//        self.prepareButtonByType()
+        self.prepareButtonByType()
         self.stateOfButton = stateOfButton
-//        self.prepareButtonByState()
+        self.prepareButtonByState()
         self.setupViews(for: typeOfButton)
     }
     
