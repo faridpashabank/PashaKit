@@ -144,7 +144,8 @@ public class PBBRoundButton: UIView {
     public var buttonTitleWeight: CustomFontWeight = .semibold {
         didSet {
 //            self.titleLabel.textColor = self.buttonTintColor
-            self.prepareButtonByStyle()
+//            self.prepareButtonByStyle()
+            self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: buttonTitleWeight)
         }
     }
     
