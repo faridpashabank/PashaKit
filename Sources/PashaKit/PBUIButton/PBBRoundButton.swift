@@ -147,7 +147,7 @@ public class PBBRoundButton: UIView {
         }
     }
     
-    public var iconBackgroundColor: UIColor = UIColor.Colors.PBGreen {
+    public var iconBackgroundColor: UIColor = .clear {
         didSet {
             self.iconWrapperView.backgroundColor = self.iconBackgroundColor
         }
@@ -157,7 +157,7 @@ public class PBBRoundButton: UIView {
     ///
     /// By default button will be created with the border color for selected button style.
     ///
-    public var borderColor: UIColor = UIColor.Colors.PBGreen {
+    public var borderColor: UIColor = .clear {
         didSet {
             self.layer.borderWidth = 1
             self.layer.borderColor = self.borderColor.cgColor
