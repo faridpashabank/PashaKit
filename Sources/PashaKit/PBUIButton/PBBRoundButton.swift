@@ -295,12 +295,12 @@ public class PBBRoundButton: UIView {
         self.init()
         
         UIFont.registerCustomFonts()
-        self.iconSize = .large
         self.typeOfButton = typeOfButton
         self.stateOfButton = .normal
         
         self.prepareButtonByType()
         self.prepareButtonByState()
+        self.iconSize = .large
         self.setupViews(for: typeOfButton)
     }
 
@@ -314,6 +314,7 @@ public class PBBRoundButton: UIView {
         self.prepareButtonByType()
         self.stateOfButton = stateOfButton
         self.prepareButtonByState()
+        self.iconSize = .large
         self.setupViews(for: typeOfButton)
     }
     
