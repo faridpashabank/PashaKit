@@ -408,6 +408,9 @@ public class PBBRoundButton: UIView {
     }
 
     private func prepareButtonByStyle() {
+        
+        self.iconBackgroundColor = self.theme.getPrimaryColor()
+        
         switch self.styleOfButton {
         case .plain:
             self.baseBackgroundColor = .clear
@@ -418,7 +421,6 @@ public class PBBRoundButton: UIView {
             self.titleLabel.textColor = UIColor.Colors.PBBGray
             self.disableTitleLabel.font = UIFont.sfProText(ofSize: 11, weight: .medium)
             self.disableTitleLabel.textColor = .white
-            self.iconBackgroundColor = self.theme.getPrimaryColor()
         case .withBoldTitle:
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .bold)
         case .withSemiboldTitle:
