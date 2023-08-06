@@ -224,7 +224,7 @@ public class PBBActionView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
 
         view.alignment = .firstBaseline
-        view.axis = .horizontal
+        view.axis = .vertical
         view.spacing = 2.0
 
         return view
@@ -394,6 +394,7 @@ public class PBBActionView: UIView {
                 
                 self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
                 self.titleStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleStackView.intrinsicContentSize.height),
 //                self.titleStackView.widthAnchor.constraint(equalToConstant: self.titleStackView.intrinsicContentSize.width),
             ])
             
