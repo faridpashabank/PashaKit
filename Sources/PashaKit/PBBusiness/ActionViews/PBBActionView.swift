@@ -411,7 +411,7 @@ public class PBBActionView: UIView {
     private func setupConstraints(for type: PBBActionType) {
         
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 72.0),
+            
             self.baseView.heightAnchor.constraint(equalTo: self.heightAnchor),
             self.baseView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
             self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
@@ -432,9 +432,13 @@ public class PBBActionView: UIView {
         ])
         
         switch type {
-        case .normal, .detailed: break
+        case .normal, .detailed:
+            NSLayoutConstraint.activate([
+                self.heightAnchor.constraint(equalToConstant: 72.0),
+            ])
         case .description:
             NSLayoutConstraint.activate([
+                self.heightAnchor.constraint(equalToConstant: self.intrinsicContentSize.height),
                 self.descriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
                 self.descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
                 self.descriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
