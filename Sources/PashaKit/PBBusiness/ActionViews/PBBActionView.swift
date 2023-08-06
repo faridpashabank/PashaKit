@@ -302,8 +302,6 @@ public class PBBActionView: UIView {
         switch type {
         case .normal: break
             
-            
-            
         case .detailed: break
         case .description: break
         }
@@ -340,8 +338,9 @@ public class PBBActionView: UIView {
                 self.iconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
                 
                 self.titleLabel.leftAnchor.constraint(equalTo: self.iconWrapperView.rightAnchor, constant: 12),
-                self.titleLabel.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
+                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.titleLabel.widthAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.width),
+                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
             ])
             
         case .detailed:
