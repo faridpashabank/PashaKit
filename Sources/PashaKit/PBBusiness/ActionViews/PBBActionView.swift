@@ -431,13 +431,13 @@ public class PBBActionView: UIView {
 
     private func prepareActionViewByType() {
         switch self.typeOfAction {
-        case .normal: break
+        case .normal(let localizedText):
+            self.title = localizedText
+        case .detailed(let localizedText, let detailLocalizedText):
+            self.title = localizedText
 //            self.stateOfButton = .normal
-        case .detailed: break
-//            self.title = title
-//            self.stateOfButton = .normal
-        case .description: break
-//            self.title = title
+        case .description(let localizedText, let detailLocalizedText, let descriptionLocalizedText):
+            self.title = localizedText
 //            self.disableTitle = disableTitle
 //            self.stateOfButton = .disabled
         }
