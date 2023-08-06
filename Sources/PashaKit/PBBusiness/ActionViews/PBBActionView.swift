@@ -338,9 +338,9 @@ public class PBBActionView: UIView {
                 self.iconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
                 
                 self.titleLabel.leftAnchor.constraint(equalTo: self.iconWrapperView.rightAnchor, constant: 12),
-                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                 self.titleLabel.widthAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.width),
-                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
+//                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
             ])
             
         case .detailed:
