@@ -213,7 +213,7 @@ public class PBBActionView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
 
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.text = self.title
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -341,7 +341,7 @@ public class PBBActionView: UIView {
                 
                 self.titleLabel.leftAnchor.constraint(equalTo: self.iconWrapperView.rightAnchor, constant: 12),
                 self.titleLabel.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                
+                self.titleLabel.widthAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.width),
             ])
             
         case .detailed:
