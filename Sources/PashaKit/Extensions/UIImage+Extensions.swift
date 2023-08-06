@@ -54,5 +54,7 @@ extension UIImage {
         static let icVisaLogoColored = UIImage(named: "ic_visa_logo_colored", in: Bundle.module, compatibleWith: nil)
         static let icVisa = UIImage(named: "ic_visa", in: Bundle.module, compatibleWith: nil)
         static let icEdit = UIImage(named: "ic_edit", in: Bundle.module, compatibleWith: nil)
+        
+        static let icPBBChevronRight = UIImage(named: "ic_pbb_chevon_right", in: Bundle.module, compatibleWith: nil)
     }
 }

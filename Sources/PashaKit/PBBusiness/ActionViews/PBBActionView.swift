@@ -103,9 +103,9 @@ public class PBBActionView: UIView {
     /// By default button will be created with only its title. If you are willing to add
     /// image in future, just set the desired image to this property.
     ///
-    public var image: UIImage? {
+    public var leftIcon: UIImage? {
         didSet {
-            self.iconView.image = image
+            self.leftIconView.image = leftIcon
         }
     }
 
@@ -129,9 +129,9 @@ public class PBBActionView: UIView {
         }
     }
     
-    public var iconBackgroundColor: UIColor = .clear {
+    public var leftIconBackgroundColor: UIColor = .clear {
         didSet {
-            self.iconWrapperView.backgroundColor = self.iconBackgroundColor
+            self.leftIconWrapperView.backgroundColor = self.leftIconBackgroundColor
         }
     }
     
@@ -195,17 +195,17 @@ public class PBBActionView: UIView {
                 NSLayoutConstraint.activate(self.smallSizeConstraints)
                 NSLayoutConstraint.deactivate(self.mediumSizeConstraints)
                 NSLayoutConstraint.deactivate(self.largeSizeConstraints)
-                self.iconWrapperView.layer.cornerRadius = 12
+                self.leftIconWrapperView.layer.cornerRadius = 12
             case .medium:
                 NSLayoutConstraint.deactivate(self.smallSizeConstraints)
                 NSLayoutConstraint.activate(self.mediumSizeConstraints)
                 NSLayoutConstraint.deactivate(self.largeSizeConstraints)
-                self.iconWrapperView.layer.cornerRadius = 16
+                self.leftIconWrapperView.layer.cornerRadius = 16
             case .large:
                 NSLayoutConstraint.deactivate(self.smallSizeConstraints)
                 NSLayoutConstraint.deactivate(self.mediumSizeConstraints)
                 NSLayoutConstraint.activate(self.largeSizeConstraints)
-                self.iconWrapperView.layer.cornerRadius = 24
+                self.leftIconWrapperView.layer.cornerRadius = 24
             }
         }
     }
@@ -222,7 +222,7 @@ public class PBBActionView: UIView {
         return label
     }()
     
-    private lazy var iconWrapperView: UIView = {
+    private lazy var leftIconWrapperView: UIView = {
         let view = UIView()
 
         self.addSubview(view)
@@ -232,11 +232,23 @@ public class PBBActionView: UIView {
         return view
     }()
     
-    private lazy var iconView: UIImageView  = {
+    private lazy var leftIconView: UIImageView  = {
         let view = UIImageView()
 
-        self.addSubview(view)
+//        self.addSubview(view)
 
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.contentMode = .scaleAspectFit
+
+        return view
+    }()
+    
+    private lazy var chevronIcon: UIImageView = {
+        let view = UIImageView()
+        
+        view.image = UIImage.Images.icPBBChevronRight
+        
         view.translatesAutoresizingMaskIntoConstraints = false
 
         view.contentMode = .scaleAspectFit
@@ -291,11 +303,21 @@ public class PBBActionView: UIView {
     
     private func setupViews(for type: PBBActionType) {
         
-        self.iconWrapperView.addSubview(self.iconView)
+        self.leftIconWrapperView.addSubview(self.leftIconView)
         
-        self.addSubview(self.iconWrapperView)
+        self.addSubview(self.leftIconWrapperView)
         
         self.addSubview(self.titleLabel)
+        
+        switch self.styleOfAction {
+        case .chevron:
+            self.addSubview(self.chevronIcon)
+        case .chevronWithButton: break
+        case .chevronWithStatus: break
+        case .chevronWithText: break
+        case .radioButton: break
+        case .switchButton: break
+        }
         
         self.cornerRadius = 12.0
         
@@ -328,20 +350,21 @@ public class PBBActionView: UIView {
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalToConstant: 72.0),
                 
-                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
-                self.iconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
-                self.iconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
+                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
+                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
+                self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
+                self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
                 
-                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
-                self.iconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
-                self.iconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
+                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
+                self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
+                self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
                 
-                self.titleLabel.leftAnchor.constraint(equalTo: self.iconWrapperView.rightAnchor, constant: 12),
+                self.titleLabel.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
                 self.titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                 self.titleLabel.widthAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.width),
-//                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
             ])
+            
+            self.setupConstraintsByStyle()
             
         case .detailed:
             
@@ -350,13 +373,13 @@ public class PBBActionView: UIView {
                 self.heightAnchor.constraint(equalToConstant: 128.0),
                 self.widthAnchor.constraint(equalToConstant: 118.0),
                 
-                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                self.leftIconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 
-                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
+                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
                 
-                self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
+                self.titleLabel.topAnchor.constraint(equalTo: self.leftIconWrapperView.bottomAnchor, constant: 12.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
@@ -369,11 +392,11 @@ public class PBBActionView: UIView {
                 self.heightAnchor.constraint(equalToConstant: 128.0),
                 self.widthAnchor.constraint(equalToConstant: 118.0),
                 
-                self.iconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                self.iconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                self.leftIconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 
-                self.iconView.centerXAnchor.constraint(equalTo: self.iconWrapperView.centerXAnchor),
-                self.iconView.centerYAnchor.constraint(equalTo: self.iconWrapperView.centerYAnchor),
+                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
+                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
                 
 //                self.disableTitleLabel.centerXAnchor.constraint(equalTo: self.disableView.centerXAnchor),
 //                self.disableTitleLabel.centerYAnchor.constraint(equalTo: self.disableView.centerYAnchor),
@@ -383,7 +406,7 @@ public class PBBActionView: UIView {
 //                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.intrinsicContentSize.width + 12),
 //                self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
                 
-                self.titleLabel.topAnchor.constraint(equalTo: self.iconWrapperView.bottomAnchor, constant: 12.0),
+                self.titleLabel.topAnchor.constraint(equalTo: self.leftIconWrapperView.bottomAnchor, constant: 12.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
@@ -392,27 +415,45 @@ public class PBBActionView: UIView {
         }
         
         self.smallSizeConstraints = [
-            self.iconView.widthAnchor.constraint(equalToConstant: 12.0),
-            self.iconView.heightAnchor.constraint(equalToConstant: 12.0),
-            self.iconWrapperView.widthAnchor.constraint(equalToConstant: 24.0),
-            self.iconWrapperView.heightAnchor.constraint(equalToConstant: 24.0)
+            self.leftIconView.widthAnchor.constraint(equalToConstant: 12.0),
+            self.leftIconView.heightAnchor.constraint(equalToConstant: 12.0),
+            self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 24.0),
+            self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 24.0)
         ]
         
         self.mediumSizeConstraints = [
-            self.iconView.widthAnchor.constraint(equalToConstant: 16.0),
-            self.iconView.heightAnchor.constraint(equalToConstant: 16.0),
-            self.iconWrapperView.widthAnchor.constraint(equalToConstant: 32.0),
-            self.iconWrapperView.heightAnchor.constraint(equalToConstant: 32.0)
+            self.leftIconView.widthAnchor.constraint(equalToConstant: 16.0),
+            self.leftIconView.heightAnchor.constraint(equalToConstant: 16.0),
+            self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 32.0),
+            self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 32.0)
         ]
         
         self.largeSizeConstraints = [
-            self.iconView.widthAnchor.constraint(equalToConstant: 24.0),
-            self.iconView.heightAnchor.constraint(equalToConstant: 24.0),
-            self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
-            self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
+            self.leftIconView.widthAnchor.constraint(equalToConstant: 24.0),
+            self.leftIconView.heightAnchor.constraint(equalToConstant: 24.0),
+            self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
+            self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
         ]
         
         self.iconSize = .large
+    }
+    
+    private func setupConstraintsByStyle() {
+        switch self.styleOfAction {
+        case .chevron:
+            NSLayoutConstraint.activate([
+                self.titleLabel.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
+                self.chevronIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            ])
+        case .chevronWithButton: break
+        case .chevronWithStatus: break
+        case .chevronWithText: break
+        case .radioButton: break
+        case .switchButton: break
+        }
     }
 
     private func prepareActionViewByState() {
