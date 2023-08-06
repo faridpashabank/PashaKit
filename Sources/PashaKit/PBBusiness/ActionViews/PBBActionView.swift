@@ -297,6 +297,8 @@ public class PBBActionView: UIView {
         
         self.addSubview(self.titleLabel)
         
+        self.cornerRadius = 12.0
+        
         switch type {
         case .normal: break
             
