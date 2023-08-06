@@ -47,9 +47,9 @@ import UIKit
 public class PBBActionView: UIView {
 
     public enum PBBActionType {
-        case normal(localizedText: String)
-        case detailed(localizedText: String, detailLocalizedText: String)
-        case description(localizedText: String, detailLocalizedText: String, descriptionLocalizedText: String)
+        case normal(localizedTitleText: String)
+        case detailed(localizedTitleText: String, localizedSubTitleText: String)
+        case description(localizedTitleText: String, localizedSubTitleText: String, localizedDescriptionText: String)
     }
     
     public enum PBBActionState {
@@ -95,6 +95,12 @@ public class PBBActionView: UIView {
     public var title: String = "" {
         didSet {
             self.titleLabel.text = self.title
+        }
+    }
+    
+    public var subTitle: String = "" {
+        didSet {
+            self.subTitleLabel.text = self.subTitle
         }
     }
     
@@ -160,7 +166,7 @@ public class PBBActionView: UIView {
         }
     }
     
-    private var typeOfAction: PBBActionType = .normal(localizedText: "") {
+    private var typeOfAction: PBBActionType = .normal(localizedTitleText: "") {
         didSet {
 //            self.prepareButtonByType()
         }
@@ -210,7 +216,33 @@ public class PBBActionView: UIView {
         }
     }
     
+    private lazy var titleStackView: UIStackView = {
+        let view = UIStackView()
+
+//        self.addSubview(view)
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.alignment = .firstBaseline
+        view.axis = .horizontal
+        view.spacing = 2.0
+
+        return view
+    }()
+    
     private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+
+        label.textAlignment = .left
+        label.text = self.title
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+    
+    private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
 
         label.textAlignment = .left
@@ -272,7 +304,7 @@ public class PBBActionView: UIView {
     ///    - typeOfButton: Sets the type of button.
     ///
     
-    public convenience init(typeOfAction: PBBActionType = .normal(localizedText: "")) {
+    public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: "")) {
         self.init()
         
         UIFont.registerCustomFonts()
@@ -287,7 +319,7 @@ public class PBBActionView: UIView {
         
     }
 
-    public convenience init(typeOfAction: PBBActionType = .normal(localizedText: ""), stateOfAction: PBBActionState = .normal) {
+    public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), stateOfAction: PBBActionState = .normal) {
         self.init()
         
         UIFont.registerCustomFonts()
@@ -306,8 +338,7 @@ public class PBBActionView: UIView {
         self.leftIconWrapperView.addSubview(self.leftIconView)
         
         self.addSubview(self.leftIconWrapperView)
-        
-        self.addSubview(self.titleLabel)
+        self.addSubview(self.titleStackView)
         
         switch self.styleOfAction {
         case .chevron:
@@ -322,9 +353,11 @@ public class PBBActionView: UIView {
         self.cornerRadius = 12.0
         
         switch type {
-        case .normal: break
-            
-        case .detailed: break
+        case .normal:
+            self.titleStackView.addSubview(self.titleLabel)
+        case .detailed:
+            self.titleStackView.addSubview(self.titleLabel)
+            self.titleStackView.addSubview(self.subTitleLabel)
         case .description: break
         }
 
@@ -359,9 +392,9 @@ public class PBBActionView: UIView {
                 self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
                 self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
                 
-                self.titleLabel.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
-                self.titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                self.titleLabel.widthAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.width),
+                self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
+                self.titleStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                self.titleStackView.widthAnchor.constraint(equalToConstant: self.titleStackView.intrinsicContentSize.width),
             ])
             
             self.setupConstraintsByStyle()
@@ -442,7 +475,7 @@ public class PBBActionView: UIView {
         switch self.styleOfAction {
         case .chevron:
             NSLayoutConstraint.activate([
-                self.titleLabel.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                self.titleStackView.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
                 self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
                 self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
                 self.chevronIcon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
@@ -473,13 +506,14 @@ public class PBBActionView: UIView {
 
     private func prepareActionViewByType() {
         switch self.typeOfAction {
-        case .normal(let localizedText):
-            self.title = localizedText
-        case .detailed(let localizedText, let detailLocalizedText):
-            self.title = localizedText
-//            self.stateOfButton = .normal
-        case .description(let localizedText, let detailLocalizedText, let descriptionLocalizedText):
-            self.title = localizedText
+        case .normal(let localizedTitleText):
+            self.title = localizedTitleText
+        case .detailed(let localizedTitleText, let localizedSubTitleText):
+            self.title = localizedTitleText
+            self.subTitle = localizedSubTitleText
+        case .description(let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
+            self.title = localizedTitleText
+            self.subTitle = localizedSubTitleText
 //            self.disableTitle = disableTitle
 //            self.stateOfButton = .disabled
         }
