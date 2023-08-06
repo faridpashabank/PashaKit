@@ -121,7 +121,7 @@ public class PBBActionView: UIView {
     ///
     public var cornerRadius: CGFloat = 12.0 {
         didSet {
-            self.layer.cornerRadius = self.cornerRadius
+            self.baseView.layer.cornerRadius = self.cornerRadius
         }
     }
     
@@ -131,7 +131,7 @@ public class PBBActionView: UIView {
     ///
     public var baseBackgroundColor: UIColor = .clear {
         didSet {
-            self.backgroundColor = self.baseBackgroundColor
+            self.baseView.backgroundColor = self.baseBackgroundColor
         }
     }
     
@@ -147,8 +147,8 @@ public class PBBActionView: UIView {
     ///
     public var borderColor: UIColor = .clear {
         didSet {
-            self.layer.borderWidth = 1
-            self.layer.borderColor = self.borderColor.cgColor
+            self.baseView.layer.borderWidth = 1
+            self.baseView.layer.borderColor = self.borderColor.cgColor
         }
     }
     
@@ -216,6 +216,17 @@ public class PBBActionView: UIView {
         }
     }
     
+    private lazy var baseView: UIView = {
+        let view = UIView()
+
+        self.addSubview(view)
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+
+        return view
+    }()
+    
     private lazy var titleStackView: UIStackView = {
         let view = UIStackView()
 
@@ -257,7 +268,7 @@ public class PBBActionView: UIView {
     private lazy var leftIconWrapperView: UIView = {
         let view = UIView()
 
-        self.addSubview(view)
+//        self.addSubview(view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -337,12 +348,12 @@ public class PBBActionView: UIView {
         
         self.leftIconWrapperView.addSubview(self.leftIconView)
         
-        self.addSubview(self.leftIconWrapperView)
-        self.addSubview(self.titleStackView)
+        self.baseView.addSubview(self.leftIconWrapperView)
+        self.baseView.addSubview(self.titleStackView)
         
         switch self.styleOfAction {
         case .chevron:
-            self.addSubview(self.chevronIcon)
+            self.baseView.addSubview(self.chevronIcon)
         case .chevronWithButton: break
         case .chevronWithStatus: break
         case .chevronWithText: break
@@ -388,12 +399,12 @@ public class PBBActionView: UIView {
                 self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
                 self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
                 
-                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
-                self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
-                self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
+                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.baseView.topAnchor, constant: 16.0),
+                self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: -16.0),
+                self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.baseView.leftAnchor, constant: 16.0),
                 
                 self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
-                self.titleStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                self.titleStackView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
                 self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
 //                self.titleStackView.widthAnchor.constraint(equalToConstant: self.titleStackView.intrinsicContentSize.width),
             ])
@@ -479,8 +490,8 @@ public class PBBActionView: UIView {
                 self.titleStackView.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
                 self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
                 self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
-                self.chevronIcon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
-                self.chevronIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
+                self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
         case .chevronWithButton: break
         case .chevronWithStatus: break
