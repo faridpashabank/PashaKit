@@ -94,13 +94,19 @@ public class PBBActionView: UIView {
     ///
     public var title: String = "" {
         didSet {
-            self.titleLabel.text = self.title
+            self.titleLabel.text = title
         }
     }
     
     public var subTitle: String = "" {
         didSet {
-            self.subTitleLabel.text = self.subTitle
+            self.subTitleLabel.text = subTitle
+        }
+    }
+    
+    public var descriptionText: String = "" {
+        didSet {
+            self.descriptionLabel.text = descriptionText
         }
     }
     
@@ -265,6 +271,18 @@ public class PBBActionView: UIView {
         return label
     }()
     
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+
+        label.textAlignment = .left
+        label.text = self.subTitle
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+    
     private lazy var leftIconWrapperView: UIView = {
         let view = UIView()
 
@@ -369,7 +387,10 @@ public class PBBActionView: UIView {
         case .detailed:
             self.titleStackView.addArrangedSubview(self.titleLabel)
             self.titleStackView.addArrangedSubview(self.subTitleLabel)
-        case .description: break
+        case .description:
+            self.titleStackView.addArrangedSubview(self.titleLabel)
+            self.titleStackView.addArrangedSubview(self.subTitleLabel)
+            self.addSubview(self.descriptionLabel)
         }
 
 //        switch type {
@@ -388,80 +409,40 @@ public class PBBActionView: UIView {
     }
     
     private func setupConstraints(for type: PBBActionType) {
+        
+        NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalToConstant: 72.0),
+            self.baseView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            self.baseView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
+            self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
+            self.baseView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0.0),
+            
+            self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
+            self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
+            self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
+            self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
+            
+            self.leftIconWrapperView.topAnchor.constraint(equalTo: self.baseView.topAnchor, constant: 16.0),
+            self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: -16.0),
+            self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.baseView.leftAnchor, constant: 16.0),
+            
+            self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
+            self.titleStackView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+            self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
+        ])
+        
         switch type {
-        case .normal, .detailed:
-           
+        case .normal, .detailed: break
+        case .description:
             NSLayoutConstraint.activate([
-//                self.heightAnchor.constraint(equalToConstant: 72.0),
-                self.baseView.heightAnchor.constraint(equalToConstant: 72.0),
-                self.baseView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
-                self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
-                self.baseView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0.0),
-                
-                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
-                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
-                self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
-                self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
-                
-                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.baseView.topAnchor, constant: 16.0),
-                self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: -16.0),
-                self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.baseView.leftAnchor, constant: 16.0),
-                
-                self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
-                self.titleStackView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
-                self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
-//                self.titleStackView.widthAnchor.constraint(equalToConstant: self.titleStackView.intrinsicContentSize.width),
+                self.descriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
+                self.descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
+                self.descriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
             ])
-            
-            self.setupConstraintsByStyle()
-            
-//        case .detailed: break
-            
-//            NSLayoutConstraint.activate([
-//
-//                self.heightAnchor.constraint(equalToConstant: 128.0),
-//                self.widthAnchor.constraint(equalToConstant: 118.0),
-//
-//                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-//                self.leftIconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//
-//                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
-//                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
-//
-//                self.titleLabel.topAnchor.constraint(equalTo: self.leftIconWrapperView.bottomAnchor, constant: 12.0),
-//                self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
-//                self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-//                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
-//
-//            ])
-            
-        case .description: break
-//            NSLayoutConstraint.activate([
-//
-//                self.heightAnchor.constraint(equalToConstant: 128.0),
-//                self.widthAnchor.constraint(equalToConstant: 118.0),
-//
-//                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-//                self.leftIconWrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//
-//                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
-//                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
-//
-////                self.disableTitleLabel.centerXAnchor.constraint(equalTo: self.disableView.centerXAnchor),
-////                self.disableTitleLabel.centerYAnchor.constraint(equalTo: self.disableView.centerYAnchor),
-////
-////                self.disableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-////                self.disableView.heightAnchor.constraint(equalToConstant: 16),
-////                self.disableView.widthAnchor.constraint(equalToConstant: self.disableTitleLabel.intrinsicContentSize.width + 12),
-////                self.disableView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: -4.0),
-//
-//                self.titleLabel.topAnchor.constraint(equalTo: self.leftIconWrapperView.bottomAnchor, constant: 12.0),
-//                self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0),
-//                self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-//                self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0)
-//
-//            ])
+
         }
+        
+        self.setupConstraintsByStyle()
         
         self.smallSizeConstraints = [
             self.leftIconView.widthAnchor.constraint(equalToConstant: 12.0),
@@ -534,6 +515,7 @@ public class PBBActionView: UIView {
         case .description(let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
+            self.descriptionText = localizedDescriptionText
 //            self.disableTitle = disableTitle
 //            self.stateOfButton = .disabled
         }
