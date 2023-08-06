@@ -303,7 +303,6 @@ public class PBBRoundButton: UIView {
         
         self.setupViews(for: typeOfButton)
         
-        self.iconSize = .large
     }
 
     public convenience init(typeOfButton: PBBRoundButtonType = .plain, stateOfButton: PBBRoundButtonState) {
@@ -318,7 +317,6 @@ public class PBBRoundButton: UIView {
        
         self.setupViews(for: typeOfButton)
         
-        self.iconSize = .large
     }
     
     private func setupViews(for type: PBBRoundButtonType) {
@@ -425,6 +423,8 @@ public class PBBRoundButton: UIView {
             self.iconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
             self.iconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
         ]
+        
+        self.iconSize = .large
     }
 
     private func prepareButtonByState() {
