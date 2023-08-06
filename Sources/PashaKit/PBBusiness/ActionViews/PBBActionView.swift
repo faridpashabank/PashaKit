@@ -378,7 +378,7 @@ public class PBBActionView: UIView {
     
     private func setupConstraints(for type: PBBActionType) {
         switch type {
-        case .normal:
+        case .normal, .detailed:
             
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalToConstant: 72.0),
@@ -400,7 +400,7 @@ public class PBBActionView: UIView {
             
             self.setupConstraintsByStyle()
             
-        case .detailed: break
+//        case .detailed: break
             
 //            NSLayoutConstraint.activate([
 //
