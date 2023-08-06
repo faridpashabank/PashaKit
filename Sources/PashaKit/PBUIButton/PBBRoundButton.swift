@@ -300,22 +300,25 @@ public class PBBRoundButton: UIView {
         
         self.prepareButtonByType()
         self.prepareButtonByState()
-        self.iconSize = .large
+        
         self.setupViews(for: typeOfButton)
+        
+        self.iconSize = .large
     }
 
     public convenience init(typeOfButton: PBBRoundButtonType = .plain, stateOfButton: PBBRoundButtonState) {
         self.init()
         
         UIFont.registerCustomFonts()
-        self.iconSize = .large
         
         self.typeOfButton = typeOfButton
         self.prepareButtonByType()
         self.stateOfButton = stateOfButton
         self.prepareButtonByState()
-        self.iconSize = .large
+       
         self.setupViews(for: typeOfButton)
+        
+        self.iconSize = .large
     }
     
     private func setupViews(for type: PBBRoundButtonType) {
