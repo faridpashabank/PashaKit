@@ -196,7 +196,7 @@ public class PBBRoundButton: UIView {
         }
     }
     
-    public var iconSize: IconSize = .small {
+    public var iconSize: IconSize = .large {
         didSet {
             switch self.iconSize {
             case .small:
