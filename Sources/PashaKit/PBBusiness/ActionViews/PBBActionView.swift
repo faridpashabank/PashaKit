@@ -246,7 +246,7 @@ public class PBBActionView: UIView {
         let label = UILabel()
 
         label.textAlignment = .left
-        label.text = self.title
+        label.text = self.subTitle
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -354,10 +354,10 @@ public class PBBActionView: UIView {
         
         switch type {
         case .normal:
-            self.titleStackView.addSubview(self.titleLabel)
+            self.titleStackView.addArrangedSubview(self.titleLabel)
         case .detailed:
-            self.titleStackView.addSubview(self.titleLabel)
-            self.titleStackView.addSubview(self.subTitleLabel)
+            self.titleStackView.addArrangedSubview(self.titleLabel)
+            self.titleStackView.addArrangedSubview(self.subTitleLabel)
         case .description: break
         }
 
@@ -509,9 +509,13 @@ public class PBBActionView: UIView {
         switch self.typeOfAction {
         case .normal(let localizedTitleText):
             self.title = localizedTitleText
+            self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
+//            self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
         case .detailed(let localizedTitleText, let localizedSubTitleText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
+            self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
+            self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
         case .description(let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
