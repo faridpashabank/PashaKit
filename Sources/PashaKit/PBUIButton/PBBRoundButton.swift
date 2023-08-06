@@ -48,12 +48,10 @@ public class PBBRoundButton: UIView {
     public enum PBBRoundButtonType {
         case plain
         case withTitle(localizableTitle: String)
-//        case withSemiboldTitle(localizableTitle: String)
-//        case withRegularTitle(localizableTitle: String)
         case disabled(localizableTitle: String, localizableDisableTitle: String)
     }
 
-    /// Specifies the style of button
+    /// Specifies the state of button
     public enum PBBRoundButtonState {
 
         /// A  button with clear background color and PBGreen title color
@@ -69,7 +67,6 @@ public class PBBRoundButton: UIView {
         /// its background color may be PBFauxChestnut depending on returned user type.
         ///
         case disabled
-//        case customTitleWeight(CustomFontWeight)
         
     }
     
@@ -180,7 +177,6 @@ public class PBBRoundButton: UIView {
 
     private var typeOfButton: PBBRoundButtonType = .plain {
         didSet {
-            print("typeOfButton SETTED")
             self.prepareButtonByType()
         }
     }
@@ -191,7 +187,6 @@ public class PBBRoundButton: UIView {
     ///
     public var stateOfButton: PBBRoundButtonState = .normal {
         didSet {
-            print("stateOfButton SETTED")
             self.prepareButtonByState()
         }
     }
