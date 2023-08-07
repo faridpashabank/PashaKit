@@ -435,7 +435,7 @@ public class PBBActionView: UIView {
         case .normal, .detailed: break
         case .description:
             NSLayoutConstraint.activate([
-                self.heightAnchor.constraint(equalToConstant: 112.0),
+//                self.heightAnchor.constraint(equalToConstant: 112.0),
                 self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor, constant: self.descriptionLabel.intrinsicContentSize.height + 8),
 //                self.heightAnchor.constraint(equalToConstant: self.baseView.frame.height + self.descriptionLabel.intrinsicContentSize.height + 8),
                 self.descriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
