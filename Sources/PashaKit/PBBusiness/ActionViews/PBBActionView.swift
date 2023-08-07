@@ -529,7 +529,10 @@ public class PBBActionView: UIView {
         ])
         
         switch type {
-        case .normal, .detailed: break
+        case .normal, .detailed:
+            NSLayoutConstraint.activate([
+                self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
+            ])
         case .description:
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor, constant:  40),
