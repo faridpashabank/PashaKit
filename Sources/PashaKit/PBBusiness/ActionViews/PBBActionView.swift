@@ -236,7 +236,9 @@ public class PBBActionView: UIView {
     
     public var switchButtonStatus: Bool = false {
         didSet {
-            self.switchButton.isOn = switchButtonStatus
+//            self.switchButton.isOn = switchButtonStatus
+            self.switchButton.setOn(switchButtonStatus, animated: true)
+            
             if self.switchButtonStatus {
 //                self.switchButton.image = UIImage.Images.icRadioSelected
             } else {
@@ -375,7 +377,9 @@ public class PBBActionView: UIView {
     private lazy var switchButton: UISwitch = {
         let view = UISwitch()
         view.isOn = false
-        
+        view.addTapGestureRecognizer {
+            print("HELLOW WORLD")
+        }
 //        if self.radioButtonStatus {
 //            view.image = UIImage.Images.icRadioSelected
 //        } else {
@@ -689,7 +693,7 @@ public class PBBActionView: UIView {
         case .radioButton(let isSelected):
             self.radioButtonStatus = isSelected
         case .switchButton(let isOn):
-            self.switchButtonStatus.setOn(isOn, animated: true)
+            self.switchButtonStatus = isOn
         case .none:
             break
         }
