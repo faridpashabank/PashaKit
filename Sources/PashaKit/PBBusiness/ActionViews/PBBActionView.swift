@@ -371,7 +371,7 @@ public class PBBActionView: UIView {
     }()
     
     private lazy var statusLabelView: PBBLabelView = {
-        let view = PBBLabelView(statusOfLabel: .new)
+        let view = PBBLabelView(statusOfLabel: .new, typeOfLabel: .small(localizedText: "Hello"))
         
 //        view.image = UIImage.Images.icPBBChevronRight
         
@@ -700,7 +700,9 @@ public class PBBActionView: UIView {
         case .chevronWithButton(let localizedText):
             self.button.buttonTitle = localizedText
             self.button.titleLabel?.font = UIFont.sfProText(ofSize: 17, weight: .regular)
-        case .chevronWithStatus(let localizedText, let status): break
+        case .chevronWithStatus(let localizedText, let status):
+            self.statusLabelView.typeOfLabel = .small(localizedText: localizedText)
+            self.statusLabelView.statusOfLabel = status
         case .chevronWithText(let localizedText):
             self.descriptionLabel.text = localizedText
             self.descriptionLabel.font = UIFont.sfProText(ofSize: 17, weight: .regular)
