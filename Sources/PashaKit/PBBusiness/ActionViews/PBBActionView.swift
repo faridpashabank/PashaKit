@@ -578,7 +578,9 @@ public class PBBActionView: UIView {
     private func prepareActionViewByStyle() {
         switch self.styleOfAction {
         case .chevron: break
-        case .chevronWithButton(let localizedText): break
+        case .chevronWithButton(let localizedText):
+            self.button.buttonTitle = localizedText
+            self.button.titleLabel?.font = UIFont.sfProText(ofSize: 17, weight: .regular)
         case .chevronWithStatus(let localizedText, let status): break
         case .chevronWithText(let localizedText): break
         case .radioButton(let isSelected): break
