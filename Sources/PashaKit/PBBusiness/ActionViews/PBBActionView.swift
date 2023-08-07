@@ -609,6 +609,8 @@ public class PBBActionView: UIView {
         case .chevronWithStatus(let localizedText, let status): break
         case .chevronWithText(let localizedText):
             self.descriptionLabel.text = localizedText
+            self.descriptionLabel.font = UIFont.sfProText(ofSize: 17, weight: .regular)
+            self.descriptionLabel.textColor = UIColor.Colors.PBBGray
         case .radioButton(let isSelected): break
         case .switchButton(let isSelected): break
         case .none:
