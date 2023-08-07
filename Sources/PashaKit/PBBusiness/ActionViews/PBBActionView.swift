@@ -366,7 +366,9 @@ public class PBBActionView: UIView {
         } else {
             view.image = UIImage.Images.icRadioDefault
         }
-        
+        view.addTapGestureRecognizer {
+            print("HELLOW WORLD")
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
 
         view.contentMode = .scaleAspectFit
