@@ -65,6 +65,7 @@ public class PBBActionView: UIView {
     }
 
     public enum PBBActionStyle {
+        case none
         case chevron
         case chevronWithText(localizedText: String)
         case chevronWithStatus(localizedText: String, status: PBBActionStatusType)
@@ -194,7 +195,7 @@ public class PBBActionView: UIView {
         }
     }
     
-    public var styleOfAction: PBBActionStyle = .chevron {
+    public var styleOfAction: PBBActionStyle = .none {
         didSet {
 //            self.prepareButtonByState()
         }
@@ -235,8 +236,6 @@ public class PBBActionView: UIView {
     
     private lazy var titleStackView: UIStackView = {
         let view = UIStackView()
-
-//        self.addSubview(view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -286,8 +285,6 @@ public class PBBActionView: UIView {
     private lazy var leftIconWrapperView: UIView = {
         let view = UIView()
 
-//        self.addSubview(view)
-
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
@@ -295,8 +292,6 @@ public class PBBActionView: UIView {
     
     private lazy var leftIconView: UIImageView  = {
         let view = UIImageView()
-
-//        self.addSubview(view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -339,7 +334,6 @@ public class PBBActionView: UIView {
         UIFont.registerCustomFonts()
         
         self.typeOfAction = typeOfAction
-//        self.stateOfButton = .normal
         
         self.prepareActionViewByType()
         self.prepareActionViewByState()
@@ -377,6 +371,8 @@ public class PBBActionView: UIView {
         case .chevronWithText: break
         case .radioButton: break
         case .switchButton: break
+        case .none:
+            break
         }
         
         self.cornerRadius = 12.0
@@ -411,7 +407,6 @@ public class PBBActionView: UIView {
     private func setupConstraints(for type: PBBActionType) {
         
         NSLayoutConstraint.activate([
-//            self.heightAnchor.constraint(equalToConstant: 72.0),
             self.baseView.heightAnchor.constraint(equalToConstant: 72.0),
             self.baseView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
             self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
@@ -435,14 +430,11 @@ public class PBBActionView: UIView {
         case .normal, .detailed: break
         case .description:
             NSLayoutConstraint.activate([
-//                self.heightAnchor.constraint(equalToConstant: 112.0),
                 self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor, constant:  40),
-//                self.heightAnchor.constraint(equalToConstant: self.baseView.frame.height + self.descriptionLabel.intrinsicContentSize.height + 8),
                 self.descriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
                 self.descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
                 self.descriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
             ])
-
         }
         
         self.setupConstraintsByStyle()
@@ -486,6 +478,8 @@ public class PBBActionView: UIView {
         case .chevronWithText: break
         case .radioButton: break
         case .switchButton: break
+        case .none:
+            break
         }
     }
 
@@ -509,13 +503,11 @@ public class PBBActionView: UIView {
         case .normal(let localizedTitleText):
             self.title = localizedTitleText
             self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
-//            self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
         case .detailed(let localizedTitleText, let localizedSubTitleText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
             self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
             self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
-            
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray
         case .description(let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
             self.title = localizedTitleText
@@ -527,8 +519,7 @@ public class PBBActionView: UIView {
             
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
             self.descriptionLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
-//            self.disableTitle = disableTitle
-//            self.stateOfButton = .disabled
+
         }
     }
     
@@ -549,6 +540,8 @@ public class PBBActionView: UIView {
         case .chevronWithText(let localizedText): break
         case .radioButton(let isSelected): break
         case .switchButton(let isSelected): break
+        case .none:
+            break
         }
     }
     
