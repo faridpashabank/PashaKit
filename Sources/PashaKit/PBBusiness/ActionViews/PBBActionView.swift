@@ -341,6 +341,21 @@ public class PBBActionView: UIView {
         self.setupViews(for: typeOfAction)
         
     }
+    
+    public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), styleOfAction: PBBActionStyle = .none  ) {
+        self.init()
+        
+        UIFont.registerCustomFonts()
+        
+        self.typeOfAction = typeOfAction
+        self.styleOfAction = styleOfAction
+        
+        self.prepareActionViewByType()
+        self.prepareActionViewByState()
+        
+        self.setupViews(for: typeOfAction)
+        
+    }
 
     public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), stateOfAction: PBBActionState = .normal) {
         self.init()
