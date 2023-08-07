@@ -234,6 +234,17 @@ public class PBBActionView: UIView {
         }
     }
     
+    public var switchButtonStatus: Bool = false {
+        didSet {
+            self.switchButton.isOn = switchButtonStatus
+            if self.switchButtonStatus {
+//                self.switchButton.image = UIImage.Images.icRadioSelected
+            } else {
+//                self.switchButton.image = UIImage.Images.icRadioDefault
+            }
+        }
+    }
+    
     private lazy var baseView: UIView = {
         let view = UIView()
 
@@ -361,6 +372,22 @@ public class PBBActionView: UIView {
         return view
     }()
     
+    private lazy var switchButton: UISwitch = {
+        let view = UISwitch()
+        view.isOn = false
+//        if self.radioButtonStatus {
+//            view.image = UIImage.Images.icRadioSelected
+//        } else {
+//            view.image = UIImage.Images.icRadioDefault
+//        }
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.contentMode = .scaleAspectFit
+
+        return view
+    }()
+    
     override private init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -439,7 +466,8 @@ public class PBBActionView: UIView {
             self.baseView.addSubview(self.chevronIcon)
         case .radioButton:
             self.baseView.addSubview(self.radioButtonIcon)
-        case .switchButton: break
+        case .switchButton:
+            self.baseView.addSubview(self.switchButton)
         case .none:
             break
         }
@@ -579,9 +607,18 @@ public class PBBActionView: UIView {
                 self.radioButtonIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -16),
                 self.radioButtonIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
-        case .switchButton: break
+        case .switchButton:
+            NSLayoutConstraint.activate([
+                self.titleStackView.rightAnchor.constraint(equalTo: self.switchButton.leftAnchor, constant: -12),
+                self.switchButton.heightAnchor.constraint(equalToConstant: 30.0),
+                self.switchButton.widthAnchor.constraint(equalToConstant: 50.0),
+                self.switchButton.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -16),
+                self.switchButton.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+            ])
         case .none:
-            break
+            NSLayoutConstraint.activate([
+                self.titleStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12),
+            ])
         }
         
         self.prepareActionViewByStyle()
@@ -650,7 +687,8 @@ public class PBBActionView: UIView {
             self.descriptionLabel.textColor = UIColor.Colors.PBBGray
         case .radioButton(let isSelected):
             self.radioButtonStatus = isSelected
-        case .switchButton(let isSelected): break
+        case .switchButton(let isOn):
+            self.switchButtonStatus = isOn
         case .none:
             break
         }
