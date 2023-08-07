@@ -105,9 +105,9 @@ public class PBBActionView: UIView {
         }
     }
     
-    public var descriptionText: String = "" {
+    public var infoDescriptionText: String = "" {
         didSet {
-            self.descriptionLabel.text = descriptionText
+            self.infoDescriptionLabel.text = infoDescriptionText
         }
     }
     
@@ -270,13 +270,23 @@ public class PBBActionView: UIView {
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    private lazy var infoDescriptionLabel: UILabel = {
         let label = UILabel()
 
         label.textAlignment = .left
         label.text = self.subTitle
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+
+        label.textAlignment = .right
+        label.text = self.subTitle
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -397,7 +407,9 @@ public class PBBActionView: UIView {
             self.baseView.addSubview(self.chevronIcon)
             self.baseView.addSubview(self.button)
         case .chevronWithStatus: break
-        case .chevronWithText: break
+        case .chevronWithText:
+            self.baseView.addSubview(self.descriptionLabel)
+            self.baseView.addSubview(self.chevronIcon)
         case .radioButton: break
         case .switchButton: break
         case .none:
@@ -415,7 +427,7 @@ public class PBBActionView: UIView {
         case .description:
             self.titleStackView.addArrangedSubview(self.titleLabel)
             self.titleStackView.addArrangedSubview(self.subTitleLabel)
-            self.addSubview(self.descriptionLabel)
+            self.addSubview(self.infoDescriptionLabel)
         }
 
 //        switch type {
@@ -460,9 +472,9 @@ public class PBBActionView: UIView {
         case .description:
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor, constant:  40),
-                self.descriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
-                self.descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
-                self.descriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
+                self.infoDescriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
+                self.infoDescriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
+                self.infoDescriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
             ])
         }
         
@@ -505,8 +517,7 @@ public class PBBActionView: UIView {
         case .chevronWithButton:
             NSLayoutConstraint.activate([
                 self.titleStackView.rightAnchor.constraint(equalTo: self.button.leftAnchor, constant: -12),
-//                self.button.heightAnchor.constraint(equalToConstant: 24.0),
-                
+            
                 self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
                 self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
                 self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
@@ -518,7 +529,19 @@ public class PBBActionView: UIView {
                 
             ])
         case .chevronWithStatus: break
-        case .chevronWithText: break
+        case .chevronWithText:
+            NSLayoutConstraint.activate([
+                self.titleStackView.rightAnchor.constraint(equalTo: self.descriptionLabel.leftAnchor, constant: -12),
+                
+                self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
+                self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+                
+                self.descriptionLabel.widthAnchor.constraint(equalToConstant: self.descriptionLabel.intrinsicContentSize.width),
+                self.descriptionLabel.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                self.descriptionLabel.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+            ])
         case .radioButton: break
         case .switchButton: break
         case .none:
@@ -557,13 +580,13 @@ public class PBBActionView: UIView {
         case .description(let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
-            self.descriptionText = localizedDescriptionText
+            self.infoDescriptionText = localizedDescriptionText
             self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
             self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
-            self.descriptionLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
+            self.infoDescriptionLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
             
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
-            self.descriptionLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
+            self.infoDescriptionLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
 
         }
     }
@@ -584,7 +607,8 @@ public class PBBActionView: UIView {
             self.button.buttonTitle = localizedText
             self.button.titleLabel?.font = UIFont.sfProText(ofSize: 17, weight: .regular)
         case .chevronWithStatus(let localizedText, let status): break
-        case .chevronWithText(let localizedText): break
+        case .chevronWithText(let localizedText):
+            self.descriptionLabel.text = localizedText
         case .radioButton(let isSelected): break
         case .switchButton(let isSelected): break
         case .none:
