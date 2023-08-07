@@ -394,6 +394,7 @@ public class PBBActionView: UIView {
         case .chevron:
             self.baseView.addSubview(self.chevronIcon)
         case .chevronWithButton:
+            self.baseView.addSubview(self.chevronIcon)
             self.baseView.addSubview(self.button)
         case .chevronWithStatus: break
         case .chevronWithText: break
@@ -505,9 +506,16 @@ public class PBBActionView: UIView {
             NSLayoutConstraint.activate([
                 self.titleStackView.rightAnchor.constraint(equalTo: self.button.leftAnchor, constant: -12),
 //                self.button.heightAnchor.constraint(equalToConstant: 24.0),
-                self.chevronIcon.widthAnchor.constraint(equalToConstant: 54.0),
-                self.chevronIcon.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                
+                self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
                 self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+                
+                self.button.widthAnchor.constraint(equalToConstant: 54.0),
+                self.button.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                self.button.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+                
             ])
         case .chevronWithStatus: break
         case .chevronWithText: break
