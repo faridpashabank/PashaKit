@@ -368,6 +368,7 @@ public class PBBActionView: UIView {
         }
         view.addTapGestureRecognizer {
             print("HELLOW WORLD")
+            self.radioButtonStatus = !self.radioButtonStatus
         }
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -381,6 +382,7 @@ public class PBBActionView: UIView {
         view.isOn = false
         view.addTapGestureRecognizer {
             print("HELLOW WORLD")
+            self.switchButtonStatus = !self.switchButtonStatus
         }
 //        if self.radioButtonStatus {
 //            view.image = UIImage.Images.icRadioSelected
