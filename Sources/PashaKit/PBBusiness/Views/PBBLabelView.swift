@@ -107,7 +107,7 @@ public class PBBLabelView: UIView {
     ///
     public var statusOfLabel: PBBLabelViewStatus = .draft {
         didSet {
-//            self.prepareButtonByState()
+            self.prepareLabelViewByStatus()
         }
     }
     
@@ -117,7 +117,7 @@ public class PBBLabelView: UIView {
     ///
     public var typeOfLabel: PBBLabelViewType = .plain(localizedText: "") {
         didSet {
-//            self.prepareButtonByState()
+            self.prepareLabelViewByType()
         }
     }
     
