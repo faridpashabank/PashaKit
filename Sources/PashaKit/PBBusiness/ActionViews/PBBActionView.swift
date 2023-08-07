@@ -375,6 +375,7 @@ public class PBBActionView: UIView {
     private lazy var switchButton: UISwitch = {
         let view = UISwitch()
         view.isOn = false
+        
 //        if self.radioButtonStatus {
 //            view.image = UIImage.Images.icRadioSelected
 //        } else {
@@ -610,8 +611,8 @@ public class PBBActionView: UIView {
         case .switchButton:
             NSLayoutConstraint.activate([
                 self.titleStackView.rightAnchor.constraint(equalTo: self.switchButton.leftAnchor, constant: -12),
-//                self.switchButton.heightAnchor.constraint(equalToConstant: 30.0),
-//                self.switchButton.widthAnchor.constraint(equalToConstant: 50.0),
+                self.switchButton.heightAnchor.constraint(equalToConstant: 30.0),
+                self.switchButton.widthAnchor.constraint(equalToConstant: 50.0),
                 self.switchButton.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -16),
                 self.switchButton.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
@@ -688,7 +689,7 @@ public class PBBActionView: UIView {
         case .radioButton(let isSelected):
             self.radioButtonStatus = isSelected
         case .switchButton(let isOn):
-            self.switchButtonStatus = isOn
+            self.switchButtonStatus.setOn(isOn, animated: true)
         case .none:
             break
         }
