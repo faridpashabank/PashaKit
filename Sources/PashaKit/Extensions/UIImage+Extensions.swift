@@ -56,5 +56,8 @@ extension UIImage {
         static let icEdit = UIImage(named: "ic_edit", in: Bundle.module, compatibleWith: nil)
         
         static let icPBBChevronRight = UIImage(named: "ic_pbb_chevon_right", in: Bundle.module, compatibleWith: nil)
+        static let icRadioDefault = UIImage(named: "ic_radio_default", in: Bundle.module, compatibleWith: nil)
+        static let icRadioSelected = UIImage(named: "ic_radio_selected", in: Bundle.module, compatibleWith: nil)
+        
     }
 }

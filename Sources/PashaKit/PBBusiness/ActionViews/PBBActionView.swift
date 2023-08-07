@@ -55,6 +55,7 @@ public class PBBActionView: UIView {
     public enum PBBActionState {
         case normal
         case disabled
+        case selected
     }
 
     public enum PBBActionStatusType {
@@ -223,6 +224,16 @@ public class PBBActionView: UIView {
         }
     }
     
+    public var radioButtonStatus: Bool = false {
+        didSet {
+            if self.radioButtonStatus {
+                self.radioButtonIcon.image = UIImage.Images.icRadioSelected
+            } else {
+                self.radioButtonIcon.image = UIImage.Images.icRadioDefault
+            }
+        }
+    }
+    
     private lazy var baseView: UIView = {
         let view = UIView()
 
@@ -323,9 +334,25 @@ public class PBBActionView: UIView {
     }()
     
     private lazy var button: PBBUIButton = {
-        let view = PBBUIButton(localizableTitle: "Imzala", styleOfButton: .plain)
+        let view = PBBUIButton(localizableTitle: "", styleOfButton: .plain)
         
 //        view.image = UIImage.Images.icPBBChevronRight
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.contentMode = .scaleAspectFit
+
+        return view
+    }()
+    
+    private lazy var radioButtonIcon: UIImageView = {
+        let view = UIImageView()
+
+        if self.radioButtonStatus {
+            view.image = UIImage.Images.icRadioSelected
+        } else {
+            view.image = UIImage.Images.icRadioDefault
+        }
         
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -410,7 +437,8 @@ public class PBBActionView: UIView {
         case .chevronWithText:
             self.baseView.addSubview(self.descriptionLabel)
             self.baseView.addSubview(self.chevronIcon)
-        case .radioButton: break
+        case .radioButton:
+            self.baseView.addSubview(self.radioButtonIcon)
         case .switchButton: break
         case .none:
             break
@@ -543,7 +571,14 @@ public class PBBActionView: UIView {
                 self.descriptionLabel.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
                 self.descriptionLabel.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
-        case .radioButton: break
+        case .radioButton:
+            NSLayoutConstraint.activate([
+                self.titleStackView.rightAnchor.constraint(equalTo: self.radioButtonIcon.leftAnchor, constant: -12),
+                self.radioButtonIcon.heightAnchor.constraint(equalToConstant: 24.0),
+                self.radioButtonIcon.widthAnchor.constraint(equalToConstant: 24.0),
+                self.radioButtonIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -16),
+                self.radioButtonIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+            ])
         case .switchButton: break
         case .none:
             break
@@ -564,6 +599,8 @@ public class PBBActionView: UIView {
 //            self.disableTitleLabel.font = UIFont.sfProText(ofSize: 11, weight: .medium)
 //            self.disableTitleLabel.textColor = .white
 //            self.iconBackgroundColor = UIColor.Colors.PBBBackgroundGray
+        case .selected: break
+            <#code#>
         }
     }
 
@@ -612,7 +649,8 @@ public class PBBActionView: UIView {
             self.descriptionLabel.text = localizedText
             self.descriptionLabel.font = UIFont.sfProText(ofSize: 17, weight: .regular)
             self.descriptionLabel.textColor = UIColor.Colors.PBBGray
-        case .radioButton(let isSelected): break
+        case .radioButton(let isSelected):
+            self.radioButtonStatus = isSelected
         case .switchButton(let isSelected): break
         case .none:
             break
