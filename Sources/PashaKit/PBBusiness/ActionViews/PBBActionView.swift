@@ -58,18 +58,11 @@ public class PBBActionView: UIView {
         case selected
     }
 
-    public enum PBBActionStatusType {
-        case new(localizedText: String)
-        case waiting(localizedText: String)
-        case inprogress(localizedText: String)
-        case done(localizedText: String)
-    }
-
     public enum PBBActionStyle {
         case none
         case chevron
         case chevronWithText(localizedText: String)
-        case chevronWithStatus(localizedText: String, status: PBBActionStatusType)
+        case chevronWithStatus(localizedText: String, status: PBBLabelView.PBBLabelViewStatus)
         case chevronWithButton(localizedText: String)
         case radioButton(isSelected: Bool)
         case switchButton(isSelected: Bool)
@@ -190,7 +183,7 @@ public class PBBActionView: UIView {
         }
     }
     
-    public var statusTypeOfAction: PBBActionStatusType = .new(localizedText: "") {
+    public var statusTypeOfAction: PBBLabelView.PBBLabelViewStatus = .new {
         didSet {
 //            self.prepareButtonByState()
         }
@@ -377,13 +370,26 @@ public class PBBActionView: UIView {
         return view
     }()
     
+    private lazy var statusLabelView: PBBLabelView = {
+        let view = PBBLabelView(statusOfLabel: .new)
+        
+//        view.image = UIImage.Images.icPBBChevronRight
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.contentMode = .scaleAspectFit
+
+        return view
+    }()
+    
     private lazy var switchButton: UISwitch = {
         let view = UISwitch()
-        view.isOn = false
-        view.addTapGestureRecognizer {
+        
+        view.addTapGestureRecognizer { //TODO: switch gesture doesnt work
             print("HELLOW WORLD")
             self.switchButtonStatus = !self.switchButtonStatus
         }
+        
 //        if self.radioButtonStatus {
 //            view.image = UIImage.Images.icRadioSelected
 //        } else {
@@ -424,7 +430,6 @@ public class PBBActionView: UIView {
         self.prepareActionViewByState()
         
         self.setupViews(for: typeOfAction)
-        
     }
     
     public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), styleOfAction: PBBActionStyle = .none  ) {
@@ -439,7 +444,6 @@ public class PBBActionView: UIView {
         self.prepareActionViewByState()
         
         self.setupViews(for: typeOfAction)
-        
     }
 
     public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), stateOfAction: PBBActionState = .normal) {
@@ -453,7 +457,6 @@ public class PBBActionView: UIView {
         self.prepareActionViewByState()
        
         self.setupViews(for: typeOfAction)
-        
     }
     
     private func setupViews(for type: PBBActionType) {
@@ -469,7 +472,9 @@ public class PBBActionView: UIView {
         case .chevronWithButton:
             self.baseView.addSubview(self.chevronIcon)
             self.baseView.addSubview(self.button)
-        case .chevronWithStatus: break
+        case .chevronWithStatus:
+            self.baseView.addSubview(self.chevronIcon)
+            self.baseView.addSubview(self.statusLabelView)
         case .chevronWithText:
             self.baseView.addSubview(self.descriptionLabel)
             self.baseView.addSubview(self.chevronIcon)
@@ -596,7 +601,19 @@ public class PBBActionView: UIView {
                 self.button.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
                 
             ])
-        case .chevronWithStatus: break
+        case .chevronWithStatus:
+            NSLayoutConstraint.activate([
+                self.titleStackView.rightAnchor.constraint(equalTo: self.statusLabelView.leftAnchor, constant: -12),
+                
+                self.chevronIcon.heightAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.widthAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
+                self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+                
+                self.statusLabelView.widthAnchor.constraint(equalToConstant: 54.0),
+                self.statusLabelView.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                self.statusLabelView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+            ])
         case .chevronWithText:
             NSLayoutConstraint.activate([
                 self.titleStackView.rightAnchor.constraint(equalTo: self.descriptionLabel.leftAnchor, constant: -12),
@@ -674,15 +691,6 @@ public class PBBActionView: UIView {
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
             self.infoDescriptionLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
 
-        }
-    }
-    
-    private func prepareActionViewByStatusType() {
-        switch self.statusTypeOfAction {
-        case .new: break
-        case .waiting: break
-        case .inprogress: break
-        case .done: break
         }
     }
     

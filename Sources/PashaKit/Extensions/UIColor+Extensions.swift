@@ -99,5 +99,48 @@ extension UIColor {
                 return UIColor(red: 0.463, green: 0.463, blue: 0.502, alpha: 0.12)
             }
         }
+        
+        static var PBBRed: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // TODO: Add dark color
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.886, green: 0.263, blue: 0.325, alpha: 1) :
+                    UIColor(red: 0.886, green: 0.263, blue: 0.325, alpha: 1)
+                }
+            } else {
+                return UIColor(red: 0.886, green: 0.263, blue: 0.325, alpha: 1)
+            }
+        }
+        
+        static var PBBYellow: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // TODO: Add dark color
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.925, green: 0.643, blue: 0, alpha: 1) :
+                    UIColor(red: 0.925, green: 0.643, blue: 0, alpha: 1)
+                }
+            } else {
+                return UIColor(red: 0.925, green: 0.643, blue: 0, alpha: 1)
+            }
+        }
+        
+        static var PBBBlue: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // TODO: Add dark color
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0, green: 0.565, blue: 0.757, alpha: 1) :
+                    UIColor(red: 0, green: 0.565, blue: 0.757, alpha: 1)
+                }
+            } else {
+                return UIColor(red: 0, green: 0.565, blue: 0.757, alpha: 1)
+            }
+        }
+        
+        
+        
+        
     }
 }
