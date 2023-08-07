@@ -538,8 +538,8 @@ public class PBBActionView: UIView {
                 self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
                 self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
                
-                self.descriptionLabel.widthAnchor.constraint(equalToConstant:40.0),
-//                self.descriptionLabel.widthAnchor.constraint(equalToConstant: self.descriptionLabel.intrinsicContentSize.width),
+//                self.descriptionLabel.widthAnchor.constraint(equalToConstant:40.0),
+                self.descriptionLabel.widthAnchor.constraint(equalToConstant: self.descriptionLabel.intrinsicContentSize.width),
                 self.descriptionLabel.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
                 self.descriptionLabel.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
