@@ -312,6 +312,18 @@ public class PBBActionView: UIView {
         return view
     }()
     
+    private lazy var button: PBBUIButton = {
+        let view = PBBUIButton(localizableTitle: "Imzala", styleOfButton: .plain)
+        
+//        view.image = UIImage.Images.icPBBChevronRight
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.contentMode = .scaleAspectFit
+
+        return view
+    }()
+    
     override private init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -381,7 +393,8 @@ public class PBBActionView: UIView {
         switch self.styleOfAction {
         case .chevron:
             self.baseView.addSubview(self.chevronIcon)
-        case .chevronWithButton: break
+        case .chevronWithButton:
+            self.baseView.addSubview(self.button)
         case .chevronWithStatus: break
         case .chevronWithText: break
         case .radioButton: break
@@ -488,7 +501,14 @@ public class PBBActionView: UIView {
                 self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
                 self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
-        case .chevronWithButton: break
+        case .chevronWithButton:
+            NSLayoutConstraint.activate([
+                self.titleStackView.rightAnchor.constraint(equalTo: self.button.leftAnchor, constant: -12),
+//                self.button.heightAnchor.constraint(equalToConstant: 24.0),
+                self.chevronIcon.widthAnchor.constraint(equalToConstant: 54.0),
+                self.chevronIcon.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
+                self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
+            ])
         case .chevronWithStatus: break
         case .chevronWithText: break
         case .radioButton: break
