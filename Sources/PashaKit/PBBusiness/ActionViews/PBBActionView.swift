@@ -524,6 +524,8 @@ public class PBBActionView: UIView {
         case .none:
             break
         }
+        
+        self.prepareActionViewByStyle()
     }
 
     private func prepareActionViewByState() {
