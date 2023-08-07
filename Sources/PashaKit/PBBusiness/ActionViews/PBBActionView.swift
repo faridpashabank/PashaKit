@@ -610,8 +610,8 @@ public class PBBActionView: UIView {
         case .switchButton:
             NSLayoutConstraint.activate([
                 self.titleStackView.rightAnchor.constraint(equalTo: self.switchButton.leftAnchor, constant: -12),
-                self.switchButton.heightAnchor.constraint(equalToConstant: 30.0),
-                self.switchButton.widthAnchor.constraint(equalToConstant: 50.0),
+//                self.switchButton.heightAnchor.constraint(equalToConstant: 30.0),
+//                self.switchButton.widthAnchor.constraint(equalToConstant: 50.0),
                 self.switchButton.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -16),
                 self.switchButton.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
