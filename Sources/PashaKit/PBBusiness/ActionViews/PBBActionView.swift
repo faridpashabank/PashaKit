@@ -600,7 +600,6 @@ public class PBBActionView: UIView {
 //            self.disableTitleLabel.textColor = .white
 //            self.iconBackgroundColor = UIColor.Colors.PBBBackgroundGray
         case .selected: break
-            <#code#>
         }
     }
 
