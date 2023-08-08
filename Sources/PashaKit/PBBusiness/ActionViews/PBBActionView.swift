@@ -1,8 +1,8 @@
 //
-//  PBBRowView.swift
+//  PBBActionView.swift
 //
 //
-//  Created by Farid Valiyev on 20.07.23.
+//  Created by Farid Valiyev on 21.07.23.
 //
 
 //  MIT License
@@ -54,7 +54,7 @@ public class PBBActionView: UIView {
     public enum PBBActionType {
         case normal(icon: PBBIcon = .none, localizedTitleText: String)
         case detailed(icon: PBBIcon = .none, localizedTitleText: String, localizedSubTitleText: String)
-        case description(icon: PBBIcon = .none, localizedTitleText: String, localizedSubTitleText: String, localizedDescriptionText: String)
+        case footerLabel(icon: PBBIcon = .none, localizedTitleText: String, localizedSubTitleText: String, localizedDescriptionText: String)
     }
     
     public enum PBBActionState {
@@ -498,7 +498,7 @@ public class PBBActionView: UIView {
             self.setupViewsIcon(for: icon)
             self.titleStackView.addArrangedSubview(self.titleLabel)
             self.titleStackView.addArrangedSubview(self.subTitleLabel)
-        case .description(let icon, _,_,_):
+        case .footerLabel(let icon, _,_,_):
             self.setupViewsIcon(for: icon)
             self.titleStackView.addArrangedSubview(self.titleLabel)
             self.titleStackView.addArrangedSubview(self.subTitleLabel)
@@ -551,7 +551,7 @@ public class PBBActionView: UIView {
 //                self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
 //            ])
             self.setupConstraintsByIcon(icon: icon)
-        case .description(let icon, _,_,_):
+        case .footerLabel(let icon, _,_,_):
             self.setupConstraintsByIcon(icon: icon)
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor, constant:  40),
@@ -714,7 +714,7 @@ public class PBBActionView: UIView {
             self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray
             self.prepareActionViewByIcon(icon: icon)
-        case .description(let icon, let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
+        case .footerLabel(let icon, let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
             self.infoDescriptionText = localizedDescriptionText
