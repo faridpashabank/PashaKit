@@ -208,24 +208,26 @@ public class PBBLabelView: UIView {
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalToConstant: 32.0),
 //                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0),
                 self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 2.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2.0),
-                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
+                
             ])
         case .small:
             NSLayoutConstraint.activate([
-                
+                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
                 self.heightAnchor.constraint(equalToConstant: 20.0),
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0),
                 self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 2.0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2.0),
-                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
+               
             ])
         case .withIcon:
             NSLayoutConstraint.activate([
+                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 36),
                 self.heightAnchor.constraint(equalToConstant: 24.0),
                 self.leftIconView.heightAnchor.constraint(equalToConstant: 16.0),
                 self.leftIconView.widthAnchor.constraint(equalToConstant: 16.0),
@@ -236,7 +238,7 @@ public class PBBLabelView: UIView {
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftIconView.rightAnchor, constant: 4.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0),
                 
-                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 36),
+              
             ])
         }
  
@@ -247,22 +249,13 @@ public class PBBLabelView: UIView {
         case .plain(let localizedText):
             self.title = localizedText
             self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
-            NSLayoutConstraint.activate([
-                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
-            ])
         case .small(let localizedText):
             self.title = localizedText
             self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
-            NSLayoutConstraint.activate([
-                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
-            ])
         case .withIcon(let localizedText, let icon):
             self.title = localizedText
             self.leftIcon = icon
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .medium)
-            NSLayoutConstraint.activate([
-                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 36),
-            ])
         }
     }
     
