@@ -466,9 +466,6 @@ public class PBBActionView: UIView {
     
     private func setupViews(for type: PBBActionType) {
         
-        self.leftIconWrapperView.addSubview(self.leftIconView)
-        
-        self.baseView.addSubview(self.leftIconWrapperView)
         self.baseView.addSubview(self.titleStackView)
         
         switch self.styleOfAction {
@@ -494,12 +491,15 @@ public class PBBActionView: UIView {
         self.cornerRadius = 12.0
         
         switch type {
-        case .normal:
+        case .normal(let icon, _):
+            self.setupViewsIcon(for: icon)
             self.titleStackView.addArrangedSubview(self.titleLabel)
-        case .detailed:
+        case .detailed(let icon, _,_):
+            self.setupViewsIcon(for: icon)
             self.titleStackView.addArrangedSubview(self.titleLabel)
             self.titleStackView.addArrangedSubview(self.subTitleLabel)
-        case .description:
+        case .description(let icon, _,_,_):
+            self.setupViewsIcon(for: icon)
             self.titleStackView.addArrangedSubview(self.titleLabel)
             self.titleStackView.addArrangedSubview(self.subTitleLabel)
             self.addSubview(self.infoDescriptionLabel)
@@ -518,6 +518,15 @@ public class PBBActionView: UIView {
 //        }
         
         self.setupConstraints(for: type)
+    }
+    
+    private func setupViewsIcon(for icon: PBBIcon) {
+        switch icon {
+        case .hasIcon:
+            self.leftIconWrapperView.addSubview(self.leftIconView)
+            self.baseView.addSubview(self.leftIconWrapperView)
+        default: break
+        }
     }
     
     private func setupConstraints(for type: PBBActionType) {
