@@ -264,7 +264,7 @@ public class PBBActionView: UIView {
         view.alignment = .leading
         view.axis = .vertical
         view.spacing = 2.0
-
+        view.distribution = .fill
         return view
     }()
     
