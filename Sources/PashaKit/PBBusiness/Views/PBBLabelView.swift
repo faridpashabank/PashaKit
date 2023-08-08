@@ -67,7 +67,7 @@ public class PBBLabelView: UIView {
         }
     }
     
-    public var cornerRadius: CGFloat = 12.0 {
+    public var cornerRadius: CGFloat = 2.0 {
         didSet {
             self.layer.cornerRadius = self.cornerRadius
         }
@@ -238,7 +238,6 @@ public class PBBLabelView: UIView {
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftIconView.rightAnchor, constant: 4.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0),
                 
-              
             ])
         }
  
@@ -249,13 +248,16 @@ public class PBBLabelView: UIView {
         case .plain(let localizedText):
             self.title = localizedText
             self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+            self.cornerRadius = 2
         case .small(let localizedText):
             self.title = localizedText
             self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+            self.cornerRadius = 2
         case .withIcon(let localizedText, let icon):
             self.title = localizedText
             self.leftIcon = icon
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .medium)
+            self.cornerRadius = 4
         }
     }
     
