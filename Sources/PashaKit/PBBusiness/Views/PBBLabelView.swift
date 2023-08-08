@@ -188,7 +188,7 @@ public class PBBLabelView: UIView {
     
     private func setupViews(for type: PBBLabelViewStatus) {
         
-        self.prepareLabelViewByType()
+//        self.prepareLabelViewByType()
         
         self.addSubview(self.titleLabel)
         
@@ -247,13 +247,22 @@ public class PBBLabelView: UIView {
         case .plain(let localizedText):
             self.title = localizedText
             self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+            NSLayoutConstraint.activate([
+                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
+            ])
         case .small(let localizedText):
             self.title = localizedText
             self.titleLabel.font = UIFont.sfProText(ofSize: 12, weight: .regular)
+            NSLayoutConstraint.activate([
+                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 16),
+            ])
         case .withIcon(let localizedText, let icon):
             self.title = localizedText
             self.leftIcon = icon
             self.titleLabel.font = UIFont.sfProText(ofSize: 13, weight: .medium)
+            NSLayoutConstraint.activate([
+                self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, multiplier: 36),
+            ])
         }
     }
     
