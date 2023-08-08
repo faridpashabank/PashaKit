@@ -46,10 +46,15 @@ import UIKit
 
 public class PBBActionView: UIView {
 
+    public enum PBBIcon {
+        case none
+        case hasIcon(icon: UIImage)
+    }
+    
     public enum PBBActionType {
-        case normal(localizedTitleText: String)
-        case detailed(localizedTitleText: String, localizedSubTitleText: String)
-        case description(localizedTitleText: String, localizedSubTitleText: String, localizedDescriptionText: String)
+        case normal(icon: PBBIcon = .none, localizedTitleText: String)
+        case detailed(icon: PBBIcon = .none, localizedTitleText: String, localizedSubTitleText: String)
+        case description(icon: PBBIcon = .none, localizedTitleText: String, localizedSubTitleText: String, localizedDescriptionText: String)
     }
     
     public enum PBBActionState {
@@ -518,31 +523,25 @@ public class PBBActionView: UIView {
     private func setupConstraints(for type: PBBActionType) {
         
         NSLayoutConstraint.activate([
-            self.baseView.heightAnchor.constraint(equalToConstant: 72.0),
+            
             self.baseView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
             self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
             self.baseView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0.0),
-            
-            self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
-            self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
-            self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
-            self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
-            
-            self.leftIconWrapperView.topAnchor.constraint(equalTo: self.baseView.topAnchor, constant: 16.0),
-            self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: -16.0),
-            self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.baseView.leftAnchor, constant: 16.0),
-            
-            self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
             self.titleStackView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
+            self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
         ])
         
         switch type {
-        case .normal, .detailed:
-            NSLayoutConstraint.activate([
-                self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
-            ])
-        case .description:
+        case .normal(let icon, _):
+            self.setupConstraintsByIcon(icon: icon)
+        case .detailed(let icon, _,_):
+//            NSLayoutConstraint.activate([
+//                self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
+//            ])
+            self.setupConstraintsByIcon(icon: icon)
+        case .description(let icon, _,_,_):
+            self.setupConstraintsByIcon(icon: icon)
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor, constant:  40),
                 self.infoDescriptionLabel.topAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: 8.0),
@@ -575,6 +574,30 @@ public class PBBActionView: UIView {
         ]
         
         self.iconSize = .large
+    }
+    
+    private func setupConstraintsByIcon(icon: PBBIcon) {
+        switch icon {
+        case .none:
+            NSLayoutConstraint.activate([
+                self.baseView.heightAnchor.constraint(equalTo: self.titleStackView.heightAnchor, constant: 24),
+                self.titleStackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+            ])
+        case .hasIcon:
+            NSLayoutConstraint.activate([
+                self.baseView.heightAnchor.constraint(equalToConstant: 72.0),
+                self.leftIconView.centerXAnchor.constraint(equalTo: self.leftIconWrapperView.centerXAnchor),
+                self.leftIconView.centerYAnchor.constraint(equalTo: self.leftIconWrapperView.centerYAnchor),
+                self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 40.0),
+                self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 40.0),
+                
+                self.leftIconWrapperView.topAnchor.constraint(equalTo: self.baseView.topAnchor, constant: 16.0),
+                self.leftIconWrapperView.bottomAnchor.constraint(equalTo: self.baseView.bottomAnchor, constant: -16.0),
+                self.leftIconWrapperView.leftAnchor.constraint(equalTo: self.baseView.leftAnchor, constant: 16.0),
+                
+                self.titleStackView.leftAnchor.constraint(equalTo: self.leftIconWrapperView.rightAnchor, constant: 12),
+            ])
+        }
     }
     
     private func setupConstraintsByStyle() {
@@ -610,7 +633,6 @@ public class PBBActionView: UIView {
                 self.chevronIcon.rightAnchor.constraint(equalTo: self.baseView.rightAnchor, constant: -12),
                 self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
                 
-//                self.statusLabelView.widthAnchor.constraint(equalToConstant: 54.0),
                 self.statusLabelView.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
                 self.statusLabelView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
@@ -624,7 +646,6 @@ public class PBBActionView: UIView {
                 self.chevronIcon.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
                
                 self.descriptionLabel.widthAnchor.constraint(equalToConstant: 48.0),
-//                self.descriptionLabel.widthAnchor.constraint(equalToConstant: self.descriptionLabel.intrinsicContentSize.width),
                 self.descriptionLabel.rightAnchor.constraint(equalTo: self.chevronIcon.leftAnchor, constant: -12),
                 self.descriptionLabel.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
             ])
@@ -671,16 +692,18 @@ public class PBBActionView: UIView {
 
     private func prepareActionViewByType() {
         switch self.typeOfAction {
-        case .normal(let localizedTitleText):
+        case .normal(let icon, let localizedTitleText):
             self.title = localizedTitleText
             self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
-        case .detailed(let localizedTitleText, let localizedSubTitleText):
+            self.prepareActionViewByIcon(icon: icon)
+        case .detailed(let icon, let localizedTitleText, let localizedSubTitleText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
             self.titleLabel.font = UIFont.sfProText(ofSize: 17, weight: .medium) //TODO: PARAMETR KIMI ELAVE ET
             self.subTitleLabel.font = UIFont.sfProText(ofSize: 13, weight: .regular) //TODO: PARAMETR KIMI ELAVE ET
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray
-        case .description(let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
+            self.prepareActionViewByIcon(icon: icon)
+        case .description(let icon, let localizedTitleText, let localizedSubTitleText, let localizedDescriptionText):
             self.title = localizedTitleText
             self.subTitle = localizedSubTitleText
             self.infoDescriptionText = localizedDescriptionText
@@ -690,7 +713,15 @@ public class PBBActionView: UIView {
             
             self.subTitleLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
             self.infoDescriptionLabel.textColor = UIColor.Colors.PBBGray // TODO: Reng 60% oposity ile olmaslidir
-
+            self.prepareActionViewByIcon(icon: icon)
+        }
+    }
+    
+    private func prepareActionViewByIcon(icon: PBBIcon) {
+        switch icon {
+        case .hasIcon(let icon):
+            self.leftIcon = icon
+        default: break
         }
     }
     
