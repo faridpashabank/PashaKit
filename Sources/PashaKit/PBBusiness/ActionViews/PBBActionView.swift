@@ -261,7 +261,7 @@ public class PBBActionView: UIView {
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        view.alignment = .firstBaseline
+        view.alignment = .leading
         view.axis = .vertical
         view.spacing = 2.0
 
