@@ -531,6 +531,8 @@ public class PBBActionView: UIView {
     
     private func setupConstraints(for type: PBBActionType) {
         
+        self.titleLabel.preferredMaxLayoutWidth = self.titleStackView.frame.size.width
+        
         NSLayoutConstraint.activate([
             
             self.baseView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
