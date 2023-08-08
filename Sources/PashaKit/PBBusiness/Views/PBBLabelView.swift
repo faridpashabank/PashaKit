@@ -188,6 +188,8 @@ public class PBBLabelView: UIView {
     
     private func setupViews(for type: PBBLabelViewStatus) {
         
+        self.prepareLabelViewByType()
+        
         self.addSubview(self.titleLabel)
         
         switch self.typeOfLabel {
