@@ -424,7 +424,7 @@ public class PBBActionView: UIView {
     ///    - typeOfButton: Sets the type of button.
     ///
     
-    public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: "")) {
+    public convenience init(typeOfAction: PBBActionType = .normal(icon: .none, localizedTitleText: "")) {
         self.init()
         
         UIFont.registerCustomFonts()
@@ -437,7 +437,7 @@ public class PBBActionView: UIView {
         self.setupViews(for: typeOfAction)
     }
     
-    public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), styleOfAction: PBBActionStyle = .none  ) {
+    public convenience init(typeOfAction: PBBActionType = .normal(icon: .none, localizedTitleText: ""), styleOfAction: PBBActionStyle = .none  ) {
         self.init()
         
         UIFont.registerCustomFonts()
@@ -451,7 +451,7 @@ public class PBBActionView: UIView {
         self.setupViews(for: typeOfAction)
     }
 
-    public convenience init(typeOfAction: PBBActionType = .normal(localizedTitleText: ""), stateOfAction: PBBActionState = .normal) {
+    public convenience init(typeOfAction: PBBActionType = .normal(icon: .none, localizedTitleText: ""), stateOfAction: PBBActionState = .normal) {
         self.init()
         
         UIFont.registerCustomFonts()
