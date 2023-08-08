@@ -539,7 +539,7 @@ public class PBBActionView: UIView {
             self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
             self.baseView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0.0),
             self.titleStackView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
-            self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
+//            self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
             self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
         ])
         
