@@ -62,11 +62,15 @@ public class PBBTextField: UIView {
         /// The state when text field has no focus.
         ///
         case notEditing
+        
+        /// The state when text field disabled.
+        ///
+        case disabled
     }
 
     /// Specifies the border style for the text field.
     ///
-    public enum TextFieldStyle {
+    public enum PBBTextFieldStyle {
         /// Sets text field style to bordered.
         ///
         /// In the bordered style textfield appears with rectangle around it with defined corner radius. If not editing this custom
@@ -77,6 +81,30 @@ public class PBBTextField: UIView {
 
         /// Sets text field style to underlined.
         case underlined
+    }
+    
+    /// Specifies the input type style for the text field.
+    ///
+    public enum PBBTextFieldInputType {
+        /// Sets text field input type.
+        ///
+        /// In the bordered style textfield appears with rectangle around it with defined corner radius. If not editing this custom
+        /// border will be in gray color with thin borders. However if it's changing its state to editing the color and radius of
+        /// text field will change with animating placeholder parallelly.
+        ///
+        case text
+
+        /// Sets text field input type.
+        case amount
+        case pan
+        case iban
+        case number
+        case phone
+        case email
+        case date
+        case password
+        case select
+        case custom
     }
 
     /// Defines the view size for the icon on the right side.
@@ -384,6 +412,13 @@ public class PBBTextField: UIView {
             self.updateSecureEntry()
         }
     }
+    
+    private var textFieldInputType: PBBTextFieldInputType = .text {
+        didSet {
+//            self.updateUI()
+//            self.animatePlaceholderIfNeeded()
+        }
+    }
 
     private var textFieldState: PBBTextFieldState = .editing {
         didSet {
@@ -413,9 +448,9 @@ public class PBBTextField: UIView {
     private var activeConstraints: [NSLayoutConstraint] = []
     private var activeRightIconConstraints: [NSLayoutConstraint] = []
 
-    private var textFieldStyle: TextFieldStyle = .underlined {
+    private var textFieldStyle: PBBTextFieldStyle = .underlined {
         didSet {
-            self.prepareTextField(for: textFieldStyle)
+            self.prepareTextFieldByStyle(for: textFieldStyle)
         }
     }
 
@@ -511,7 +546,7 @@ public class PBBTextField: UIView {
     /// - Parameters:
     ///    - style: The style for field.
     ///
-    public convenience init(style: TextFieldStyle) {
+    public convenience init(style: PBBTextFieldStyle) {
         self.init(frame: .zero)
 
         self.inputMaskDelegate.customNotations = [
@@ -529,19 +564,66 @@ public class PBBTextField: UIView {
         
         self.setupViews()
         self.textFieldStyle = style
-        self.prepareTextField(for: style)
+        
+        self.prepareTextFieldByStyle(for: style)
 
         self.customTextField.delegate = self.inputMaskDelegate
 
         self.customTextField.tintColor = self.placeholderCursorColor
         self.customTextField.textColor = self.textFieldTextColor
     }
-
-    public convenience init() {
-        self.init(style: .bordered)
+    
+    public convenience init(type: PBBTextFieldInputType = .text, state: PBBTextFieldState = .editing, style: PBBTextFieldStyle = .underlined) {
+        self.init(frame: .zero)
+        self.textFieldState = state
+        self.textFieldStyle = style
+        self.textFieldInputType = type
+        
+        self.prepareTextFieldByType(for: type)
+        self.prepareTextFieldByStyle(for: style)
     }
 
-    private func prepareTextField(for style: TextFieldStyle) {
+    public convenience init() {
+        self.init(style: .underlined)
+    }
+    
+    private func prepareTextFieldByType(for type: PBBTextFieldInputType) {
+       
+        switch type {
+        case .text:
+            self.customTextField.keyboardType = .alphabet
+        case .number:
+            self.customTextField.keyboardType = .numberPad
+        case .amount:
+            self.customTextField.keyboardType = .decimalPad
+            self.maskFormat = "[099999]{.}[00]"
+        case .phone:
+            self.customTextField.keyboardType = .phonePad
+            self.maskFormat = "+994 [99] [999] [99] [99]"
+        case .email:
+            self.customTextField.keyboardType = .emailAddress
+        case .date:
+            self.customTextField.keyboardType = .default
+            self.maskFormat = "[00]{.}[00]{.}[0000]"
+        case .password:
+            self.customTextField.keyboardType = .default
+            self.customTextField.isSecured = true
+        case .select:
+            self.textFieldState = .notEditing
+           // self.icon =  // TODO: set bottom arrow Icon with state and dark mode
+        case .pan:
+            self.maskFormat = "[0000] [0000] [0000] [0000]"
+            self.customTextField.keyboardType = .numberPad
+        case .iban:
+            self.maskFormat = "[AZ][00] [AZAZ] [0000] [0000] [0000] [00]"
+            self.customTextField.keyboardType = .numberPad
+        case .custom: break
+            
+        }
+        
+    }
+
+    private func prepareTextFieldByStyle(for style: PBBTextFieldStyle) {
         self.setupConstraints(for: style)
         self.setupStyleOfTextField(basedOn: style)
     }
@@ -559,7 +641,7 @@ public class PBBTextField: UIView {
         self.addSubview(self.footerLabel)
     }
 
-    private func setupStyleOfTextField(basedOn style: TextFieldStyle) {
+    private func setupStyleOfTextField(basedOn style: PBBTextFieldStyle) {
         switch style {
         case .bordered:
             self.textFieldStack.removeExistingBottomBorder()
@@ -570,12 +652,11 @@ public class PBBTextField: UIView {
         }
     }
 
-    private func setupConstraints(for style: TextFieldStyle) {
+    private func setupConstraints(for style: PBBTextFieldStyle) {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: 64),
-//            self.customTextField.heightAnchor.constraint(equalToConstant: 64),
             self.customBorder.topAnchor.constraint(equalTo: self.topAnchor),
             self.customBorder.leftAnchor.constraint(equalTo: self.leftAnchor),
             self.customBorder.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -24.0),
@@ -693,6 +774,8 @@ public class PBBTextField: UIView {
                     self.customBorder.layer.borderColor = self.defaultBorderColor.cgColor
                     self.customBorder.layer.borderWidth = 1.0
                 }
+            case .disabled: break
+                
             }
         case .invalid:
             self.performAnimation { [weak self] in
@@ -722,6 +805,8 @@ public class PBBTextField: UIView {
                     self.textFieldStack.updateExistingBottomBorderThickness(to: 1.0)
                     self.textFieldStack.updateExistingBottomBorderColor(to: self.textFieldBottomBorderColor)
                 }
+            case .disabled: break
+                
             }
         case .invalid:
             self.performAnimation { [weak self] in
@@ -764,6 +849,8 @@ public class PBBTextField: UIView {
             } else {
                 self.animatePlaceholderToActivePosition(animated: animationEnabled)
             }
+        case .disabled: break
+            
         }
     }
 
