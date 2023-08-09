@@ -413,7 +413,7 @@ public class PBBUITextField: UIView {
     private var activeConstraints: [NSLayoutConstraint] = []
     private var activeRightIconConstraints: [NSLayoutConstraint] = []
 
-    private var textFieldStyle: TextFieldStyle = .bordered {
+    private var textFieldStyle: TextFieldStyle = .underlined {
         didSet {
             self.prepareTextField(for: textFieldStyle)
         }
