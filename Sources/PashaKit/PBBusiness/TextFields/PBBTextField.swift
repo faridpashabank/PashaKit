@@ -935,7 +935,7 @@ public class PBBTextField: UIView {
     public var onDidBegin: (() -> Void)?
 }
 
-extension PBBUITextField: MaskedTextFieldDelegateListener {
+extension PBBTextField: MaskedTextFieldDelegateListener {
     open func textField(
             _ textField: UITextField,
             didFillMandatoryCharacters complete: Bool,
