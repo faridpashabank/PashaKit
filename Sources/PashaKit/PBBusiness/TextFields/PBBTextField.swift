@@ -579,8 +579,29 @@ public class PBBTextField: UIView {
         self.textFieldStyle = style
         self.textFieldInputType = type
         
-        self.prepareTextFieldByType(for: type)
+        self.inputMaskDelegate.customNotations = [
+            Notation(
+                character: "N",
+                characterSet: CharacterSet.symbols
+                    .subtracting(CharacterSetHelper.emojiCharacterSet)
+                    .union(CharacterSet.whitespaces)
+                    .union(CharacterSet.decimalDigits)
+                    .union(CharacterSet.letters)
+                    .union(CharacterSet.punctuationCharacters),
+                isOptional: false
+            ),
+        ]
+        
+        self.setupViews()
+        self.textFieldStyle = style
+        
         self.prepareTextFieldByStyle(for: style)
+        self.prepareTextFieldByType(for: type)
+
+        self.customTextField.delegate = self.inputMaskDelegate
+
+        self.customTextField.tintColor = self.placeholderCursorColor
+        self.customTextField.textColor = self.textFieldTextColor
     }
 
     public convenience init() {
@@ -596,7 +617,7 @@ public class PBBTextField: UIView {
             self.customTextField.keyboardType = .numberPad
         case .amount:
             self.customTextField.keyboardType = .decimalPad
-            self.maskFormat = "[099999]{.}[00]"
+            self.maskFormat = "[0999999999]{.}[00]"
         case .phone:
             self.customTextField.keyboardType = .phonePad
             self.maskFormat = "+994 [99] [999] [99] [99]"
