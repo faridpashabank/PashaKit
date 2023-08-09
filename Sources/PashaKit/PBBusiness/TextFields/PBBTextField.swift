@@ -385,7 +385,7 @@ public class PBBUITextField: UIView {
         }
     }
 
-    private var textFieldState: PBBTextFieldState = .notEditing {
+    private var textFieldState: PBBTextFieldState = .editing {
         didSet {
             self.updateUI()
             self.animatePlaceholderIfNeeded()
