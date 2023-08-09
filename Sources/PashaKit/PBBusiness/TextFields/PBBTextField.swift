@@ -440,6 +440,7 @@ public class PBBTextField: UIView {
     private lazy var customPlaceholder: UILabel = {
         let placeholder = UILabel()
 
+        placeholder.font = UIFont.sfProText(ofSize: 17, weight: .regular)
         placeholder.translatesAutoresizingMaskIntoConstraints = false
         placeholder.textAlignment = .left
         placeholder.font = self.placeholderFont
@@ -489,7 +490,7 @@ public class PBBTextField: UIView {
     private lazy var footerLabel: UILabel = {
         let view = UILabel()
 
-        view.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        view.font = UIFont.sfProText(ofSize: 12, weight: .regular)
         view.numberOfLines = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = self.placeholderTextColor
