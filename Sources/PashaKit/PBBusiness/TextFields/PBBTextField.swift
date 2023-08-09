@@ -50,7 +50,7 @@ import InputMask
 /// - Note: PBUIButton is optimized for looking as expected with default adjustments at the `height` of `64.0pt`.
 ///         However feel free to customize it.
 ///
-public class PBBUITextField: UIView {
+public class PBBTextField: UIView {
 
     /// Specifies the state of textfield.
     ///
