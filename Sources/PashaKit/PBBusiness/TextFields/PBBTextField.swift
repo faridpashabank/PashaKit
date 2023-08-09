@@ -574,7 +574,7 @@ public class PBBTextField: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            self.customTextField.heightAnchor.constraint(equalToConstant: 64),
+//            self.customTextField.heightAnchor.constraint(equalToConstant: 64),
             self.customBorder.topAnchor.constraint(equalTo: self.topAnchor),
             self.customBorder.leftAnchor.constraint(equalTo: self.leftAnchor),
             self.customBorder.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -24.0),
