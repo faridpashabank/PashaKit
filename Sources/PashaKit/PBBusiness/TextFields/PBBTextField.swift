@@ -755,6 +755,8 @@ public class PBBTextField: UIView {
             self.activeRightIconConstraints = [
                 self.rightIconView.heightAnchor.constraint(equalToConstant: 16.0),
                 self.rightIconView.widthAnchor.constraint(equalToConstant: 16.0),
+                self.rightIconView.centerXAnchor.constraint(equalTo: self.rightIconWrapperView.centerXAnchor),
+                self.rightIconView.centerYAnchor.constraint(equalTo: self.rightIconWrapperView.centerYAnchor),
                 self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
                 self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
             ]
@@ -763,6 +765,8 @@ public class PBBTextField: UIView {
             self.activeRightIconConstraints = [
                 self.rightIconView.heightAnchor.constraint(equalToConstant: 24.0),
                 self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0),
+                self.rightIconView.centerXAnchor.constraint(equalTo: self.rightIconWrapperView.centerXAnchor),
+                self.rightIconView.centerYAnchor.constraint(equalTo: self.rightIconWrapperView.centerYAnchor),
                 self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
                 self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
             ]
@@ -771,6 +775,8 @@ public class PBBTextField: UIView {
             self.activeRightIconConstraints = [
                 self.rightIconView.heightAnchor.constraint(equalToConstant: iconSize.height),
                 self.rightIconView.widthAnchor.constraint(equalToConstant: iconSize.width),
+                self.rightIconView.centerXAnchor.constraint(equalTo: self.rightIconWrapperView.centerXAnchor),
+                self.rightIconView.centerYAnchor.constraint(equalTo: self.rightIconWrapperView.centerYAnchor),
                 self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
                 self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
             ]
