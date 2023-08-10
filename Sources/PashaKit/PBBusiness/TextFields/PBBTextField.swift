@@ -272,7 +272,7 @@ public class PBBTextField: UIView {
     ///
     /// By default this property will apply proper theme color to both types of border.
     ///
-    public var textFieldBottomBorderColor: UIColor = UIColor.Colors.PBBBackgroundGray {
+    public var textFieldBottomBorderColor: UIColor = UIColor.Colors.PBBGray {
         didSet {
             if self.textFieldBottomBorderColor != oldValue {
                 self.updateUI()
