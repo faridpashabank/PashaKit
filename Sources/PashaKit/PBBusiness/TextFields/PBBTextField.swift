@@ -272,7 +272,7 @@ public class PBBTextField: UIView {
     ///
     /// By default this property will apply proper theme color to both types of border.
     ///
-    public var textFieldBottomBorderColor: UIColor = UIColor.Colors.PBBGreen {
+    public var textFieldBottomBorderColor: UIColor = UIColor.Colors.PBBBackgroundGray {
         didSet {
             if self.textFieldBottomBorderColor != oldValue {
                 self.updateUI()
@@ -952,7 +952,7 @@ public class PBBTextField: UIView {
     private func setTheme() {
         self.placeholderCursorColor = self.theme.getPrimaryColor()
         self.editingBorderColor = self.theme.getPrimaryColor()
-        self.textFieldBottomBorderColor = self.theme.getPrimaryColor()
+        self.textFieldBottomBorderColor = UIColor.Colors.PBBBackgroundGray
         self.rightIconView.tintColor = self.theme.getPrimaryColor()
     }
 
