@@ -2,7 +2,7 @@
 //  PBUITextField.swift
 //
 //
-//  Created by Murad on 03.08.23
+//  Created by Farid Valiyev on 03.08.23
 //
 
 //  MIT License
@@ -634,7 +634,6 @@ public class PBBTextField: UIView {
             self.maskFormat = "+994 [99] [999] [99] [99]"
         case .email:
             self.customTextField.keyboardType = .emailAddress
-            PBBTextFieldValidations.validateEmail(email: self.customTextField.text ?? "")
         case .date:
             self.customTextField.keyboardType = .numberPad
             self.maskFormat = "[00]{.}[00]{.}[0000]"
@@ -653,6 +652,22 @@ public class PBBTextField: UIView {
             self.customTextField.keyboardType = .numberPad
         case .custom: break
             
+        }
+        
+    }
+    
+    private func validationByInputType() {
+        switch self.textFieldInputType {
+        case .email:
+            self.isValid = PBBTextFieldValidations.validateEmail(email: self.customTextField.text ?? "")
+//            if valid {
+//                self.updateUI()
+//            } else {
+//                self.updateUI()
+//            }
+        case .azPhone:
+            PBBTextFieldValidations.validateEmail(email: self.customTextField.text ?? "")
+        default: break
         }
         
     }
@@ -1102,5 +1117,6 @@ extension PBBTextField: MaskedTextFieldDelegateListener {
     public func textFieldDidEndEditing(_ textField: UITextField) {
         self.textFieldState = .notEditing
         self.onDidEnd?()
+        self.validationByInputType()
     }
 }
