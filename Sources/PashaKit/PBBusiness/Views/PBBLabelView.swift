@@ -2,7 +2,7 @@
 //  PBBLabelView.swift
 //
 //
-//  Created by Farid Valiyev on 23.07.23.
+//  Created by Farid Valiyev on 31.07.23.
 //
 
 //  MIT License

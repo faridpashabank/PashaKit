@@ -2,7 +2,7 @@
 //  PBUITextField.swift
 //
 //
-//  Created by Murad on 24.07.23
+//  Created by Murad on 03.08.23
 //
 
 //  MIT License
@@ -634,6 +634,7 @@ public class PBBTextField: UIView {
             self.maskFormat = "+994 [99] [999] [99] [99]"
         case .email:
             self.customTextField.keyboardType = .emailAddress
+            PBBTextFieldValidations.validateEmail(email: self.customTextField.text ?? "")
         case .date:
             self.customTextField.keyboardType = .numberPad
             self.maskFormat = "[00]{.}[00]{.}[0000]"
