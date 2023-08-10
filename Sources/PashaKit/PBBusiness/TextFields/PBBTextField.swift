@@ -100,6 +100,7 @@ public class PBBTextField: UIView {
         case iban
         case number
         case phone
+        case azPhone
         case email
         case date
         case password
@@ -620,23 +621,26 @@ public class PBBTextField: UIView {
             self.maskFormat = "[0999999999]{.}[00]"
         case .phone:
             self.customTextField.keyboardType = .phonePad
+        case .azPhone:
+            self.customTextField.keyboardType = .phonePad
             self.maskFormat = "+994 [99] [999] [99] [99]"
         case .email:
             self.customTextField.keyboardType = .emailAddress
         case .date:
-            self.customTextField.keyboardType = .default
+            self.customTextField.keyboardType = .numberPad
             self.maskFormat = "[00]{.}[00]{.}[0000]"
         case .password:
             self.customTextField.keyboardType = .default
             self.customTextField.isSecured = true
         case .select:
             self.textFieldState = .notEditing
-           // self.icon =  // TODO: set bottom arrow Icon with state and dark mode
+            self.icon = UIImage.Images.icChevronBottom
+        // TODO: set bottom arrow Icon with state and dark mode
         case .pan:
             self.maskFormat = "[0000] [0000] [0000] [0000]"
             self.customTextField.keyboardType = .numberPad
         case .iban:
-            self.maskFormat = "[AZ][00] [AZAZ] [0000] [0000] [0000] [00]"
+            self.maskFormat = "[AZ][00] [AZAZ] [0000] [0000] [0000] [0000]"
             self.customTextField.keyboardType = .numberPad
         case .custom: break
             
