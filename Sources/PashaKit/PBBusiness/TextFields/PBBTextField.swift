@@ -659,14 +659,9 @@ public class PBBTextField: UIView {
     private func validationByInputType() {
         switch self.textFieldInputType {
         case .email:
-            self.isValid = PBBTextFieldValidations.validateEmail(email: self.customTextField.text ?? "")
-//            if valid {
-//                self.updateUI()
-//            } else {
-//                self.updateUI()
-//            }
+            self.isValid = PBBTextFieldValidations.validateEmail(for: self.customTextField.text ?? "")
         case .azPhone:
-            PBBTextFieldValidations.validateEmail(email: self.customTextField.text ?? "")
+            self.isValid = PBBTextFieldValidations.validatePhone(for: self.customTextField.text ?? "")
         default: break
         }
         
