@@ -754,19 +754,25 @@ public class PBBTextField: UIView {
         case .small:
             self.activeRightIconConstraints = [
                 self.rightIconView.heightAnchor.constraint(equalToConstant: 16.0),
-                self.rightIconView.widthAnchor.constraint(equalToConstant: 16.0)
+                self.rightIconView.widthAnchor.constraint(equalToConstant: 16.0),
+                self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
+                self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
             ]
 
         case .regular:
             self.activeRightIconConstraints = [
                 self.rightIconView.heightAnchor.constraint(equalToConstant: 24.0),
-                self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0)
+                self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0),
+                self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
+                self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
             ]
 
         case .custom(let iconSize):
             self.activeRightIconConstraints = [
                 self.rightIconView.heightAnchor.constraint(equalToConstant: iconSize.height),
-                self.rightIconView.widthAnchor.constraint(equalToConstant: iconSize.width)
+                self.rightIconView.widthAnchor.constraint(equalToConstant: iconSize.width),
+                self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
+                self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
             ]
         }
 
