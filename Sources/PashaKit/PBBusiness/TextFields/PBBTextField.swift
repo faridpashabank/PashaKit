@@ -238,7 +238,7 @@ public class PBBTextField: UIView {
 
     /// Defines cursor color of textfield.
     ///
-    public  var placeholderCursorColor: UIColor = UIColor.Colors.PBGreen {
+    public  var placeholderCursorColor: UIColor = UIColor.Colors.PBBGreen {
         didSet {
             self.customTextField.tintColor = self.placeholderCursorColor
         }
@@ -260,7 +260,7 @@ public class PBBTextField: UIView {
     ///
     /// By default this property will apply proper theme color to both types of border.
     ///
-    public  var editingBorderColor: UIColor = UIColor.Colors.PBGreen {
+    public  var editingBorderColor: UIColor = UIColor.Colors.PBBGreen {
         didSet {
             if self.editingBorderColor != oldValue {
                 self.updateUI()
@@ -272,7 +272,7 @@ public class PBBTextField: UIView {
     ///
     /// By default this property will apply proper theme color to both types of border.
     ///
-    public var textFieldBottomBorderColor: UIColor = UIColor.Colors.PBGreen {
+    public var textFieldBottomBorderColor: UIColor = UIColor.Colors.PBBGreen {
         didSet {
             if self.textFieldBottomBorderColor != oldValue {
                 self.updateUI()
@@ -839,6 +839,7 @@ public class PBBTextField: UIView {
         case .valid:
             switch self.textFieldState {
             case .editing:
+                print("EDITING")
                 self.performAnimation { [weak self] in
                     guard let self = self else { return }
                     self.customPlaceholder.textColor = self.editingBorderColor
@@ -846,6 +847,7 @@ public class PBBTextField: UIView {
                     self.textFieldStack.updateExistingBottomBorderColor(to: self.editingBorderColor)
                 }
             case .notEditing:
+                print("NOT EDITING")
                 self.performAnimation { [weak self] in
                     guard let self = self else { return }
                     self.customPlaceholder.textColor = self.placeholderTextColor
