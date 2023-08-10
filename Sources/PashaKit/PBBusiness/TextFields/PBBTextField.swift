@@ -522,6 +522,14 @@ public class PBBTextField: UIView {
 
         return view
     }()
+    
+    private lazy var rightIconWrapperView: UIView = {
+        let view = UIView()
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
 
     private lazy var footerLabel: UILabel = {
         let view = UILabel()
@@ -657,9 +665,9 @@ public class PBBTextField: UIView {
         self.addSubview(self.customBorder)
 
         self.customBorder.addSubview(self.textFieldStack)
-
+        self.rightIconWrapperView.addSubview(self.rightIconView)
         self.textFieldStack.addArrangedSubview(self.customTextField)
-        self.textFieldStack.addArrangedSubview(self.rightIconView)
+        self.textFieldStack.addArrangedSubview(self.rightIconWrapperView)
 
         self.customBorder.addSubview(self.customPlaceholder)
 
@@ -719,7 +727,9 @@ public class PBBTextField: UIView {
 
         self.activeRightIconConstraints = [
             self.rightIconView.heightAnchor.constraint(equalToConstant: 24.0),
-            self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0)
+            self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0),
+            self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
+            self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
         ]
 
         NSLayoutConstraint.activate(self.activeRightIconConstraints)

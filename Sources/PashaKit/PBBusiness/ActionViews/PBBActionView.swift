@@ -376,7 +376,7 @@ public class PBBActionView: UIView {
     }()
     
     private lazy var statusLabelView: PBBLabelView = {
-        let view = PBBLabelView(statusOfLabel: .new, typeOfLabel: .small(localizedText: "Hello"))
+        let view = PBBLabelView(statusOfLabel: .new, typeOfLabel: .small(localizedText: ""))
         
 //        view.image = UIImage.Images.icPBBChevronRight
         
