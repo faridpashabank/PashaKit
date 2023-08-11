@@ -36,7 +36,7 @@ import UIKit
 ///  - `high`
 /// Low level attention views are in grayish theme, while high level alerts are in red one.
 ///
-open class PBBInfoViewView: UIView {
+open class PBBInfoView: UIView {
 
     /// Attention level of information
     ///
