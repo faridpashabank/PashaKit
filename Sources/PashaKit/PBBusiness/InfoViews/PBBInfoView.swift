@@ -183,7 +183,7 @@ open class PBBInfoView: UIView {
     }
 }
 
-extension PBAttentionView {
+extension PBBInfoView {
     func setupAttention(level: AttentionLevel) {
         switch level {
         case .low:
