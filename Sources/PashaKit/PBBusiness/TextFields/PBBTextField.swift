@@ -197,7 +197,7 @@ public class PBBTextField: UIView {
 
     /// The theme for the text field's appearance.
     ///
-    /// `PBUITextField` is using theme parameter for defining its color palette for components. These include field's
+    /// `PBBUITextField` is using theme parameter for defining its color palette for components. These include field's
     /// * Border color for `bordered` style, underline color for `underlined` style
     /// * Cursor color
     /// * Tint color for right icon
