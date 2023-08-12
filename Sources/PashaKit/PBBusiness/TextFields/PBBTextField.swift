@@ -555,7 +555,7 @@ public class PBBTextField: UIView {
     /// - Parameters:
     ///    - style: The style for field.
     ///
-    public convenience init(style: PBBTextFieldStyle) {
+    public convenience init(type: PBBTextFieldInputType = .text) {
         self.init(frame: .zero)
 
         self.inputMaskDelegate.customNotations = [
@@ -572,9 +572,10 @@ public class PBBTextField: UIView {
         ]
         
         self.setupViews()
-        self.textFieldStyle = style
         
-        self.prepareTextFieldByStyle(for: style)
+        self.textFieldInputType = type
+        
+        self.prepareTextFieldByStyle(for: self.textFieldStyle)
 
         self.customTextField.delegate = self.inputMaskDelegate
 
