@@ -29,7 +29,6 @@
 
 import Foundation
 import UIKit
-import SwiftLuhn
 
 extension String {
     var lastFourDigits: String {
