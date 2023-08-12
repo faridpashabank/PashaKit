@@ -248,7 +248,7 @@ public class PBBTextField: UIView {
     ///
     /// By default this property will apply PBGraySecondary color to border.
     ///
-    public var defaultBorderColor: UIColor = UIColor.Colors.PBGraySecondary {
+    public var defaultBorderColor: UIColor = UIColor.Colors.PBGraySecondary { //TODO: Change color PBB colors
         didSet {
             if self.defaultBorderColor != oldValue {
                 self.updateUI()
