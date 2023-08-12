@@ -555,7 +555,7 @@ public class PBBTextField: UIView {
     /// - Parameters:
     ///    - style: The style for field.
     ///
-    public convenience init(type: PBBTextFieldInputType = .text) {
+    public convenience init(localizedPlaceholder: String, type: PBBTextFieldInputType = .text) {
         self.init(frame: .zero)
 
         self.inputMaskDelegate.customNotations = [
@@ -570,6 +570,7 @@ public class PBBTextField: UIView {
                 isOptional: false
             ),
         ]
+        self.placeholderText = localizedPlaceholder
         
         self.setupViews()
         
@@ -583,11 +584,12 @@ public class PBBTextField: UIView {
         self.customTextField.textColor = self.textFieldTextColor
     }
     
-    public convenience init(type: PBBTextFieldInputType = .text, state: PBBTextFieldState = .editing, style: PBBTextFieldStyle = .underlined) {
+    public convenience init(localizedPlaceholder: String, type: PBBTextFieldInputType = .text, state: PBBTextFieldState = .editing, style: PBBTextFieldStyle = .underlined) {
         self.init(frame: .zero)
         self.textFieldState = state
         self.textFieldStyle = style
         self.textFieldInputType = type
+        self.placeholderText = localizedPlaceholder
         
         self.inputMaskDelegate.customNotations = [
             Notation(
