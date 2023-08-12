@@ -481,7 +481,7 @@ public class PBBTextField: UIView {
         placeholder.textAlignment = .left
         placeholder.font = self.placeholderFont
         placeholder.textColor = self.placeholderTextColor
-
+        placeholder.text = self.placeholderText
         return placeholder
     }()
 
