@@ -666,7 +666,6 @@ public class PBBTextField: UIView {
             self.isValid = PBBTextFieldValidations.validateCardNumber(for: self.customTextField.text?.components(separatedBy: .whitespaces).joined() ?? "") ? .valid : .invalid(localizedError)
         default: break
         }
-        
     }
 
     private func prepareTextFieldByStyle(for style: PBBTextFieldStyle) {
