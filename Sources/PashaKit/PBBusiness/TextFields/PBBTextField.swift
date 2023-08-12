@@ -617,7 +617,7 @@ public class PBBTextField: UIView {
     }
 
     public convenience init() {
-        self.init(style: .underlined)
+        self.init(localizedPlaceholder: "", style: .underlined)
     }
     
     private func prepareTextFieldByType(for type: PBBTextFieldInputType) {
