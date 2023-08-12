@@ -96,12 +96,12 @@ public class PBBTextField: UIView {
 
         /// Sets text field input type.
         case amount
-        case pan
+        case pan(localizedErrorMessage: String)
         case iban
         case number
         case phone
-        case azPhone
-        case email
+        case azPhone(localizedErrorMessage: String)
+        case email(localizedErrorMessage: String)
         case date
         case password
         case select
@@ -658,12 +658,12 @@ public class PBBTextField: UIView {
     
     private func validationByInputType() {
         switch self.textFieldInputType {
-        case .email:
-            self.isValid = PBBTextFieldValidations.validateEmail(for: self.customTextField.text ?? "")
-        case .azPhone:
-            self.isValid = PBBTextFieldValidations.validatePhone(for: self.customTextField.text?.components(separatedBy: .whitespaces).joined() ?? "")
-        case .pan:
-            self.isValid = PBBTextFieldValidations.validateCardNumber(for: self.customTextField.text ?? "")
+        case .email(let localizedError):
+            self.isValid = PBBTextFieldValidations.validateEmail(for: self.customTextField.text ?? "") ? .valid : .invalid(localizedError)
+        case .azPhone(let localizedError):
+            self.isValid = PBBTextFieldValidations.validatePhone(for: self.customTextField.text?.components(separatedBy: .whitespaces).joined() ?? "") ? .valid : .invalid(localizedError)
+        case .pan(let localizedError):
+            self.isValid = PBBTextFieldValidations.validateCardNumber(for: self.customTextField.text ?? "") ? .valid : .invalid(localizedError)
         default: break
         }
         
