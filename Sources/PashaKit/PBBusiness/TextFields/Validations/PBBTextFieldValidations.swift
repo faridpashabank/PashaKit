@@ -32,4 +32,12 @@ public class PBBTextFieldValidations {
             return .invalid("Phone is not correct")
         }
     }
+    
+    static func validateCardNumber(for pan: String) -> PBTextFieldValidity {
+        if pan.isValidCardNumber() {
+            return .valid
+        } else {
+            return .invalid("PAN is not correct")
+        }
+    }
 }

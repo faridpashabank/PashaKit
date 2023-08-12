@@ -10,5 +10,23 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>PashaKit</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>PashaKitTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>PashaKit_PashaKit</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

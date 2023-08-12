@@ -662,6 +662,8 @@ public class PBBTextField: UIView {
             self.isValid = PBBTextFieldValidations.validateEmail(for: self.customTextField.text ?? "")
         case .azPhone:
             self.isValid = PBBTextFieldValidations.validatePhone(for: self.customTextField.text?.components(separatedBy: .whitespaces).joined() ?? "")
+        case .pan:
+            self.isValid = self.customTextField.text.isValidCardNumber()
         default: break
         }
         
