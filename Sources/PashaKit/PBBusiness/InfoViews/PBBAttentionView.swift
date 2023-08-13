@@ -122,35 +122,6 @@ open class PBBAttentionView: UIView {
         }
     }
 
-//    private lazy var multilineConstraints: [NSLayoutConstraint] = {
-//        return [
-////            self.infoIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
-//            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-//            self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-//            self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-//            self.textStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
-//            self.textStackView.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 12),
-//            self.textStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-////            self.infoTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-////            self.infoTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12),
-////            self.infoBody.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
-////            self.infoBody.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 10.0),
-////            self.infoBody.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
-////            self.infoBody.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.0)
-//        ]
-//    }()
-
-//    private lazy var singlelineConstraints: [NSLayoutConstraint] = {
-//        return [
-//            self.infoIcon.centerYAnchor.constraint(equalTo: self.infoBody.centerYAnchor),
-//            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-//            self.infoBody.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
-//            self.infoBody.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 10.0),
-//            self.infoBody.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
-//            self.infoBody.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.0)
-//        ]
-//    }()
-
     private lazy var infoIcon: UIImageView = {
         let view = UIImageView()
 
@@ -221,7 +192,7 @@ open class PBBAttentionView: UIView {
         UIFont.registerCustomFonts()
         
         self.attentionType = typefAttention
-        
+        self.attentionStyle = .info
         self.prepareAttentionByType(type: typefAttention)
         self.prepareAttentionByStyle(style: .info)
         
@@ -243,12 +214,10 @@ open class PBBAttentionView: UIView {
     }
 
     private func setupViews() {
-        self.prepareAttentionByType(type: self.attentionType)
-        self.setupConstraints()
-//        self.layoutSubviews()
+        self.layoutSubviews()
         self.setupDefaults()
     }
-//24
+
     private func setupConstraints() {
         
         switch self.attentionType {
@@ -283,10 +252,6 @@ open class PBBAttentionView: UIView {
     ///  - text: informational text
     ///  - attentionLevel: attention level, default value is low
     ///
-//    public func set(text: String) {
-//        self.infoBody.text = text
-//        self.layoutSubviews()
-//    }
 
     private func setupDefaults() {
         self.backgroundColor = UIColor.Colors.PBGrayTransparent
