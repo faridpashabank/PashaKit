@@ -225,9 +225,9 @@ open class PBBAttentionView: UIView {
         
         switch self.attentionType {
         case .normal: break
-//            NSLayoutConstraint.activate([
-//                self.heightAnchor.constraint(equalToConstant: 48.0),
-//            ])
+            NSLayoutConstraint.activate([
+                self.heightAnchor.constraint(equalToConstant: 48.0),
+            ])
         case .detailed:
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalToConstant: 66.0),
@@ -291,7 +291,7 @@ open class PBBAttentionView: UIView {
 //            self.infoIcon.image = UIImage.Images.icInfoRed
         }
         
-        self.setupConstraints()
+//        self.setupConstraints()
     }
     
     func prepareAttentionByStyle(style: AttentionStyle) {
