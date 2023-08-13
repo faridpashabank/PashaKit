@@ -95,7 +95,7 @@ open class PBBAttentionView: UIView {
     ///
     public var attentionType: AttentionType = .normal(localizedTitle: "") {
         didSet {
-                self.prepareAttentionByType(type: self.attentionType)
+            self.prepareAttentionByType(type: self.attentionType)
         }
     }
     
@@ -111,27 +111,34 @@ open class PBBAttentionView: UIView {
         }
     }
 
-    private lazy var multilineConstraints: [NSLayoutConstraint] = {
-        return [
-            self.infoIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
-            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-            self.infoBody.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
-            self.infoBody.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 10.0),
-            self.infoBody.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
-            self.infoBody.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.0)
-        ]
-    }()
+//    private lazy var multilineConstraints: [NSLayoutConstraint] = {
+//        return [
+////            self.infoIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
+//            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+//            self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+//            self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+//            self.textStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
+//            self.textStackView.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 12),
+//            self.textStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+////            self.infoTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+////            self.infoTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12),
+////            self.infoBody.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
+////            self.infoBody.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 10.0),
+////            self.infoBody.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
+////            self.infoBody.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.0)
+//        ]
+//    }()
 
-    private lazy var singlelineConstraints: [NSLayoutConstraint] = {
-        return [
-            self.infoIcon.centerYAnchor.constraint(equalTo: self.infoBody.centerYAnchor),
-            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
-            self.infoBody.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
-            self.infoBody.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 10.0),
-            self.infoBody.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
-            self.infoBody.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.0)
-        ]
-    }()
+//    private lazy var singlelineConstraints: [NSLayoutConstraint] = {
+//        return [
+//            self.infoIcon.centerYAnchor.constraint(equalTo: self.infoBody.centerYAnchor),
+//            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+//            self.infoBody.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.0),
+//            self.infoBody.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 10.0),
+//            self.infoBody.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.0),
+//            self.infoBody.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.0)
+//        ]
+//    }()
 
     private lazy var infoIcon: UIImageView = {
         let view = UIImageView()
@@ -149,18 +156,40 @@ open class PBBAttentionView: UIView {
         return view
     }()
 
-    private lazy var infoBody: UILabel = {
+    private lazy var infoTitle: UILabel = {
         let label = UILabel()
 
-        self.addSubview(label)
-
-        label.font = UIFont.sfProText(ofSize: 15, weight: .regular)
+        label.font = UIFont.sfProText(ofSize: 15, weight: .medium)
         label.textColor = .darkText
         label.numberOfLines = 0
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
+    }()
+    
+    private lazy var infoBody: UILabel = {
+        let label = UILabel()
+
+        label.font = UIFont.sfProText(ofSize: 13, weight: .regular)
+        label.textColor = .darkText
+        label.numberOfLines = 0
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+    
+    private lazy var textStackView: UIStackView = {
+        let view = UIStackView()
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.alignment = .leading
+        view.axis = .vertical
+        view.spacing = 4.0
+        view.distribution = .fill
+        return view
     }()
 
     required public override init(frame: CGRect) {
@@ -206,13 +235,14 @@ open class PBBAttentionView: UIView {
     }
 
     private func setupConstraints() {
-        if self.infoBody.frame.height > 18.0 {
-            NSLayoutConstraint.activate(self.multilineConstraints)
-            NSLayoutConstraint.deactivate(self.singlelineConstraints)
-        } else {
-            NSLayoutConstraint.activate(self.singlelineConstraints)
-            NSLayoutConstraint.deactivate(self.multilineConstraints)
-        }
+        NSLayoutConstraint.activate([
+            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+            self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+            self.textStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
+            self.textStackView.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 12),
+            self.textStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+        ])
     }
 
     open override func layoutSubviews() {
@@ -238,9 +268,17 @@ open class PBBAttentionView: UIView {
     
     func prepareAttentionByType(type: AttentionType) {
         switch type {
-        case .normal: break
-        case .bordered: break
-        case .detailed: break
+        case .normal(let localizedTitle):
+            self.infoTitle.text = localizedTitle
+            self.textStackView.addArrangedSubview(self.infoTitle)
+        case .bordered(let localizedTitle):
+            self.infoTitle.text = localizedTitle
+            self.textStackView.addArrangedSubview(self.infoTitle)
+        case .detailed(let localizedTitle, let localizedDetailText):
+            self.infoTitle.text = localizedTitle
+            self.infoBody.text = localizedDetailText
+            self.textStackView.addArrangedSubview(self.infoTitle)
+            self.textStackView.addArrangedSubview(self.infoBody)
 //        case .low:
 //            self.backgroundColor = UIColor.Colors.PBGrayTransparent
 //            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
@@ -262,7 +300,10 @@ open class PBBAttentionView: UIView {
     
     func prepareAttentionByStyle(style: AttentionStyle) {
         switch style {
-        case .info: break
+        case .info:
+            self.backgroundColor = UIColor.Colors.PBGrayTransparent
+            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
+            self.infoIcon.image = UIImage.Images.icInfoGray
         case .waiting: break
         case .inprogress: break
         case .error: break
