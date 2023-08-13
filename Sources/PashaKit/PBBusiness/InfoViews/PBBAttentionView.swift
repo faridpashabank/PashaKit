@@ -224,7 +224,7 @@ open class PBBAttentionView: UIView {
         print("TYPE::: \(self.attentionType)")
         
         switch self.attentionType {
-        case .normal: break
+        case .normal:
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalToConstant: 48.0),
             ])
