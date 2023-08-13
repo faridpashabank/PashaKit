@@ -88,6 +88,18 @@ open class PBBAttentionView: UIView {
         ///
         case done
     }
+    
+    public var title: String = "" {
+        didSet {
+            self.infoTitle.text = title
+        }
+    }
+    
+    public var detail: String = "" {
+        didSet {
+            self.infoBody.text = detail
+        }
+    }
 
     /// Sets attention type for view.
     ///
@@ -162,6 +174,7 @@ open class PBBAttentionView: UIView {
         label.font = UIFont.sfProText(ofSize: 15, weight: .medium)
         label.textColor = .darkText
         label.numberOfLines = 0
+        label.text = self.title
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -174,7 +187,8 @@ open class PBBAttentionView: UIView {
         label.font = UIFont.sfProText(ofSize: 13, weight: .regular)
         label.textColor = .darkText
         label.numberOfLines = 0
-
+        label.text = self.detail
+        
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -256,10 +270,10 @@ open class PBBAttentionView: UIView {
     ///  - text: informational text
     ///  - attentionLevel: attention level, default value is low
     ///
-    public func set(text: String) {
-        self.infoBody.text = text
-        self.layoutSubviews()
-    }
+//    public func set(text: String) {
+//        self.infoBody.text = text
+//        self.layoutSubviews()
+//    }
 
     private func setupDefaults() {
         self.backgroundColor = UIColor.Colors.PBGrayTransparent
