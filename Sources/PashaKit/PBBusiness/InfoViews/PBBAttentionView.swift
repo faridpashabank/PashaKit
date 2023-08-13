@@ -201,7 +201,7 @@ open class PBBAttentionView: UIView {
         view.alignment = .leading
         view.axis = .vertical
         view.spacing = 4.0
-        view.distribution = .fill
+        view.distribution = .equalSpacing
         return view
     }()
 
