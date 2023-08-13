@@ -46,7 +46,6 @@ open class PBBAttentionView: UIView {
     public enum AttentionType: Equatable {
         case normal(localizedTitle: String)
         case detailed(localizedTitle: String, localizedDetailedTitle: String)
-        case bordered(localizedTitle: String)
     }
 
     /// Attention style of information
@@ -247,10 +246,22 @@ open class PBBAttentionView: UIView {
         self.layoutSubviews()
         self.setupDefaults()
     }
-
+//24
     private func setupConstraints() {
+        
+        switch self.attentionType {
+        case .normal:
+            NSLayoutConstraint.activate([
+                self.heightAnchor.constraint(equalToConstant: 48.0),
+            ])
+        case .detailed:
+            NSLayoutConstraint.activate([
+                self.heightAnchor.constraint(equalToConstant: 66.0),
+            ])
+        }
+        
         NSLayoutConstraint.activate([
-            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12.0),
+            self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
             self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             self.textStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
@@ -283,9 +294,6 @@ open class PBBAttentionView: UIView {
     func prepareAttentionByType(type: AttentionType) {
         switch type {
         case .normal(let localizedTitle):
-            self.infoTitle.text = localizedTitle
-            self.textStackView.addArrangedSubview(self.infoTitle)
-        case .bordered(let localizedTitle):
             self.infoTitle.text = localizedTitle
             self.textStackView.addArrangedSubview(self.infoTitle)
         case .detailed(let localizedTitle, let localizedDetailText):
