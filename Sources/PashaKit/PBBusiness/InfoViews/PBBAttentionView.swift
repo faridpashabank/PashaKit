@@ -193,8 +193,9 @@ open class PBBAttentionView: UIView {
         
         self.attentionType = typefAttention
         self.attentionStyle = .info
-//        self.prepareAttentionByType(type: typefAttention)
-//        self.prepareAttentionByStyle(style: .info)
+        
+        self.prepareAttentionByType(type: typefAttention)
+        self.prepareAttentionByStyle(style: .info)
         
         self.setupViews()
     }
@@ -207,8 +208,8 @@ open class PBBAttentionView: UIView {
         self.attentionStyle = styleOfAttention
         self.attentionType = typefAttention
         
-//        self.prepareAttentionByType(type: typefAttention)
-//        self.prepareAttentionByStyle(style: styleOfAttention)
+        self.prepareAttentionByType(type: typefAttention)
+        self.prepareAttentionByStyle(style: styleOfAttention)
         
         self.setupViews()
     }
