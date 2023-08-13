@@ -285,6 +285,8 @@ open class PBBAttentionView: UIView {
 //            self.infoBody.textColor = UIColor.Colors.PBRed
 //            self.infoIcon.image = UIImage.Images.icInfoRed
         }
+        
+        self.setupConstraints()
     }
     
     func prepareAttentionByStyle(style: AttentionStyle) {
