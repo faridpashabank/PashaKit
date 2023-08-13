@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PBBAttentionView.swift
 //  
 //
 //  Created by Farid Valiyev on 05.08.23.
@@ -29,56 +29,84 @@
 
 import UIKit
 
-/// `PBInfoView` is a type of `UIView` for showing information, alerts to customers.
+/// `PBBAttentionView` is a type of `UIView` for showing information, alerts to customers.
 ///
-/// There is 2 levels of `AttentionLevel` for `PBAttentionView`:
+/// There is 2 levels of `AttentionLevel` for `PBBAttentionView`:
 ///  - `low`
 ///  - `high`
 /// Low level attention views are in grayish theme, while high level alerts are in red one.
 ///
 open class PBBAttentionView: UIView {
-
-    /// Attention level of information
+    
+    /// Attention type of information
     ///
     /// Used for setting up attention view. Depending on its case,
     /// attention view' s theme can change into gray and red ones.
     ///
-    public enum AttentionLevel {
+    public enum AttentionType: Equatable {
+        case normal(localizedTitle: String)
+        case detailed(localizedTitle: String, localizedDetailedTitle: String)
+        case bordered(localizedTitle: String)
+    }
+
+    /// Attention style of information
+    ///
+    /// Used for setting up attention view. Depending on its case,
+    /// attention view' s theme can change into gray and red ones.
+    ///
+    public enum AttentionStyle {
+        
         /// Least level of attention
         ///
         /// Use this case for attentions which are `recommended` to consider when doing action,
         /// but isn't must.
         ///
-        case low
+        case info
         
         /// Informative level of attention
         ///
         /// Use this case for attentions which are `informative` to user
         /// contains informations good to know
         ///
-        case informative
+        case inprogress
 
         /// Intermediate level of attention
         ///
         /// Use this case for attentions which are `required` to consider when doing action, but isn't must.
         ///
-        case medium
+        case waiting
 
         /// Highest level of attention
         ///
         /// Use this case for attentions which is very important to consider when doing action.
         ///
-        case high
+        case error
+        
+        /// Highest level of attention
+        ///
+        /// Use this case for attentions which is very important to consider when doing action.
+        ///
+        case done
     }
 
-    /// Sets attention level for view.
+    /// Sets attention type for view.
     ///
-    /// By default `PBAttentionView` will be created with `medium` level.
+    /// By default `PBBAttentionView` will be created with `normal` type.
     ///
-    public var attentionLevel: AttentionLevel = .medium {
+    public var attentionType: AttentionType = .normal(localizedTitle: "") {
         didSet {
-            if self.attentionLevel != oldValue {
-                self.setupAttention(level: self.attentionLevel)
+                self.prepareAttentionByType(type: self.attentionType)
+        }
+    }
+    
+    /// Sets attention style for view.
+    ///
+    /// By default `PBBAttentionView` will be created with `info` style.
+    ///
+    public var attentionStyle: AttentionStyle = .info {
+        didSet {
+            if self.attentionStyle != oldValue {
+                self.prepareAttentionByStyle(style: self.attentionStyle)
             }
         }
     }
@@ -126,7 +154,7 @@ open class PBBAttentionView: UIView {
 
         self.addSubview(label)
 
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = UIFont.sfProText(ofSize: 15, weight: .regular)
         label.textColor = .darkText
         label.numberOfLines = 0
 
@@ -144,9 +172,35 @@ open class PBBAttentionView: UIView {
         super.init(coder: coder)
         self.setupViews()
     }
+    
+    public convenience init(typefAttention: AttentionType = .normal(localizedTitle: "")) {
+        self.init()
+        
+        UIFont.registerCustomFonts()
+        
+        self.attentionType = typefAttention
+        
+        self.prepareAttentionByType(type: typefAttention)
+        self.prepareAttentionByStyle(style: .info)
+        
+        self.setupViews()
+    }
+    
+    public convenience init(typefAttention: AttentionType = .normal(localizedTitle: ""), styleOfAttention: AttentionStyle = .info) {
+        self.init()
+        
+        UIFont.registerCustomFonts()
+        
+        self.attentionStyle = styleOfAttention
+        
+        self.prepareAttentionByType(type: typefAttention)
+        self.prepareAttentionByStyle(style: styleOfAttention)
+        
+        self.setupViews()
+    }
 
     private func setupViews() {
-        self.setupAttention(level: self.attentionLevel)
+        self.prepareAttentionByType(type: self.attentionType)
         self.layoutSubviews()
         self.setupDefaults()
     }
@@ -181,27 +235,38 @@ open class PBBAttentionView: UIView {
         self.backgroundColor = UIColor.Colors.PBGrayTransparent
         self.layer.cornerRadius = 12.0
     }
-}
-
-extension PBBAttentionView {
-    func setupAttention(level: AttentionLevel) {
-        switch level {
-        case .low:
-            self.backgroundColor = UIColor.Colors.PBGrayTransparent
-            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
-            self.infoIcon.image = UIImage.Images.icInfoGray
-        case .informative:
-            self.backgroundColor = UIColor.Colors.PBInfoYellowBG
-            self.infoBody.textColor = UIColor.Colors.PBInfoYellowFG
-            self.infoIcon.image = UIImage.Images.icInfoYellow
-        case .medium:
-            self.backgroundColor = UIColor.Colors.PBGrayTransparent
-            self.infoBody.textColor = .darkText
-            self.infoIcon.image = UIImage.Images.icInfoDark
-        case .high:
-            self.backgroundColor = UIColor.Colors.PBRed8
-            self.infoBody.textColor = UIColor.Colors.PBRed
-            self.infoIcon.image = UIImage.Images.icInfoRed
+    
+    func prepareAttentionByType(type: AttentionType) {
+        switch type {
+        case .normal: break
+        case .bordered: break
+        case .detailed: break
+//        case .low:
+//            self.backgroundColor = UIColor.Colors.PBGrayTransparent
+//            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
+//            self.infoIcon.image = UIImage.Images.icInfoGray
+//        case .informative:
+//            self.backgroundColor = UIColor.Colors.PBInfoYellowBG
+//            self.infoBody.textColor = UIColor.Colors.PBInfoYellowFG
+//            self.infoIcon.image = UIImage.Images.icInfoYellow
+//        case .medium:
+//            self.backgroundColor = UIColor.Colors.PBGrayTransparent
+//            self.infoBody.textColor = .darkText
+//            self.infoIcon.image = UIImage.Images.icInfoDark
+//        case .high:
+//            self.backgroundColor = UIColor.Colors.PBRed8
+//            self.infoBody.textColor = UIColor.Colors.PBRed
+//            self.infoIcon.image = UIImage.Images.icInfoRed
+        }
+    }
+    
+    func prepareAttentionByStyle(style: AttentionStyle) {
+        switch style {
+        case .info: break
+        case .waiting: break
+        case .inprogress: break
+        case .error: break
+        case .done: break
         }
     }
 }
