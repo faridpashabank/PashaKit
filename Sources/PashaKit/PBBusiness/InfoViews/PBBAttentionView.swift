@@ -198,6 +198,8 @@ open class PBBAttentionView: UIView {
         self.prepareAttentionByStyle(style: .info)
         
         self.setupViews()
+        
+        self.setupConstraints()
     }
     
     public convenience init(typefAttention: AttentionType = .normal(localizedTitle: ""), styleOfAttention: AttentionStyle = .info) {
@@ -212,10 +214,22 @@ open class PBBAttentionView: UIView {
         self.prepareAttentionByStyle(style: styleOfAttention)
         
         self.setupViews()
+        
+        self.setupConstraints()
     }
 
     private func setupViews() {
-        self.layoutSubviews()
+//        self.layoutSubviews()
+        
+        
+        switch self.attentionType {
+        case .normal:
+            self.textStackView.addArrangedSubview(self.infoTitle)
+        case .detailed:
+            self.textStackView.addArrangedSubview(self.infoTitle)
+            self.textStackView.addArrangedSubview(self.infoBody)
+        }
+        
         self.setupDefaults()
     }
 
@@ -226,11 +240,11 @@ open class PBBAttentionView: UIView {
         switch self.attentionType {
         case .normal:
             NSLayoutConstraint.activate([
-                self.heightAnchor.constraint(equalToConstant: 48.0),
+                self.heightAnchor.constraint(equalToConstant: 48.0)
             ])
         case .detailed:
             NSLayoutConstraint.activate([
-                self.heightAnchor.constraint(equalToConstant: 66.0),
+                self.heightAnchor.constraint(equalToConstant: 66.0)
             ])
         }
         
@@ -248,7 +262,7 @@ open class PBBAttentionView: UIView {
 
     open override func layoutSubviews() {
         super.layoutSubviews()
-        self.setupConstraints()
+//        self.setupConstraints()
     }
 
     /// Sets informational text and its level for atttenion view.
@@ -266,11 +280,8 @@ open class PBBAttentionView: UIView {
     func prepareAttentionByType(type: AttentionType) {
         switch type {
         case .normal(let localizedTitle):
-            self.textStackView.addArrangedSubview(self.infoTitle)
             self.infoTitle.text = localizedTitle
         case .detailed(let localizedTitle, let localizedDetailText):
-            self.textStackView.addArrangedSubview(self.infoTitle)
-            self.textStackView.addArrangedSubview(self.infoBody)
             self.infoTitle.text = localizedTitle
             self.infoBody.text = localizedDetailText
 //        case .low:
