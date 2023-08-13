@@ -262,9 +262,9 @@ open class PBBAttentionView: UIView {
         }
         
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 48.0),
+            self.infoIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
             self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
-            self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+//            self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             self.textStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
             self.textStackView.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 12),
@@ -296,13 +296,13 @@ open class PBBAttentionView: UIView {
     func prepareAttentionByType(type: AttentionType) {
         switch type {
         case .normal(let localizedTitle):
-            self.infoTitle.text = localizedTitle
             self.textStackView.addArrangedSubview(self.infoTitle)
-        case .detailed(let localizedTitle, let localizedDetailText):
             self.infoTitle.text = localizedTitle
-            self.infoBody.text = localizedDetailText
+        case .detailed(let localizedTitle, let localizedDetailText):
             self.textStackView.addArrangedSubview(self.infoTitle)
             self.textStackView.addArrangedSubview(self.infoBody)
+            self.infoTitle.text = localizedTitle
+            self.infoBody.text = localizedDetailText
 //        case .low:
 //            self.backgroundColor = UIColor.Colors.PBGrayTransparent
 //            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
