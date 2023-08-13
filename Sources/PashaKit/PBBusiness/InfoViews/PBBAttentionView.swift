@@ -172,7 +172,7 @@ open class PBBAttentionView: UIView {
         view.alignment = .leading
         view.axis = .vertical
         view.spacing = 4.0
-        view.distribution = .equalSpacing
+        view.distribution = .fill
         return view
     }()
 
@@ -232,7 +232,6 @@ open class PBBAttentionView: UIView {
         }
         
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 66.0),
             self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
             self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
