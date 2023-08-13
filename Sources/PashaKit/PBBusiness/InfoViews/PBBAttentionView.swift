@@ -221,6 +221,8 @@ open class PBBAttentionView: UIView {
 
     private func setupConstraints() {
         
+        print("TYPE::: \(self.attentionType)")
+        
         switch self.attentionType {
         case .normal:
             NSLayoutConstraint.activate([
