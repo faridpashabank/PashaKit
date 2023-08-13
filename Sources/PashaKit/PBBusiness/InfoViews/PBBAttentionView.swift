@@ -197,7 +197,7 @@ open class PBBAttentionView: UIView {
         let view = UIStackView()
 
         view.translatesAutoresizingMaskIntoConstraints = false
-
+        self.addSubview(view)
         view.alignment = .leading
         view.axis = .vertical
         view.spacing = 4.0
