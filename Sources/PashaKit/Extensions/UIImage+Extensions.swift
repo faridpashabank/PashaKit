@@ -55,9 +55,16 @@ extension UIImage {
         static let icVisa = UIImage(named: "ic_visa", in: Bundle.module, compatibleWith: nil)
         static let icEdit = UIImage(named: "ic_edit", in: Bundle.module, compatibleWith: nil)
         
-        static let icPBBChevronRight = UIImage(named: "ic_pbb_chevon_right", in: Bundle.module, compatibleWith: nil)
         static let icRadioDefault = UIImage(named: "ic_radio_default", in: Bundle.module, compatibleWith: nil)
         static let icRadioSelected = UIImage(named: "ic_radio_selected", in: Bundle.module, compatibleWith: nil)
+        
+        static let icPBBChevronRight = UIImage(named: "ic_pbb_chevon_right", in: Bundle.module, compatibleWith: nil)
+        static let icPBBInfoGray = UIImage(named: "ic_pbb_info_gray", in: Bundle.module, compatibleWith: nil)
+        static let icPBBInfoBlue = UIImage(named: "ic_pbb_info_blue", in: Bundle.module, compatibleWith: nil)
+        static let icPBBInfoGreen = UIImage(named: "ic_pbb_info_green", in: Bundle.module, compatibleWith: nil)
+        static let icPBBInfoRed = UIImage(named: "ic_pbb_info_red", in: Bundle.module, compatibleWith: nil)
+        static let icPBBInfoYellow = UIImage(named: "ic_pbb_info_yellow", in: Bundle.module, compatibleWith: nil)
+//        static let icPBB = UIImage(named: "ic_radio_selected", in: Bundle.module, compatibleWith: nil)
         
     }
 }

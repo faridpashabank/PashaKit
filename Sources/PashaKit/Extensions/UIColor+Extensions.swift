@@ -139,5 +139,96 @@ extension UIColor {
             }
         }
         
+        static var PBBInfoGrayBackground: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.028, green: 0.028, blue: 0.030, alpha: 1) :
+                    UIColor(red: 0.242, green: 0.242, blue: 0.242, alpha: 1)
+                }
+            } else {
+                return UIColor(red: 0.242, green: 0.242, blue: 0.242, alpha: 1)
+            }
+        }
+        
+        static var PBBInfoBlueBackground: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.046, green: 0.164, blue: 0.204, alpha: 0.08) :
+                    UIColor(red: 0.0, green: 0.144, blue: 0.193, alpha: 0.08)
+                }
+            } else {
+                return UIColor(red: 0.0, green: 0.144, blue: 0.193, alpha: 0.08)
+            }
+        }
+        
+        static var PBBInfoYellowBackground: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.241, green: 0.188, blue: 0.69, alpha: 0.08) :
+                    UIColor(red: 0.236, green: 0.164, blue: 0.0, alpha: 0.08)
+                }
+            } else {
+                return UIColor(red: 0.236, green: 0.164, blue: 0.0, alpha: 0.08)
+            }
+        }
+        
+        static var PBBInfoRedBackground: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.234, green: 0.91, blue: 0.106, alpha: 0.08) :
+                    UIColor(red: 0.226, green: 0.67, blue: 0.83, alpha: 0.08)
+                }
+            } else {
+                return UIColor(red: 0.236, green: 0.164, blue: 0.0, alpha: 0.08)
+            }
+        }
+        
+        static var PBBInfoGreenBackground: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.76, green: 0.190, blue: 0.158, alpha: 0.08) :
+                    UIColor(red: 0.5, green: 0.141, blue: 0.102, alpha: 0.08)
+                }
+            } else {
+                return UIColor(red: 0.5, green: 0.141, blue: 0.102, alpha: 0.08)
+            }
+        }
+        
+        static var PBBInfoTitle: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1) :
+                    UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+                }
+            } else {
+                return UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+            }
+        }
+        
+        static var PBBInfoDescription: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.235, green: 0.235, blue: 0.245, alpha: 0.6) :
+                    UIColor(red: 0.6, green: 0.6, blue: 0.67, alpha: 0.6)
+                }
+            } else {
+                return UIColor(red: 0.6, green: 0.6, blue: 0.67, alpha: 0.6)
+            }
+        }
+        
     }
 }

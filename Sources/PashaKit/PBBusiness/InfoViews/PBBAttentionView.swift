@@ -251,9 +251,6 @@ open class PBBAttentionView: UIView {
         NSLayoutConstraint.activate([
             self.infoIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
             self.infoIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-//            self.heightAnchor.constraint(equalToConstant: 66.0),
-//            self.textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-//            self.textStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
             self.textStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.textStackView.leftAnchor.constraint(equalTo: self.infoIcon.rightAnchor, constant: 12),
             self.textStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
@@ -306,15 +303,26 @@ open class PBBAttentionView: UIView {
     }
     
     func prepareAttentionByStyle(style: AttentionStyle) {
+        self.infoTitle.font = UIFont.sfProText(ofSize: 15, weight: .medium)
+        self.infoTitle.textColor = UIColor.Colors.PBBInfoTitle
+        self.infoBody.font = UIFont.sfProText(ofSize: 13, weight: .regular)
+        self.infoBody.textColor = UIColor.Colors.PBBInfoDescription
         switch style {
         case .info:
             self.backgroundColor = UIColor.Colors.PBGrayTransparent
-            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
-            self.infoIcon.image = UIImage.Images.icInfoGray
-        case .waiting: break
-        case .inprogress: break
-        case .error: break
-        case .done: break
+            self.infoIcon.image = UIImage.Images.icPBBInfoGray
+        case .waiting:
+            self.backgroundColor = UIColor.Colors.PBBInfoYellowBackground
+            self.infoIcon.image = UIImage.Images.icPBBInfoYellow
+        case .inprogress:
+            self.backgroundColor = UIColor.Colors.PBBInfoBlueBackground
+            self.infoIcon.image = UIImage.Images.icPBBInfoBlue
+        case .error:
+            self.backgroundColor = UIColor.Colors.PBBInfoRedBackground
+            self.infoIcon.image = UIImage.Images.icPBBInfoRed
+        case .done:
+            self.backgroundColor = UIColor.Colors.PBBInfoGreenBackground
+            self.infoIcon.image = UIImage.Images.icPBBInfoGreen
         }
     }
 }
