@@ -186,15 +186,15 @@ open class PBBAttentionView: UIView {
         self.setupViews()
     }
     
-    public convenience init(typefAttention: AttentionType = .normal(localizedTitle: "")) {
+    public convenience init(typeOfAttention: AttentionType = .normal(localizedTitle: "")) {
         self.init()
         
         UIFont.registerCustomFonts()
         
-        self.attentionType = typefAttention
+        self.attentionType = typeOfAttention
         self.attentionStyle = .info
         
-        self.prepareAttentionByType(type: typefAttention)
+        self.prepareAttentionByType(type: typeOfAttention)
         self.prepareAttentionByStyle(style: .info)
         
         self.setupViews()
@@ -202,15 +202,15 @@ open class PBBAttentionView: UIView {
         self.setupConstraints()
     }
     
-    public convenience init(typefAttention: AttentionType = .normal(localizedTitle: ""), styleOfAttention: AttentionStyle = .info) {
+    public convenience init(typeOfAttention: AttentionType = .normal(localizedTitle: ""), styleOfAttention: AttentionStyle = .info) {
         self.init()
         
         UIFont.registerCustomFonts()
         
         self.attentionStyle = styleOfAttention
-        self.attentionType = typefAttention
+        self.attentionType = typeOfAttention
         
-        self.prepareAttentionByType(type: typefAttention)
+        self.prepareAttentionByType(type: typeOfAttention)
         self.prepareAttentionByStyle(style: styleOfAttention)
         
         self.setupViews()
