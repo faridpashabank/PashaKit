@@ -31,10 +31,10 @@ import UIKit
 
 /// `PBBAttentionView` is a type of `UIView` for showing information, alerts to customers.
 ///
-/// There is 2 levels of `AttentionLevel` for `PBBAttentionView`:
-///  - `low`
-///  - `high`
-/// Low level attention views are in grayish theme, while high level alerts are in red one.
+/// There is 2 levels of `AttentionType` for `PBBAttentionView`:
+///  - `normal`
+///  - `detailed`
+/// normal type attention views is in one line, while detailed type are in two lines.
 ///
 open class PBBAttentionView: UIView {
     
@@ -51,37 +51,37 @@ open class PBBAttentionView: UIView {
     /// Attention style of information
     ///
     /// Used for setting up attention view. Depending on its case,
-    /// attention view' s theme can change into gray and red ones.
+    /// attention view' s theme can change into diffrenet style.
     ///
     public enum AttentionStyle {
         
-        /// Least level of attention
+        /// Info style of attention
         ///
         /// Use this case for attentions which are `recommended` to consider when doing action,
         /// but isn't must.
         ///
         case info
         
-        /// Informative level of attention
+        /// Inprogress style of attention
         ///
         /// Use this case for attentions which are `informative` to user
         /// contains informations good to know
         ///
         case inprogress
 
-        /// Intermediate level of attention
+        /// Waiting style of attention
         ///
         /// Use this case for attentions which are `required` to consider when doing action, but isn't must.
         ///
         case waiting
 
-        /// Highest level of attention
+        /// Error style of attention
         ///
         /// Use this case for attentions which is very important to consider when doing action.
         ///
         case error
         
-        /// Highest level of attention
+        /// Done style of attention
         ///
         /// Use this case for attentions which is very important to consider when doing action.
         ///
@@ -230,8 +230,6 @@ open class PBBAttentionView: UIView {
 
     private func setupConstraints() {
         
-        print("TYPE::: \(self.attentionType)")
-        
         switch self.attentionType {
         case .normal:
             NSLayoutConstraint.activate([
@@ -254,14 +252,13 @@ open class PBBAttentionView: UIView {
 
     open override func layoutSubviews() {
         super.layoutSubviews()
-//        self.setupConstraints()
     }
 
     /// Sets informational text and its level for atttenion view.
     ///
     /// - Parameters:
     ///  - text: informational text
-    ///  - attentionLevel: attention level, default value is low
+    ///  - attentionType: attention type default value is normal
     ///
     
     func prepareAttentionByType(type: AttentionType) {

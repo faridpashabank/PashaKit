@@ -188,8 +188,6 @@ public class PBBLabelView: UIView {
     
     private func setupViews(for type: PBBLabelViewStatus) {
         
-//        self.prepareLabelViewByType()
-        
         self.addSubview(self.titleLabel)
         
         switch self.typeOfLabel {
@@ -207,7 +205,6 @@ public class PBBLabelView: UIView {
         case .plain:
             NSLayoutConstraint.activate([
                 self.heightAnchor.constraint(equalToConstant: 32.0),
-//                self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 self.widthAnchor.constraint(equalTo: self.titleLabel.widthAnchor, constant: 16),
                 self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8.0),
                 self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8.0),
@@ -284,6 +281,4 @@ public class PBBLabelView: UIView {
             
         }
     }
-    
-    
 }
