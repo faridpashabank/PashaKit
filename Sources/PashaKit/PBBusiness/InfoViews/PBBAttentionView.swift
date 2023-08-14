@@ -263,10 +263,6 @@ open class PBBAttentionView: UIView {
     ///  - text: informational text
     ///  - attentionLevel: attention level, default value is low
     ///
-
-//    private func setupDefaults() {
-//        self.backgroundColor = UIColor.Colors.PBGrayTransparent
-//    }
     
     func prepareAttentionByType(type: AttentionType) {
         switch type {
@@ -275,25 +271,7 @@ open class PBBAttentionView: UIView {
         case .detailed(let localizedTitle, let localizedDetailText):
             self.infoTitle.text = localizedTitle
             self.infoBody.text = localizedDetailText
-//        case .low:
-//            self.backgroundColor = UIColor.Colors.PBGrayTransparent
-//            self.infoBody.textColor = UIColor.Colors.PBBlackMedium
-//            self.infoIcon.image = UIImage.Images.icInfoGray
-//        case .informative:
-//            self.backgroundColor = UIColor.Colors.PBInfoYellowBG
-//            self.infoBody.textColor = UIColor.Colors.PBInfoYellowFG
-//            self.infoIcon.image = UIImage.Images.icInfoYellow
-//        case .medium:
-//            self.backgroundColor = UIColor.Colors.PBGrayTransparent
-//            self.infoBody.textColor = .darkText
-//            self.infoIcon.image = UIImage.Images.icInfoDark
-//        case .high:
-//            self.backgroundColor = UIColor.Colors.PBRed8
-//            self.infoBody.textColor = UIColor.Colors.PBRed
-//            self.infoIcon.image = UIImage.Images.icInfoRed
         }
-        
-//        self.setupConstraints()
     }
     
     func prepareAttentionByStyle(style: AttentionStyle) {
