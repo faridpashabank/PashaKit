@@ -221,7 +221,6 @@ open class PBBAttentionView: UIView {
     private func setupViews() {
 //        self.layoutSubviews()
         
-        
         switch self.attentionType {
         case .normal:
             self.textStackView.addArrangedSubview(self.infoTitle)
@@ -230,7 +229,7 @@ open class PBBAttentionView: UIView {
             self.textStackView.addArrangedSubview(self.infoBody)
         }
         
-        self.setupDefaults()
+//        self.setupDefaults()
     }
 
     private func setupConstraints() {
@@ -269,10 +268,9 @@ open class PBBAttentionView: UIView {
     ///  - attentionLevel: attention level, default value is low
     ///
 
-    private func setupDefaults() {
-        self.backgroundColor = UIColor.Colors.PBGrayTransparent
-        self.layer.cornerRadius = 12.0
-    }
+//    private func setupDefaults() {
+//        self.backgroundColor = UIColor.Colors.PBGrayTransparent
+//    }
     
     func prepareAttentionByType(type: AttentionType) {
         switch type {
@@ -303,6 +301,7 @@ open class PBBAttentionView: UIView {
     }
     
     func prepareAttentionByStyle(style: AttentionStyle) {
+        self.layer.cornerRadius = 12.0
         self.infoTitle.font = UIFont.sfProText(ofSize: 15, weight: .medium)
         self.infoTitle.textColor = UIColor.Colors.PBBInfoTitle
         self.infoBody.font = UIFont.sfProText(ofSize: 13, weight: .regular)
