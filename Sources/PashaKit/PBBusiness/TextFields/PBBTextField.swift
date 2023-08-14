@@ -212,7 +212,7 @@ public class PBBTextField: UIView {
     ///
     /// By defualt icon size set to `regular` which means its size is 24.0 pt both for width and height.
     ///
-    public var iconSize: RightIconSize = .regular {
+    public var iconSize: RightIconSize = .small {
         didSet {
             self.setupRightIconConstraints(for: self.iconSize)
         }
