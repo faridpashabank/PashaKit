@@ -513,9 +513,9 @@ public class PBBTextField: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
-        view.layer.masksToBounds = true
-        view.tintColor = self.theme.getPrimaryColor()
-        view.isHidden = true
+//        view.layer.masksToBounds = true
+//        view.tintColor = self.theme.getPrimaryColor()
+//        view.isHidden = true
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onIconTap))
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -741,14 +741,14 @@ public class PBBTextField: UIView {
             ])
         }
 
-        self.activeRightIconConstraints = [
-            self.rightIconView.heightAnchor.constraint(equalToConstant: 24.0),
-            self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0),
-            self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
-            self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
-        ]
-
-        NSLayoutConstraint.activate(self.activeRightIconConstraints)
+//        self.activeRightIconConstraints = [
+//            self.rightIconView.heightAnchor.constraint(equalToConstant: 24.0),
+//            self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0),
+//            self.rightIconWrapperView.heightAnchor.constraint(equalTo: self.rightIconView.heightAnchor, constant: 8),
+//            self.rightIconWrapperView.widthAnchor.constraint(equalTo: self.rightIconView.widthAnchor, constant: 8),
+//        ]
+//
+//        NSLayoutConstraint.activate(self.activeRightIconConstraints)
 
         NSLayoutConstraint.activate([
             self.customPlaceholder.widthAnchor.constraint(equalTo: self.customTextField.widthAnchor)
@@ -761,6 +761,8 @@ public class PBBTextField: UIView {
 
         self.activeConstraints = self.notEditingConstraints
         NSLayoutConstraint.activate(self.activeConstraints)
+        
+        self.setupRightIconConstraints(for: self.iconSize)
     }
 
     private func setupRightIconConstraints(for iconSize: RightIconSize) {
