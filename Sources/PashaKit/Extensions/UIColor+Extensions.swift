@@ -183,11 +183,11 @@ extension UIColor {
                 return UIColor { (traits) -> UIColor in
                     // Return one of two colors depending on light or dark mode
                     return traits.userInterfaceStyle == .dark ?
-                    UIColor(red: 0.234, green: 0.91, blue: 0.106, alpha: 0.08) :
-                    UIColor(red: 0.226, green: 0.67, blue: 0.83, alpha: 0.08)
+                    UIColor(red: 0.918, green: 0.357, blue: 0.416, alpha: 0.08) :
+                    UIColor(red: 0.886, green: 0.263, blue: 0.325, alpha: 0.08)
                 }
             } else {
-                return UIColor(red: 0.236, green: 0.164, blue: 0.0, alpha: 0.08)
+                return UIColor(red: 0.886, green: 0.263, blue: 0.325, alpha: 0.08)
             }
         }
         
@@ -196,11 +196,11 @@ extension UIColor {
                 return UIColor { (traits) -> UIColor in
                     // Return one of two colors depending on light or dark mode
                     return traits.userInterfaceStyle == .dark ?
-                    UIColor(red: 0.76, green: 0.190, blue: 0.158, alpha: 0.08) :
-                    UIColor(red: 0.5, green: 0.141, blue: 0.102, alpha: 0.08)
+                    UIColor(red: 0.298, green: 0.745, blue: 0.620, alpha: 0.08) :
+                    UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 0.08)
                 }
             } else {
-                return UIColor(red: 0.5, green: 0.141, blue: 0.102, alpha: 0.08)
+                return UIColor(red: 0.020, green: 0.553, blue: 0.400, alpha: 0.08)
             }
         }
         
