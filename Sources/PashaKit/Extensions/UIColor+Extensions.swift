@@ -144,11 +144,11 @@ extension UIColor {
                 return UIColor { (traits) -> UIColor in
                     // Return one of two colors depending on light or dark mode
                     return traits.userInterfaceStyle == .dark ?
-                    UIColor(red: 0.028, green: 0.028, blue: 0.030, alpha: 1) :
-                    UIColor(red: 0.242, green: 0.242, blue: 0.242, alpha: 1)
+                    UIColor(red: 0.110, green: 0.110, blue: 0.118, alpha: 1) :
+                    UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
                 }
             } else {
-                return UIColor(red: 0.242, green: 0.242, blue: 0.242, alpha: 1)
+                return UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
             }
         }
         
@@ -157,11 +157,11 @@ extension UIColor {
                 return UIColor { (traits) -> UIColor in
                     // Return one of two colors depending on light or dark mode
                     return traits.userInterfaceStyle == .dark ?
-                    UIColor(red: 0.046, green: 0.164, blue: 0.204, alpha: 0.08) :
-                    UIColor(red: 0.0, green: 0.144, blue: 0.193, alpha: 0.08)
+                    UIColor(red: 0.180, green: 0.643, blue: 0.800, alpha: 0.08) :
+                    UIColor(red: 0.0, green: 0.565, blue: 0.757, alpha: 0.08)
                 }
             } else {
-                return UIColor(red: 0.0, green: 0.144, blue: 0.193, alpha: 0.08)
+                return UIColor(red: 0.0, green: 0.565, blue: 0.757, alpha: 0.08)
             }
         }
         
@@ -170,11 +170,11 @@ extension UIColor {
                 return UIColor { (traits) -> UIColor in
                     // Return one of two colors depending on light or dark mode
                     return traits.userInterfaceStyle == .dark ?
-                    UIColor(red: 0.241, green: 0.188, blue: 0.69, alpha: 0.08) :
-                    UIColor(red: 0.236, green: 0.164, blue: 0.0, alpha: 0.08)
+                    UIColor(red: 0.945, green: 0.737, blue: 0.271, alpha: 0.08) :
+                    UIColor(red: 0.925, green: 0.643, blue: 0.0, alpha: 0.08)
                 }
             } else {
-                return UIColor(red: 0.236, green: 0.164, blue: 0.0, alpha: 0.08)
+                return UIColor(red: 0.925, green: 0.643, blue: 0.0, alpha: 0.08)
             }
         }
         
