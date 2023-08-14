@@ -219,8 +219,6 @@ open class PBBAttentionView: UIView {
     }
 
     private func setupViews() {
-//        self.layoutSubviews()
-        
         switch self.attentionType {
         case .normal:
             self.textStackView.addArrangedSubview(self.infoTitle)
@@ -228,8 +226,6 @@ open class PBBAttentionView: UIView {
             self.textStackView.addArrangedSubview(self.infoTitle)
             self.textStackView.addArrangedSubview(self.infoBody)
         }
-        
-//        self.setupDefaults()
     }
 
     private func setupConstraints() {
@@ -308,7 +304,7 @@ open class PBBAttentionView: UIView {
         self.infoBody.textColor = UIColor.Colors.PBBInfoDescription
         switch style {
         case .info:
-            self.backgroundColor = UIColor.Colors.PBGrayTransparent
+            self.backgroundColor = UIColor.Colors.PBBInfoGrayBackground
             self.infoIcon.image = UIImage.Images.icPBBInfoGray
         case .waiting:
             self.backgroundColor = UIColor.Colors.PBBInfoYellowBackground
