@@ -311,7 +311,10 @@ public class PBBUIButton: UIButton {
         self.layer.masksToBounds = true
         self.layer.borderWidth = 1.0
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        self.titleLabel?.font = UIFont.sfProText(ofSize: 17, weight: .bold)
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+        NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalToConstant: 56)
+        ])
     }
 }
