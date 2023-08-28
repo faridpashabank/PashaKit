@@ -651,9 +651,12 @@ public class PBBTextField: UIView {
         case .password:
             self.customTextField.keyboardType = .default
             self.customTextField.isSecured = true
+            self.rightIconView.image = UIImage.Images.icEyeClosed
         case .select:
             self.textFieldState = .notEditing
             self.icon = UIImage.Images.icChevronBottom
+            self.isRevealed = false
+            self.iconSize = .regular
         // TODO: set bottom arrow Icon with state and dark mode
         case .pan:
             self.maskFormat = "[0000] [0000] [0000] [0000]"
