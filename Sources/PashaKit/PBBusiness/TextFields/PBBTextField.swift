@@ -570,9 +570,12 @@ public class PBBTextField: UIView {
                 isOptional: false
             ),
         ]
+        
         self.placeholderText = localizedPlaceholder
         
         self.setupViews()
+        
+        self.placeholderTextColor = UIColor.Colors.PBBTextFieldLabel
         
         self.textFieldInputType = type
         

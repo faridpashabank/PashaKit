@@ -230,5 +230,18 @@ extension UIColor {
             }
         }
         
+        static var PBBTextFieldLabel: UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor { (traits) -> UIColor in
+                    // Return one of two colors depending on light or dark mode
+                    return traits.userInterfaceStyle == .dark ?
+                    UIColor(red: 0.502, green: 0.502, blue: 0.514, alpha: 1) :
+                    UIColor(red: 0.596, green: 0.596, blue: 0.624, alpha: 1)
+                }
+            } else {
+                    return UIColor(red: 0.502, green: 0.502, blue: 0.514, alpha: 1)
+            }
+        }
+        
     }
 }
