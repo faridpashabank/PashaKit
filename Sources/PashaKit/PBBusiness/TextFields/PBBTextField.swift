@@ -653,10 +653,6 @@ public class PBBTextField: UIView {
             self.isSecured = true
             self.isRevealed = false
             
-//            self.rightIconView.image = UIImage.Images.icEyeClosed
-//            self.icon = UIImage.Images.icEyeClosed
-//            self.iconSize = .regular
-//            self.updateSecureEntry()
         case .select:
             self.textFieldState = .notEditing
         // TODO: set bottom arrow Icon with state and dark mode
@@ -983,7 +979,7 @@ public class PBBTextField: UIView {
         self.placeholderCursorColor = self.theme.getPrimaryColor()
         self.editingBorderColor = self.theme.getPrimaryColor()
         self.textFieldBottomBorderColor = UIColor.Colors.PBBBackgroundGray
-        self.rightIconView.tintColor = self.theme.getPrimaryColor()
+        self.rightIconView.tintColor = UIColor.Colors.PBBTextFieldLabel
     }
 
     private func updateSecureEntry() {
