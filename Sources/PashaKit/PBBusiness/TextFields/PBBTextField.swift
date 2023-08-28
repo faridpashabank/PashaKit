@@ -979,7 +979,7 @@ public class PBBTextField: UIView {
         self.placeholderCursorColor = self.theme.getPrimaryColor()
         self.editingBorderColor = self.theme.getPrimaryColor()
         self.textFieldBottomBorderColor = UIColor.Colors.PBBBackgroundGray
-        self.rightIconView.tintColor = UIColor.Colors.PBBTextFieldLabel
+//        self.rightIconView.tintColor = UIColor.Colors.PBBTextFieldLabel
     }
 
     private func updateSecureEntry() {
