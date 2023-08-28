@@ -654,8 +654,8 @@ public class PBBTextField: UIView {
             self.isRevealed = false
             
 //            self.rightIconView.image = UIImage.Images.icEyeClosed
-            self.icon = UIImage.Images.icEyeClosed
-            self.iconSize = .regular
+//            self.icon = UIImage.Images.icEyeClosed
+//            self.iconSize = .regular
 //            self.updateSecureEntry()
         case .select:
             self.textFieldState = .notEditing
