@@ -988,13 +988,13 @@ public class PBBTextField: UIView {
 
     private func updateSecureEntry() {
         self.customTextField.isSecureTextEntry = self.isSecured && !self.isRevealed
-
+print("updateSecureEntry:::")
         if self.isSecured {
             if self.isRevealed {
-                self.icon = UIImage.Images.icRevealOpen
+                self.rightIconView.image = UIImage.Images.icRevealOpen
             }
             else {
-                self.icon = UIImage.Images.icRevealClosed
+                self.rightIconView.image = UIImage.Images.icRevealClosed
             }
         }
     }
