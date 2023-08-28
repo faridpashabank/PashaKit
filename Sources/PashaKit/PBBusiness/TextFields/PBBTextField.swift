@@ -421,7 +421,7 @@ public class PBBTextField: UIView {
         }
     }
 
-    private var textFieldState: PBBTextFieldState = .editing {
+    private var textFieldState: PBBTextFieldState = .notEditing {
         didSet {
             self.updateUI()
             self.animatePlaceholderIfNeeded()
@@ -558,6 +558,8 @@ public class PBBTextField: UIView {
     public convenience init(localizedPlaceholder: String, type: PBBTextFieldInputType = .text) {
         self.init(frame: .zero)
 
+        self.placeholderTextColor = UIColor.Colors.PBBTextFieldLabel
+        
         self.inputMaskDelegate.customNotations = [
             Notation(
                 character: "N",
@@ -575,12 +577,11 @@ public class PBBTextField: UIView {
         
         self.setupViews()
         
-        self.placeholderTextColor = UIColor.Colors.PBBTextFieldLabel
-        
         self.textFieldInputType = type
         
         self.prepareTextFieldByStyle(for: self.textFieldStyle)
-
+        self.prepareTextFieldByType(for: type)
+        
         self.customTextField.delegate = self.inputMaskDelegate
 
         self.customTextField.tintColor = self.placeholderCursorColor
@@ -589,6 +590,9 @@ public class PBBTextField: UIView {
     
     public convenience init(localizedPlaceholder: String, type: PBBTextFieldInputType = .text, state: PBBTextFieldState = .editing, style: PBBTextFieldStyle = .underlined) {
         self.init(frame: .zero)
+        
+        self.placeholderTextColor = UIColor.Colors.PBBTextFieldLabel
+        
         self.textFieldState = state
         self.textFieldStyle = style
         self.textFieldInputType = type
