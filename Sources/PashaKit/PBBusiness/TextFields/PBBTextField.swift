@@ -516,7 +516,7 @@ public class PBBTextField: UIView {
 //        view.layer.masksToBounds = true
 //        view.tintColor = self.theme.getPrimaryColor()
 //        view.isHidden = true
-
+        view.tintColor = UIColor.Colors.PBBTextFieldLabel
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onIconTap))
         view.addGestureRecognizer(tapGestureRecognizer)
 
