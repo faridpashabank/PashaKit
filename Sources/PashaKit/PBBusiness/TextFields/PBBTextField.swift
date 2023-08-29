@@ -879,6 +879,7 @@ public class PBBTextField: UIView {
                     self.customPlaceholder.textColor = self.placeholderTextColor
                     self.textFieldStack.updateExistingBottomBorderThickness(to: 1.0)
                     self.textFieldStack.updateExistingBottomBorderColor(to: self.textFieldBottomBorderColor)
+                    self.rightIconView.tintColor = UIColor.Colors.PBBTextFieldLabel
                 }
             case .disabled: break
                 
@@ -984,7 +985,7 @@ public class PBBTextField: UIView {
 
     private func updateSecureEntry() {
         self.customTextField.isSecureTextEntry = self.isSecured && !self.isRevealed
-print("updateSecureEntry:::")
+
         if self.isSecured {
             if self.isRevealed {
                 self.rightIconView.image = UIImage.Images.icRevealOpen
