@@ -364,10 +364,12 @@ public class PBBActionView: UIView {
         } else {
             view.image = UIImage.Images.icRadioDefault
         }
-        view.addTapGestureRecognizer {
-            print("HELLOW WORLD")
-            self.radioButtonStatus = !self.radioButtonStatus
-        }
+        //TODO: switch gesture doesnt work
+//        view.addTapGestureRecognizer {
+//            print("HELLOW WORLD")
+//            self.radioButtonStatus = !self.radioButtonStatus
+//        }
+        
         view.translatesAutoresizingMaskIntoConstraints = false
 
         view.contentMode = .scaleAspectFit
@@ -390,10 +392,10 @@ public class PBBActionView: UIView {
     private lazy var switchButton: UISwitch = {
         let view = UISwitch()
         
-        view.addTapGestureRecognizer { //TODO: switch gesture doesnt work
-            print("HELLOW WORLD")
-            self.switchButtonStatus = !self.switchButtonStatus
-        }
+//        view.addTapGestureRecognizer { //TODO: switch gesture doesnt work
+//            print("HELLOW WORLD")
+//            self.switchButtonStatus = !self.switchButtonStatus
+//        }
         
 //        if self.radioButtonStatus {
 //            view.image = UIImage.Images.icRadioSelected
