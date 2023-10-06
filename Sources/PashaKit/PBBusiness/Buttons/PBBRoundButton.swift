@@ -54,17 +54,17 @@ public class PBBRoundButton: UIView {
     /// Specifies the state of button
     public enum PBBRoundButtonState {
 
-        /// A  button with clear background color and PBGreen title color
+        /// A  button with clear background color and PBBGreen title color
         ///
-        /// By default title color of button will be in PBGreen color. However if theme option is used,
+        /// By default title color of button will be in PBBGreen color. However if theme option is used,
         /// its title color may be PBFauxChestnut depending on returned user type.
         ///
         case normal
 
-        /// A button with 0.1 opacity PBGreen background color and PBGreen title color
+        /// A button with 0.1 opacity PBGreen background color and PBBGreen title color
         ///
-        /// By default background color of button will be in PBGreen color with 0.1 opacity. However if theme option is used,
-        /// its background color may be PBFauxChestnut depending on returned user type.
+        /// By default background color of button will be in PBBGreen color with 0.1 opacity. However if theme option is used,
+        /// its background color may be different color depending on returned user type.
         ///
         case disabled
         
@@ -84,7 +84,7 @@ public class PBBRoundButton: UIView {
     
     /// Sets the title to use for normal state.
     ///
-    /// Since we're using only normal state for UIButton, at the moment PBUIButton also uses only normal state when setting
+    /// Since we're using only normal state for UIButton, at the moment PBBRoundButton also uses only normal state when setting
     /// button title.
     /// For different states use native
     /// ```

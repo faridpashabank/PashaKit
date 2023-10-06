@@ -39,7 +39,7 @@ import UIKit
 /// * Connect one or more action methods to the button.
 /// * Provide accessibility information and localized strings.
 ///
-/// - Note: PBBActionView is optimized for looking as expected with minimum effort at the `height` of 72.0 pt.
+/// - Note: PBBLabelView is optimized for looking as expected with minimum effort at the `height` of 72.0 pt.
 ///
 /// However feel free to customize it.
 ///
@@ -113,7 +113,7 @@ public class PBBLabelView: UIView {
     
     /// Specifies style of the actionView.
     ///
-    /// If not specified by outside, PBBActionView will be created with filled style.
+    /// If not specified by outside, PBBLabelView will be created with filled style.
     ///
     public var typeOfLabel: PBBLabelViewType = .plain(localizedText: "") {
         didSet {
@@ -153,8 +153,8 @@ public class PBBLabelView: UIView {
     /// Creates a new button of specified style.
     ///
     /// - Parameters:
-    ///    - localizableTitle: Sets the title text for button.
-    ///    - typeOfButton: Sets the type of button.
+    ///    - localizableTitle: Sets the label text.
+    ///    - statusOfLabel: Sets the type of Label.
     ///
     
     public convenience init(statusOfLabel: PBBLabelViewStatus = .draft) {

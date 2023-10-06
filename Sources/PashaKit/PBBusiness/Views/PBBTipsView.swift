@@ -39,7 +39,7 @@ import UIKit
 /// * Connect one or more action methods to the button.
 /// * Provide accessibility information and localized strings.
 ///
-/// - Note: PBBActionView is optimized for looking as expected with minimum effort at the `height` of 72.0 pt.
+/// - Note: PBBTipsView is optimized for looking as expected with minimum effort at the `height` of 72.0 pt.
 ///
 /// However feel free to customize it.
 ///

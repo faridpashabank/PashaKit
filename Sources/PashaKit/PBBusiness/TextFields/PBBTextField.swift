@@ -197,7 +197,7 @@ public class PBBTextField: UIView {
 
     /// The theme for the text field's appearance.
     ///
-    /// `PBBUITextField` is using theme parameter for defining its color palette for components. These include field's
+    /// `PBBTextField` is using theme parameter for defining its color palette for components. These include field's
     /// * Border color for `bordered` style, underline color for `underlined` style
     /// * Cursor color
     /// * Tint color for right icon
@@ -210,7 +210,7 @@ public class PBBTextField: UIView {
 
     /// Specifies the size for right side icon.
     ///
-    /// By defualt icon size set to `regular` which means its size is 24.0 pt both for width and height.
+    /// By defualt icon size set to `small` which means its size is 16.0 pt both for width and height.
     ///
     public var iconSize: RightIconSize = .small {
         didSet {
@@ -345,7 +345,7 @@ public class PBBTextField: UIView {
     ///
     /// This property just changes `isUserInteractionEnabled` property of base text field to `false`
     ///
-    /// When you need your PBUITextField to be open to gestures, but closed to manual input, just change the
+    /// When you need your PBBTextField to be open to gestures, but closed to manual input, just change the
     /// value of this property to `true`.
     ///
     public var disableManualInput: Bool = false {
@@ -416,8 +416,8 @@ public class PBBTextField: UIView {
     
     private var textFieldInputType: PBBTextFieldInputType = .text {
         didSet {
-//            self.updateUI()
-//            self.animatePlaceholderIfNeeded()
+            self.updateUI()
+            self.animatePlaceholderIfNeeded()
         }
     }
 
@@ -513,6 +513,7 @@ public class PBBTextField: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
+        // TODO: Review again
 //        view.layer.masksToBounds = true
 //        view.tintColor = self.theme.getPrimaryColor()
 //        view.isHidden = true
@@ -749,6 +750,7 @@ public class PBBTextField: UIView {
             ])
         }
 
+        // TODO: Review again
 //        self.activeRightIconConstraints = [
 //            self.rightIconView.heightAnchor.constraint(equalToConstant: 24.0),
 //            self.rightIconView.widthAnchor.constraint(equalToConstant: 24.0),
@@ -865,7 +867,6 @@ public class PBBTextField: UIView {
         case .valid:
             switch self.textFieldState {
             case .editing:
-                print("EDITING")
                 self.performAnimation { [weak self] in
                     guard let self = self else { return }
                     self.customPlaceholder.textColor = self.editingBorderColor
@@ -873,7 +874,6 @@ public class PBBTextField: UIView {
                     self.textFieldStack.updateExistingBottomBorderColor(to: self.editingBorderColor)
                 }
             case .notEditing:
-                print("NOT EDITING")
                 self.performAnimation { [weak self] in
                     guard let self = self else { return }
                     self.customPlaceholder.textColor = self.placeholderTextColor

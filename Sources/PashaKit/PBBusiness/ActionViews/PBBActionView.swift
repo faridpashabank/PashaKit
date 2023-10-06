@@ -366,7 +366,6 @@ public class PBBActionView: UIView {
         }
         //TODO: switch gesture doesnt work
 //        view.addTapGestureRecognizer {
-//            print("HELLOW WORLD")
 //            self.radioButtonStatus = !self.radioButtonStatus
 //        }
         
@@ -393,7 +392,6 @@ public class PBBActionView: UIView {
         let view = UISwitch()
         
 //        view.addTapGestureRecognizer { //TODO: switch gesture doesnt work
-//            print("HELLOW WORLD")
 //            self.switchButtonStatus = !self.switchButtonStatus
 //        }
         
@@ -541,7 +539,6 @@ public class PBBActionView: UIView {
             self.baseView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0.0),
             self.baseView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0.0),
             self.titleStackView.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor),
-//            self.titleStackView.heightAnchor.constraint(equalToConstant: self.titleLabel.intrinsicContentSize.height + self.subTitleLabel.intrinsicContentSize.height + 4),
             self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
         ])
         
@@ -549,9 +546,6 @@ public class PBBActionView: UIView {
         case .normal(let icon, _):
             self.setupConstraintsByIcon(icon: icon)
         case .detailed(let icon, _,_):
-//            NSLayoutConstraint.activate([
-//                self.heightAnchor.constraint(equalTo: self.baseView.heightAnchor)
-//            ])
             self.setupConstraintsByIcon(icon: icon)
         case .footerLabel(let icon, _,_,_):
             self.setupConstraintsByIcon(icon: icon)
@@ -566,22 +560,22 @@ public class PBBActionView: UIView {
         self.setupConstraintsByStyle()
         
         self.smallSizeConstraints = [
-            self.leftIconView.widthAnchor.constraint(equalToConstant: 12.0),
-            self.leftIconView.heightAnchor.constraint(equalToConstant: 12.0),
+            self.leftIconView.widthAnchor.constraint(equalToConstant: 24.0),
+            self.leftIconView.heightAnchor.constraint(equalToConstant: 24.0),
             self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 24.0),
             self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 24.0)
         ]
         
         self.mediumSizeConstraints = [
-            self.leftIconView.widthAnchor.constraint(equalToConstant: 16.0),
-            self.leftIconView.heightAnchor.constraint(equalToConstant: 16.0),
+            self.leftIconView.widthAnchor.constraint(equalToConstant: 32.0),
+            self.leftIconView.heightAnchor.constraint(equalToConstant: 32.0),
             self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 32.0),
             self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 32.0)
         ]
         
         self.largeSizeConstraints = [
-            self.leftIconView.widthAnchor.constraint(equalToConstant: 24.0),
-            self.leftIconView.heightAnchor.constraint(equalToConstant: 24.0),
+            self.leftIconView.widthAnchor.constraint(equalToConstant: 48.0),
+            self.leftIconView.heightAnchor.constraint(equalToConstant: 48.0),
             self.leftIconWrapperView.widthAnchor.constraint(equalToConstant: 48.0),
             self.leftIconWrapperView.heightAnchor.constraint(equalToConstant: 48.0)
         ]

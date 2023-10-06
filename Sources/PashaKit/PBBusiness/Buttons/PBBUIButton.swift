@@ -88,7 +88,7 @@ public class PBBUIButton: UIButton {
 
     /// Sets the title to use for normal state.
     ///
-    /// Since we're using only normal state for UIButton, at the moment PBUIButton also uses only normal state when setting
+    /// Since we're using only normal state for UIButton, at the moment PBBUIButton also uses only normal state when setting
     /// button title.
     /// For different states use native
     /// ```
@@ -114,7 +114,7 @@ public class PBBUIButton: UIButton {
 
     /// The radius to use when drawing rounded corners for the layer’s background.
     ///
-    /// By default it will set 16.0 to corner radius property of button.
+    /// By default it will set 12.0 to corner radius property of button.
     ///
     public var cornerRadius: CGFloat = 12.0 {
         didSet {
@@ -183,7 +183,7 @@ public class PBBUIButton: UIButton {
 
     /// Specifies style of the button.
     ///
-    /// If not specified by outside, PBUIButton will be created with filled style.
+    /// If not specified by outside, PBBUIButton will be created with filled style.
     ///
     public var styleOfButton: PBUIButtonStyle = .filled {
         didSet {

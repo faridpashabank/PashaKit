@@ -257,7 +257,7 @@ open class PBBAttentionView: UIView {
     /// Sets informational text and its level for atttenion view.
     ///
     /// - Parameters:
-    ///  - text: informational text
+    ///  - localizedTitle: informational text
     ///  - attentionType: attention type default value is normal
     ///
     
