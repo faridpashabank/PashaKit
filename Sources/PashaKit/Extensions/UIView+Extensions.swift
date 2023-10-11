@@ -54,9 +54,9 @@ extension UIView {
 
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: parent.topAnchor),
-            self.leftAnchor.constraint(equalTo: parent.leftAnchor),
+            self.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
             self.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-            self.rightAnchor.constraint(equalTo: parent.rightAnchor)
+            self.trailingAnchor.constraint(equalTo: parent.trailingAnchor)
         ])
     }
 }
@@ -204,94 +204,6 @@ public extension UIView {
         }
     }
 }
-
-//extension UIView {
-//
-//    fileprivate struct AssociatedObjectKeys {
-//        static var tapGestureRecognizer = "AssociatedObjectKeysTapGestureRecognizer"
-//        static var longTapGestureRecognizer = "AssociatedObjectKeysLongTapGestureRecognizer"
-//    }
-//
-//    fileprivate typealias Action = (() -> Void)?
-//
-//    fileprivate var tapGestureRecognizerAction: Action? {
-//        set {
-//            if let newValue = newValue {
-//                objc_setAssociatedObject(
-//                    self,
-//                    &AssociatedObjectKeys.tapGestureRecognizer,
-//                    newValue,
-//                    objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN
-//                )
-//            }
-//        }
-//        get {
-//            let tapGestureRecognizerActionInstance =
-//                objc_getAssociatedObject(self, &AssociatedObjectKeys.tapGestureRecognizer)
-//                as? Action
-//            return tapGestureRecognizerActionInstance
-//        }
-//    }
-//
-//    public func addTapGestureRecognizer(action: (() -> Void)?) {
-//        self.isUserInteractionEnabled = true
-//        self.tapGestureRecognizerAction = action
-//        let tapGestureRecognizer = UITapGestureRecognizer(
-//            target: self,
-//            action: #selector(handleTapGesture)
-//        )
-//        self.addGestureRecognizer(tapGestureRecognizer)
-//    }
-//
-//    @objc fileprivate func handleTapGesture(sender: UITapGestureRecognizer) {
-//        if let action = self.tapGestureRecognizerAction {
-//            action?()
-//        }
-//    }
-//
-//    fileprivate var longTapGestureRecognizerAction: Action? {
-//        set {
-//            if let newValue = newValue {
-//                objc_setAssociatedObject(
-//                    self,
-//                    &AssociatedObjectKeys.longTapGestureRecognizer,
-//                    newValue,
-//                    objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN
-//                )
-//            }
-//        }
-//        get {
-//            let tapGestureRecognizerActionInstance =
-//                objc_getAssociatedObject(self, &AssociatedObjectKeys.longTapGestureRecognizer)
-//                as? Action
-//            return tapGestureRecognizerActionInstance
-//        }
-//    }
-//
-//    public func addLongTapGestureRecognizer(action: (() -> Void)?) {
-//        self.isUserInteractionEnabled = true
-//        self.longTapGestureRecognizerAction = action
-//        let tapGestureRecognizer = UILongPressGestureRecognizer(
-//            target: self,
-//            action: #selector(handleLongTapGesture)
-//        )
-//        self.addGestureRecognizer(tapGestureRecognizer)
-//    }
-//
-//    @objc fileprivate func handleLongTapGesture(sender: UITapGestureRecognizer) {
-//        if let action = self.longTapGestureRecognizerAction {
-//            action?()
-//        }
-//    }
-//
-//    func hide() {
-//        self.isHidden = true
-//    }
-//
-//    func show() {
-//        self.isHidden = false
-//    }
-//}
 
 public extension UIView {
     func applySubtractionMask(to view: UIView, maskRect: CGRect, cornerRadius: CGFloat = 0) {

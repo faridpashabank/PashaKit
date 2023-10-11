@@ -6,7 +6,7 @@ import PackageDescription
 public let package = Package(
     name: "PashaKit",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v13)
     ],
     products: [
         .library(name: "PashaKit", targets: ["PashaKit"]),
@@ -15,24 +15,7 @@ public let package = Package(
         .package(url: "https://github.com/RedMadRobot/input-mask-ios.git", exact: "6.1.0")
     ],
     targets: [
-        .target(name: "PashaKit", dependencies: [
-            .product(name: "InputMask", package: "input-mask-ios")
-        ], // path: "Sources",
-            resources: [
-                .process("Fonts/SFProDisplayBold.otf"),
-                .process("Fonts/SFProDisplayLight.otf"),
-                .process("Fonts/SFProDisplayRegular.otf"),
-                .process("Fonts/SFProDisplayMedium.otf"),
-                .process("Fonts/SFProDisplaySemibold.otf"),
-                .process("Fonts/SFProTextBold.otf"),
-                .process("Fonts/SFProTextLight.otf"),
-                .process("Fonts/SFProTextRegular.otf"),
-                .process("Fonts/SFProTextMedium.otf"),
-                .process("Fonts/SFProTextSemibold.otf"),
-//                .copy("settings.plist")
-            ]
-        ),
-//        .target(name: "PashaKitFonts", dependencies: [], resources: [.process("Fonts")]),
+        .target(name: "PashaKit", dependencies: [.product(name: "InputMask", package: "input-mask-ios")], path: "Sources"),
         .testTarget(name: "PashaKitTests", dependencies: ["PashaKit"]),
     ],
     swiftLanguageVersions: [
